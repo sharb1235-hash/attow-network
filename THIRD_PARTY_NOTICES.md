@@ -10,7 +10,7 @@ Public documentation here summarizes the supplied design and records the user's 
 
 ## Dependency and fixture policy
 
-The initial foundation used the Rust standard library only. Stages 2–5 introduce
+The initial foundation used the Rust standard library only. Stages 2–6 introduce
 the following reviewed direct dependencies. Declared future workspace candidates
 remain inactive until a consuming crate needs them. Review the actual lockfile
 and enabled feature graph before distribution.
@@ -29,6 +29,8 @@ and enabled feature graph before distribution.
 | wasmparser | 0.254.2 | Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT |
 | wat (tests) | 1.261.0 | Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT |
 | anyhow | 1.0.104 | MIT OR Apache-2.0 |
+| Tokio | 1.53.2 | MIT |
+| serde / serde_json (benchmark tooling) | 1.0.229 / 1.0.151 | MIT OR Apache-2.0 |
 
 The registry records and archive checksums are in
 [Stage 2 dependency evidence](docs/research/stage2-dependencies.json). This
@@ -43,5 +45,7 @@ The WASM runtime, its matching binary parser, test WAT parser and error library
 are recorded in [Stage 5 dependency evidence](docs/research/stage5-dependencies.json).
 The parser version follows Wasmtime's resolved dependency, while the newer WAT
 tooling has its own separate parser version in the lockfile.
+Scheduler and benchmark dependencies are recorded in
+[Stage 6 dependency evidence](docs/research/stage6-dependencies.json).
 
 For copied fixtures or code, retain the original notice and document the exact upstream revision/path, original URL, SHA-256 and any extraction or modification steps. Do not infer permission from public visibility, a paper citation, a nearby project's license or a successful license scanner. No upstream real-schema corpus is claimed as bundled by this foundation document.

@@ -2,12 +2,14 @@
 
 Attow Network is a Rust project for exploring alternative executions, sharing immutable state and safe computations, and promoting selected effects through an accountable authority.
 
-**Development status: local authority, replay and bounded WASM steps.** The workspace
+**Development status: local authority, bounded workers and safe computation reuse.** The workspace
 provides bounded canonical objects, content identity, transactional SQLite object
 storage, root pins, garbage collection, online backups, isolated branch overlays
 and tracked dependencies, atomic promotion, a durable effect outbox, and offline
-event replay, explicit WASM checkpoints and durable resumption, alongside a development
-CLI and repository checks. The execution system described below is the target
+event replay, explicit WASM checkpoints and durable resumption. A bounded graph
+scheduler adds tenant queues, admitted pure reuse, receipt invalidation and offline
+execution-trace verification, alongside a development CLI and repository checks.
+The execution system described below is the target
 architecture. A compiling feature or placeholder target does not mean its runtime
 exists. See the [implementation record](docs/progress.md) for completed stages and
 actual validation results.
@@ -50,7 +52,7 @@ ChronosOS is the internal project name. Public packages use `attow-*`, the facad
 | Worldline state | Shared immutable roots, tracked reads/writes/scans, tombstones, diffs and durable admission |
 | Serializable promotion, outbox and recovery | Atomic local authority, reserved rights, durable uncertainty, replay and abrupt crash tests |
 | WASM execution | Admitted components, fuel/memory/output bounds, explicit checkpoints and new-process resume |
-| Bounded scheduling and pure reuse | Planned: stage 6 |
+| Bounded scheduling and pure reuse | Tenant queues, resource caps, admitted pure sharing, receipt invalidation and offline traces |
 | Provider/browser/SQL adapters and effect gateway | Planned: stage 7 |
 | Authenticated peer exchange | Planned: stage 8 |
 | Integrated CLI demonstration | Planned: stage 9 |
@@ -70,14 +72,27 @@ cargo doc --workspace --no-deps --locked
 ```
 
 The `local` feature is the default. `sandbox` enables the bounded WASM backend;
-`scheduler`, `adapters`, `browser` and `peer` select boundaries for the following
-stages. Features do not grant permission to connect to a network. All packages
-remain `publish = false`.
+`scheduler` adds graph scheduling, validated result retention and offline replay.
+`adapters`, `browser` and `peer` select boundaries for the following stages.
+Features do not grant permission to connect to a network. All packages remain
+`publish = false`.
 
 The sandbox uses Wasmtime in process and links no WASI imports. Its tested contract
 is explicit data checkpoints under a versioned profile; operating-system isolation
 for hostile guests remains outside this support level. See the
 [determinism profile](docs/determinism-profile.md).
+
+The scheduler example runs two distinct branches through one shared WASM
+evaluation, then verifies the recorded trace after dropping the worker. Replay
+uses recorded outcomes and makes zero worker or provider calls; it does not
+independently rerun the guest or establish external-provider truth.
+
+```sh
+cargo run --example offline_replay --features scheduler --locked
+```
+
+See [scheduler behavior](docs/scheduler.md) and the
+[complete reuse contract](docs/reuse-contract.md) for admission and resource limits.
 
 ## Local checkout example
 

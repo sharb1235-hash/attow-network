@@ -65,6 +65,12 @@ jobs:
       - name: Lint the sandbox feature
         shell: bash
         run: cargo +1.95.0 clippy --workspace --all-targets --features sandbox --locked -- -D warnings
+      - name: Test scheduling, reuse, and exact offline replay
+        shell: bash
+        run: cargo +1.95.0 test --workspace --all-targets --features scheduler --locked
+      - name: Lint the scheduler feature
+        shell: bash
+        run: cargo +1.95.0 clippy --workspace --all-targets --features scheduler --locked -- -D warnings
 
 # Add other runtime feature lanes as their implementations land.
 # This workflow neither publishes artifacts nor enables public network tests.

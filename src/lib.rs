@@ -15,6 +15,6 @@ pub use chronos_adapters as adapters;
 #[cfg(feature = "peer")]
 pub use chronos_protocol as protocol;
 #[cfg(feature = "scheduler")]
-pub use chronos_scheduler as scheduler;
+pub mod scheduler;
 #[cfg(feature = "peer")]
 pub use chronos_transport as transport;

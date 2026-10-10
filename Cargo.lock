@@ -99,9 +99,12 @@ dependencies = [
  "attow-state",
  "attow-store",
  "attow-transport",
+ "blake3",
  "proptest",
  "rusqlite",
+ "serde_json",
  "tempfile",
+ "tokio",
  "wat",
 ]
 
@@ -126,6 +129,14 @@ dependencies = [
 [[package]]
 name = "attow-scheduler"
 version = "0.1.0"
+dependencies = [
+ "attow-codec",
+ "attow-state",
+ "getrandom 0.4.3",
+ "proptest",
+ "thiserror",
+ "tokio",
+]
 
 [[package]]
 name = "attow-state"
@@ -210,6 +221,12 @@ checksum = "72f5acc6cb2ba439de613abc23857ec3d78374d8ed5ac84e9d11336e87da8649"
 dependencies = [
  "allocator-api2",
 ]
+
+[[package]]
+name = "bytes"
+version = "1.12.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "fc652a48c352aef3ea3aed32080501cf3ef6ed5da78602a020c991775b0aff04"
 
 [[package]]
 name = "cc"
@@ -1249,6 +1266,28 @@ name = "thiserror-impl"
 version = "2.0.21"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "fe5197923287db20a58125f0bc85c062f7f2c892de97b18c356f9efb14b28524"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn 3.0.7",
+]
+
+[[package]]
+name = "tokio"
+version = "1.53.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e95f91fcc7a621e8b030f6aa23c71fe9838ae2fb4d8118b75602a328f5144044"
+dependencies = [
+ "bytes",
+ "pin-project-lite",
+ "tokio-macros",
+]
+
+[[package]]
+name = "tokio-macros"
+version = "2.7.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "78773a2a397f451582ce068015985c33193cf6dea8b74d2a639fe457b2f07b0e"
 dependencies = [
  "proc-macro2",
  "quote",

@@ -10,5 +10,15 @@ description = "Attow Network scheduler module"
 [features]
 default = []
 
+[dependencies]
+chronos-codec.workspace = true
+chronos-state.workspace = true
+tokio.workspace = true
+thiserror.workspace = true
+getrandom.workspace = true
+
+[dev-dependencies]
+proptest.workspace = true
+
 [lints]
 workspace = true

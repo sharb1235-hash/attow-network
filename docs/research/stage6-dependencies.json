@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "verified_utc": "2026-10-10T06:38:24.0387101Z",
+  "dependencies": [
+    {
+      "name": "tokio",
+      "version": "1.53.2",
+      "checksum": "e95f91fcc7a621e8b030f6aa23c71fe9838ae2fb4d8118b75602a328f5144044",
+      "license": "MIT",
+      "rust_version": "1.71",
+      "source": "https://crates.io/api/v1/crates/tokio/1.53.2"
+    },
+    {
+      "name": "serde_json",
+      "version": "1.0.151",
+      "checksum": "c841b55ecdae098c80dcae9cf767f6f8a0c2cdb3416bbef72181df4d0fe73f14",
+      "license": "MIT OR Apache-2.0",
+      "rust_version": "1.71",
+      "source": "https://crates.io/api/v1/crates/serde_json/1.0.151"
+    },
+    {
+      "name": "serde",
+      "version": "1.0.229",
+      "checksum": "4148590afebada386688f18773da617792bf2ef03ffc1e4cbd2b1d45b023e0ba",
+      "license": "MIT OR Apache-2.0",
+      "rust_version": "1.56",
+      "source": "https://crates.io/api/v1/crates/serde/1.0.229"
+    }
+  ]
+}

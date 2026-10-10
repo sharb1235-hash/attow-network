@@ -79,3 +79,101 @@ Standard output from this successful run:
 {"record":"sample","metric":"durable_root_admission","sample":2,"operations":1,"elapsed_ns":3432300,"existing_object_reuse":true}
 {"record":"sample","metric":"durable_branch_admission","sample":2,"operations":1,"elapsed_ns":3878500,"base_already_persisted":true}
 ```
+
+## Scheduler measurement method
+
+The separate `scheduler` harness measures Stage 6 graph submission through a
+completed run, including admission checks, queueing, worker execution, result
+retention, and semantic trace construction. It creates a fresh scheduler and
+cache for each sample. Fixture construction, code compilation, input creation,
+runtime construction, and cleanup are outside the timed section. The actual
+WASM component is compiled before timing but has no prior evaluation in that
+sample. These are warm compilation measurements, not cold process startup.
+
+```sh
+cargo +1.95.0 bench --bench scheduler --features scheduler --locked -- --nodes 8 --samples 3
+```
+
+Two backends are reported separately. `mock_cpu_blake3_memory_repository` runs
+500 deterministic BLAKE3 rounds and retains canonical result objects in memory;
+it measures scheduler mechanics with a synthetic workload. The resource-class
+tag is a routing key and does not make this mock a WASM measurement.
+`actual_wasmtime_component_sqlite_full` executes the original arithmetic
+component through the admitted sandbox backend and retains its complete result
+graph using FULL-synchronous SQLite. Each real sample has a fresh temporary
+database. The CPU loop and the arithmetic component are different workloads;
+their latencies are not a comparison of backend speed.
+
+Each graph has two nodes per logical branch. In `common_prefix`, the first node
+of every branch has identical immutable inputs, followed by a distinct suffix.
+`no_sharing` uses the same graph with reuse disabled. `high_divergence` gives
+every node distinct inputs. The harness checks actual backend call counts:
+half the node count plus one for common prefixes, and the full node count for
+the other two scenarios. Branch identities and attempt identities remain
+distinct. Worker counts describe executed evaluations, not resident agents.
+The resident limit is two; a sample reports the scheduler's observed peak.
+
+The `replay` sample consumes the common-prefix trace and recorded immutable
+objects in memory. Gathering the records from SQLite is outside this timing.
+Replay verifies the graph and objects, checks exact output equality, and the
+harness verifies that the backend call counter does not advance. It is not a
+measurement of database restore, transport, or external-provider replay.
+
+The JSONL stream contains raw sample durations and separate nearest-rank
+p50/p95/p99 summaries. Metadata includes OS, architecture, logical CPU count,
+the Windows processor environment string when available, exact compiler,
+repository revision and dirty state, executable/lock/harness/fixture BLAKE3
+hashes, and each backend's canonical code/profile identifiers. The executable
+hash identifies the code actually measured even when the checkout is dirty.
+Small sample counts are useful for checking the harness; their percentiles do
+not establish latency guarantees. Retain outliers and compare repeated runs
+under stated machine load and storage conditions before making performance
+claims. The benchmark does not call a network, model, browser, or payment
+provider.
+
+Bounds are an even 4–64 nodes and 1–20 samples. Defaults are eight nodes and three
+samples; debug builds or an explicit `--test` argument select four nodes and one sample. Test-mode
+output is smoke evidence, not release benchmark evidence. Invalid arguments,
+incomplete runs, unexpected evaluation counts, and replay mismatches fail the
+process. No performance threshold is asserted in CI.
+
+## Recorded scheduler run
+
+This command completed successfully on 2026-10-10 using the final Stage 6 source
+on the local Windows x86-64 workstation. The optimized bench profile retained
+debug information. The checkout was dirty, based on commit
+`017626e96183af6f4ce4c9d5a3bbf2d0cad6f960`; the raw executable hash identifies
+the measured build. The machine had eight visible logical CPUs and reported
+`Intel64 Family 6 Model 165 Stepping 2, GenuineIntel` in its processor environment
+value. This was a development workstation run, not an isolated performance lab.
+
+```sh
+cargo +1.95.0 bench -j 1 --bench scheduler --features scheduler --locked -- --nodes 8 --samples 3
+```
+
+[Raw JSONL samples and metadata](research/stage6-scheduler-2026-10-10.jsonl)
+contain one environment record, 24 sample records, and eight summaries. Their
+SHA-256 is `7f0252f8e8e6b23cab3e77f2beb17371ec459544dbb721e61b9db1b82200a64a`.
+All records parsed successfully; the sample counts, worker-call counts, resident
+limit, and percentile calculations were independently checked after execution.
+Each row below has three samples of an eight-node, four-branch graph.
+
+| Backend | Scenario | Worker calls per sample | p50 ms | p95 ms | p99 ms |
+| --- | --- | ---: | ---: | ---: | ---: |
+| Mock CPU / memory | Common prefix | 5 | 0.4017 | 0.8311 | 0.8311 |
+| Mock CPU / memory | No sharing | 8 | 0.4823 | 0.5233 | 0.5233 |
+| Mock CPU / memory | High divergence | 8 | 0.3771 | 0.4660 | 0.4660 |
+| Mock CPU / memory | Replay | 0 | 0.1119 | 0.2571 | 0.2571 |
+| Actual WASM / SQLite | Common prefix | 5 | 43.6497 | 46.0450 | 46.0450 |
+| Actual WASM / SQLite | No sharing | 8 | 37.4871 | 43.7492 | 43.7492 |
+| Actual WASM / SQLite | High divergence | 8 | 51.9996 | 62.1817 | 62.1817 |
+| Actual WASM / SQLite | Replay | 0 | 0.1488 | 0.1813 | 0.1813 |
+
+The common-prefix graph executed five evaluations instead of eight while
+preserving all branch outputs, and replay invoked no workers. Its actual WASM
+median was slower than the no-sharing median in this small run; fewer evaluations
+do not by themselves establish a latency improvement. Cache retention adds work,
+and three samples on an active workstation do not separate individual cost
+sources. With three samples, nearest-rank p95 and p99 both equal the maximum.
+No throughput, cross-platform, tail-latency, or production-scale claim follows
+from these observations.

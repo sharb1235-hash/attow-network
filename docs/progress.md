@@ -14,7 +14,7 @@ All 42 manifest-listed input files passed SHA-256 verification before copying.
 | 3 | State and worldline forks | Complete |
 | 4 | Ledger and atomic promotion | Complete |
 | 5 | WASM continuations | Complete |
-| 6 | Scheduler and safe computation reuse | Pending |
+| 6 | Scheduler and safe computation reuse | Complete |
 | 7 | Adapters and effect gateway | Pending |
 | 8 | Peer federation | Pending |
 | 9 | CLI and owned demonstration | Pending |
@@ -199,3 +199,97 @@ credentials or external dispatch. OS isolation for hostile guests, process RSS
 quotas and compilation deadlines are not implemented. Runtime/profile upgrades
 require distinct identities. Cross-platform CI is configured but only Windows
 was executed here. Next: Stage 6 bounded scheduling and safe computation reuse.
+
+### Stage 6
+
+Implemented the bounded scheduler in `crates/chronos-scheduler/src/` (`graph`,
+`cache`, `invalidate`, `engine`, `queue`, `budget`, `metrics`, `replay` and public
+exports), with tenant fairness, global/resource-class worker caps, exact admitted
+pure reuse, shared in-flight work, consumer cancellation and conservative receipt
+replacement. The scheduler depends on the shared worker port rather than concrete
+adapters. Graph dependencies order execution; requests bind explicit immutable
+inputs and retain separate node, branch and attempt identities.
+
+Added the facade's transactional `src/scheduler` SQLite result repository,
+`tests/reuse_properties.rs`, `tests/scheduler_storage.rs`, the actual WASM fixture
+support in `tests/support/scheduled_wasm.rs`, `examples/offline_replay.rs` and
+`benches/scheduler.rs`. Updated manifests/lockfile, facade exports, native CI lanes,
+third-party notices, README, scheduler/reuse/performance documentation and Stage 6
+dependency and primary-source research records. No adapter or peer implementation
+is claimed by the registered feature boundaries.
+
+Executed separately on Windows x86_64 MSVC, all listed checks exit code 0 after
+repairs:
+
+- `cargo +1.95.0 test -p attow-scheduler --locked` — 16 unit tests passed
+- `cargo +1.95.0 test --workspace --all-targets --locked -j 2`
+  — 169 tests passed across 32 reported suites; log `target/stage6-default-tests.log`
+- `cargo +1.95.0 test --workspace --all-targets --features scheduler --locked -j 2`
+  — 197 tests passed across 38 reported suites; log `target/stage6-feature-tests-final.log`
+- `cargo +1.95.0 test --features scheduler --test reuse_properties --locked`
+  — 16 passed, including 32 generated DAG comparisons with reuse enabled/disabled
+- `cargo +1.95.0 test --features scheduler --bench scheduler --locked -- --test`
+  — four-node, one-sample smoke path for the mock CPU and actual WASM/SQLite backends
+- `cargo +1.95.0 run --example offline_replay --features scheduler --locked`
+  — 2 branches, 1 actual WASM evaluation, 0 replay worker calls, 0 provider calls
+- `cargo +1.95.0 fmt --all --check`
+- `cargo +1.95.0 clippy --workspace --all-targets --locked -- -D warnings`
+- `cargo +1.95.0 clippy --workspace --all-targets --features scheduler --locked -- -D warnings`
+- `cargo +1.95.0 clippy --features scheduler --test reuse_properties --bench scheduler --locked -- -D warnings`
+- `cargo +1.95.0 doc --workspace --no-deps --locked`
+- `cargo +1.95.0 run -p xtask --locked -- verify-repository`
+- `cargo +1.95.0 check -p attow-network --no-default-features --features scheduler --locked`
+
+The first graph/key/invalidation tests recorded six failures against explicit
+stubs; the two initial independent scheduler tests then failed with `InvalidLimits`
+before the engine existed. Offline replay and SQLite retention checks likewise
+failed on the initial stubs. Later behavioral regressions were reproduced before
+repair: spare vector capacity bypassing descriptor accounting; unfair reinsertion
+of ready work; prior receipt revisions losing their object pins while their trace
+events remained; pure observations changing when reuse was disabled; oversized
+successful repository retention responses; mismatched scheduler/replay cumulative
+invalidation limits; and a replay accepting pending nodes with failed or cancelled
+dependencies because they also had suspended ancestry. Tests were preserved and
+rejection invariants were not weakened.
+
+A transient feature-build `E0463` missing-rlib artifact failure cleared on retry
+with `-j 2`, without source changes or artifact cleanup. It was a build failure,
+not a passing test run; the final recorded workspace run completed successfully.
+
+The independent checks cover every reuse-key field, backend admission before
+cache access, denied pure reuse, non-pure classes, trapped attempts, actual
+simultaneous worker caps, cross-run shared-work cancellation, dropped `drive`
+futures, queue capacity, fairness, parked dependencies, subtree replacement and
+explicit pin cleanup. SQLite tests verify atomic full-graph retention, rejected
+partial checkpoints, actual WASM sharing followed by worker-free replay, ledger
+dispatch remaining unaffected by scheduler cancellation, and historical trace
+objects surviving garbage collection until `forget`.
+
+Replay validates graph transitions, attempt/profile bindings, recorded object
+hashes and references, full-key result consistency and receipt invalidation. It
+has no worker or dispatch interface and consumes recorded outcomes, rather than
+independently executing guest code or attesting provider truth. The example drops
+the executor before replay. Trace data stays in memory until exported by the
+application; SQLite durably retains request/outcome graphs and their pins, not the
+entire scheduler trace.
+
+Limits: scheduling is process-local, with bounded graphs, queues, resident
+workers, history, cache entries and conservative retained-byte accounting.
+Observation replacement requires a quiescent run and charges the same cumulative
+1,000,000 node-plus-edge work budget used by replay before changing accepted
+history. Cancelling a consumer does not interrupt arbitrary synchronous backends
+or revoke ledger authority; permits remain occupied until the real worker exits.
+Historical result pins remain charged until `forget`; dropping a handle is not
+durable cleanup. There is no distributed scheduler, dependency projection,
+e-graph optimizer, automatic durable trace export or hostile-worker OS isolation.
+Native CI lanes are configured; only Windows was executed here.
+
+The final release-profile benchmark passed with exit code 0:
+
+```sh
+cargo +1.95.0 bench -j 1 --bench scheduler --features scheduler --locked -- --nodes 8 --samples 3
+```
+
+The saved JSONL has 24 actual samples and eight recomputed percentile summaries across mock CPU and real WASM/SQLite workloads. Common-prefix graphs used five evaluations versus eight with reuse disabled; replay used zero. Peak residency stayed at two. The three-sample real WASM common-prefix median was 43.6497 ms versus 37.4871 ms without sharing, so this run demonstrates evaluation reuse, not a latency speedup. Raw data, hashes, exclusions and all percentiles are in docs/performance-method.md and docs/research/stage6-scheduler-2026-10-10.jsonl. Debug smoke data is not used as release evidence.
+
+Next: Stage 7 owned browser/SQL adapters and the effect gateway simulator.

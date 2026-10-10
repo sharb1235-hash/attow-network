@@ -92,6 +92,30 @@ proptest.workspace = true
 tempfile.workspace = true
 rusqlite.workspace = true
 wat.workspace = true
+tokio.workspace = true
+serde_json.workspace = true
+blake3.workspace = true
+
+[[test]]
+name = "reuse_properties"
+path = "tests/reuse_properties.rs"
+required-features = ["local", "scheduler"]
+
+[[test]]
+name = "scheduler_storage"
+path = "tests/scheduler_storage.rs"
+required-features = ["local", "scheduler"]
+
+[[example]]
+name = "offline_replay"
+path = "examples/offline_replay.rs"
+required-features = ["local", "scheduler"]
+
+[[bench]]
+name = "scheduler"
+path = "benches/scheduler.rs"
+harness = false
+required-features = ["local", "scheduler"]
 
 [[test]]
 name = "sandbox_backend"
