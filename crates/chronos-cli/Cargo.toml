@@ -9,6 +9,30 @@ description = "Attow Network cli module"
 
 [features]
 default = []
+browser = ["chronos-adapters/browser"]
+
+[dependencies]
+chronos-local = { workspace = true, features = ["scheduler", "peer"] }
+chronos-codec.workspace = true
+chronos-store.workspace = true
+chronos-state.workspace = true
+chronos-ledger.workspace = true
+chronos-sandbox.workspace = true
+chronos-scheduler.workspace = true
+chronos-adapters.workspace = true
+chronos-protocol.workspace = true
+chronos-transport.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true
+tokio.workspace = true
+rusqlite.workspace = true
+wat.workspace = true
+blake3.workspace = true
+getrandom.workspace = true
+
+[dev-dependencies]
+tempfile.workspace = true
 
 [lints]
 workspace = true

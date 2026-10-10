@@ -19,6 +19,21 @@ pub struct VerificationReport {
     pub materialized_tables: usize,
 }
 
+/// A promotion reconstructed from its original event after complete verification.
+#[derive(Clone, Debug, PartialEq, Eq)]
+pub struct VerifiedPromotion {
+    pub request_id: ObjectId,
+    pub payload: ObjectId,
+    /// FrozenBranch descriptor object, not the logical BranchId.
+    pub branch: ObjectId,
+    pub decision: ObjectId,
+    pub generation: u64,
+    pub outcome: crate::PromotionOutcome,
+    pub sequence: u64,
+    /// Managed root immediately after this promotion (unchanged on conflict).
+    pub state_root: ObjectId,
+}
+
 /// Stream only objects requested by admitted events from the same SQL snapshot.
 /// No global scan or cumulative resident cache can let unrelated staged objects
 /// prevent authority recovery. Each read and branch graph remains bounded.
@@ -160,12 +175,29 @@ pub(crate) fn check_materialized(
 }
 
 impl Authority {
+    /// Look up one original promotion only after the entire event chain and every
+    /// materialized table have verified. Absence also requires full verification.
+    /// This is read-only history consistency, not external checkpoint attestation.
+    pub fn promotion_record(
+        &self,
+        request_id: ObjectId,
+    ) -> Result<Option<VerifiedPromotion>, LedgerError> {
+        self.verify_with_promotion(Some(request_id))
+            .map(|(_, promotion)| promotion)
+    }
     /// Rebuild from canonical events using no provider, credential or dispatcher.
     /// Compare every materialized authority table against a fresh SQLite database.
     /// All source reads share one snapshot. A caller can retain the returned head
     /// independently to detect rollback; this method cannot authenticate a fully
     /// rewritten database against a checkpoint it has never been given.
     pub fn rebuild_and_verify(&self) -> Result<VerificationReport, LedgerError> {
+        self.verify_with_promotion(None).map(|(report, _)| report)
+    }
+
+    fn verify_with_promotion(
+        &self,
+        selected: Option<ObjectId>,
+    ) -> Result<(VerificationReport, Option<VerifiedPromotion>), LedgerError> {
         self.store.read_transaction_with(|snapshot| {
             let materialized = schema::load(snapshot.sql())?;
             let objects = SnapshotReader(snapshot);
@@ -176,6 +208,7 @@ impl Authority {
             let mut previous = ObjectId([0; 32]);
             let mut count = 0u64;
             let mut total_bytes = 0;
+            let mut promotion = None;
             let mut statement = snapshot.sql().prepare(
                 "SELECT seq,CASE WHEN length(id)=32 THEN id ELSE NULL END,
                  CASE WHEN length(previous)=32 THEN previous ELSE NULL END,
@@ -228,6 +261,39 @@ impl Authority {
                 if model.seq != count {
                     return Err(LedgerError::Corrupt);
                 }
+                if let Some(request_id) = selected
+                    && let chronos_codec::Value::Array(fields) = &command
+                    && fields.first() == Some(&chronos_codec::Value::Unsigned(4))
+                {
+                    let mut fields = fixed(command.clone(), 6)?;
+                    let _tag = num(take(&mut fields)?)?;
+                    let event_request = id(take(&mut fields)?)?;
+                    if event_request == request_id {
+                        if promotion.is_some() {
+                            return Err(LedgerError::Corrupt);
+                        }
+                        let payload = id(take(&mut fields)?)?;
+                        let branch = id(take(&mut fields)?)?;
+                        let decision = id(take(&mut fields)?)?;
+                        let generation = num(take(&mut fields)?)?;
+                        let outcome = model
+                            .promotions
+                            .get(&request_id)
+                            .ok_or(LedgerError::Corrupt)?
+                            .response
+                            .clone();
+                        promotion = Some(VerifiedPromotion {
+                            request_id,
+                            payload,
+                            branch,
+                            decision,
+                            generation,
+                            outcome,
+                            sequence: count,
+                            state_root: model.root.object_id()?,
+                        });
+                    }
+                }
                 model.head = event_id;
                 schema::write(&rebuilt, model)?;
                 rebuilt.execute(
@@ -262,12 +328,15 @@ impl Authority {
             {
                 return Err(LedgerError::Corrupt);
             }
-            Ok(VerificationReport {
-                events: count,
-                head: previous,
-                state_root,
-                materialized_tables: schema::TABLES.len(),
-            })
+            Ok((
+                VerificationReport {
+                    events: count,
+                    head: previous,
+                    state_root,
+                    materialized_tables: schema::TABLES.len(),
+                },
+                promotion,
+            ))
         })
     }
 }

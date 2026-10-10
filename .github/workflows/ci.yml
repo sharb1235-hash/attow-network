@@ -30,6 +30,7 @@ jobs:
     env:
       CARGO_TERM_COLOR: always
       RUST_BACKTRACE: "1"
+      CARGO_BUILD_JOBS: "2"
     steps:
       - name: Check out sources
         # actions/checkout v7.0.1; provenance: docs/research/ci-pins.json
@@ -59,6 +60,13 @@ jobs:
       - name: Check the minimal facade
         shell: bash
         run: cargo +1.95.0 check --package attow-network --no-default-features --locked
+      - name: Check every facade feature and supported compositions
+        shell: bash
+        run: |
+          set -euo pipefail
+          for features in local sandbox scheduler adapters browser peer local,sandbox local,scheduler local,peer scheduler,adapters scheduler,browser,peer; do
+            cargo +1.95.0 check --package attow-network --no-default-features --features "$features" --locked
+          done
       - name: Test the sandbox feature and durable process resume
         shell: bash
         run: cargo +1.95.0 test --workspace --all-targets --features sandbox --locked
@@ -119,6 +127,7 @@ jobs:
           if ((& $nodeExecutable --version) -ne 'v24.21.0') { throw 'Node version mismatch' }
           $nodeDirectory | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
           "ATTOW_NODE=$nodeExecutable" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          "ATTOW_BROWSER_SIDECAR=$env:GITHUB_WORKSPACE/demos/workflow-studio/browser/sidecar.mjs" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
           "PLAYWRIGHT_BROWSERS_PATH=$env:GITHUB_WORKSPACE/demos/workflow-studio/browser/.browsers" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
       - name: Install the locked sidecar dependencies
         run: npm ci --ignore-scripts --prefix demos/workflow-studio/browser
@@ -135,6 +144,35 @@ jobs:
         run: cargo +1.95.0 test --test adapter_receipt --features browser,scheduler --locked
       - name: Lint the implemented browser and scheduler composition
         run: cargo +1.95.0 clippy --workspace --all-targets --features browser,scheduler --locked -- -D warnings
+      - name: Test the complete feature set with installed browser prerequisites
+        run: cargo +1.95.0 test --workspace --all-targets --all-features --locked
+      - name: Lint the complete feature set
+        run: cargo +1.95.0 clippy --workspace --all-targets --all-features --locked -- -D warnings
+      - name: Record the actual integrated owned demo
+        run: cargo +1.95.0 run -p xtask --locked -- demo --record-json target/demo/events.json
+      - name: Install and exercise the source binary outside the checkout
+        run: cargo +1.95.0 run -p xtask --locked -- install-smoke --root target/install-smoke
+      - name: Provision the verified policy checker
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $archive = Join-Path $env:RUNNER_TEMP 'cargo-deny-0.20.2.tar.gz'
+          $directory = Join-Path $env:RUNNER_TEMP 'attow-cargo-deny'
+          New-Item -ItemType Directory -Force -Path $directory | Out-Null
+          Invoke-WebRequest -Uri 'https://github.com/EmbarkStudios/cargo-deny/releases/download/0.20.2/cargo-deny-0.20.2-x86_64-pc-windows-msvc.tar.gz' -OutFile $archive
+          if ((Get-FileHash -LiteralPath $archive -Algorithm SHA256).Hash.ToLowerInvariant() -ne '975a22143262fd27476d19ee00c7af67978426e40e1dee94eed6bbade1cf87dc') { throw 'Policy tool checksum mismatch' }
+          tar -xzf $archive -C $directory
+          if ($LASTEXITCODE -ne 0) { throw 'Policy tool extraction failed' }
+          $tool = Join-Path $directory 'cargo-deny-0.20.2-x86_64-pc-windows-msvc/cargo-deny.exe'
+          if ((& $tool --version) -ne 'cargo-deny 0.20.2') { throw 'Policy tool version mismatch' }
+          "ATTOW_CARGO_DENY=$tool" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          & $tool fetch db
+          if ($LASTEXITCODE -ne 0) { throw 'Advisory database fetch failed' }
+      - name: Enforce all-target licenses and native advisory policy
+        run: |
+          & $env:ATTOW_CARGO_DENY --locked --offline check licenses sources bans
+          if ($LASTEXITCODE -ne 0) { throw 'Dependency policy failed' }
+          & $env:ATTOW_CARGO_DENY --locked --offline --target x86_64-pc-windows-msvc check advisories
+          if ($LASTEXITCODE -ne 0) { throw 'Native advisory policy failed' }
 
 # Add other runtime feature lanes as their implementations land.
 # Installation downloads are separate from owned-loopback runtime tests.

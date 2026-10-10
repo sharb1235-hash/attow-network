@@ -1,5 +1,11 @@
 # Performance measurement method
 
+`cargo run -p xtask --locked -- bench-report --output target/bench-report.json`
+invokes the actual release-profile worldline and scheduler harnesses and retains
+their raw JSON samples. It rejects failed commands and smoke-mode-only output.
+CLI demo event counts and browser recordings are separate functional evidence;
+they do not imply a performance improvement or a benchmark result.
+
 The `worldline` benchmark measures Stage 3 logical forks and durable state
 admission. It does not create a worker, process, browser, SQL execution instance,
 or portable backend checkpoint. Worker materialization is not measured.

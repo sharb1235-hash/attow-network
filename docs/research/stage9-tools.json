@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "project": "Attow Network",
+  "verified_utc": "2026-10-10T19:22:26.4040956Z",
+  "tool": "cargo-deny",
+  "version": "0.20.2",
+  "target": "x86_64-pc-windows-msvc",
+  "archive_url": "https://github.com/EmbarkStudios/cargo-deny/releases/download/0.20.2/cargo-deny-0.20.2-x86_64-pc-windows-msvc.tar.gz",
+  "digest_source": "https://api.github.com/repos/EmbarkStudios/cargo-deny/releases/tags/0.20.2",
+  "archive_sha256": "975a22143262fd27476d19ee00c7af67978426e40e1dee94eed6bbade1cf87dc",
+  "executable_sha256": "f7292fab58c706638c999e64c4ba82e5128ae628130ba55e3266a768ee431fbf",
+  "verification": "Downloaded official release archive SHA256 matches GitHub release asset digest. Executed binary reports cargo-deny 0.20.2. Release signature was not verified.",
+  "license_check": "passed all-target graph including dev/build",
+  "source_and_bans_check": "passed; duplicate versions warn",
+  "windows_advisory_check": "passed",
+  "all_target_advisory_check": "failed RUSTSEC-2024-0436: paste 1.0.15 via Linux netlink-packet-core 0.8.2; no ignore added"
+}

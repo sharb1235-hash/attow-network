@@ -1,19 +1,23 @@
 # Architecture
 
-This is the target architecture for Attow Network. Stage 1 establishes the workspace and repository checks; the runtime mechanisms described here remain planned until the [progress record](progress.md) records their implementation and evidence. ChronosOS is retained only as an internal project name and in original source material.
+This describes Attow Network's implementation boundaries and remaining deployment
+requirements. The [progress record](progress.md) records each stage's evidence;
+the [verification matrix](verification-matrix.md) maps guarantees to tests and
+explicit unsupported cases. ChronosOS remains an internal name and appears in
+preserved original source material.
 
 ## Worldline IR and execution boundary
 
 A worldline is a portable descriptor of an alternative execution: authority domain, ancestry, code identity, execution profile, security scope, base sequence and state root, explicit continuation, observations, policy, and backend bindings. Immutable typed objects are content-addressed using versioned canonical bytes. Identity, shared state, and reusable computation remain separate concepts: identical state hashes do not imply equivalent authority or history.
 
-The planned step contract is:
+The shared step contract is:
 
 ```text
 step(code, continuation, state, recorded inputs, profile)
   -> next continuation, state delta, typed requests, result
 ```
 
-A suspension boundary contains all logical state needed for the next step. It contains no hidden host stack or in-flight import. WASM steps will be re-instantiated between calls; a live Wasmtime Store is not a portable checkpoint. Browser and SQL workers declare their actual restoration boundary and resource fidelity. Cloning cookies or storage is not cloning arbitrary browser process state.
+A suspension boundary contains all logical state needed for the next step. It contains no hidden host stack or in-flight import. WASM steps are re-instantiated between calls; a live Wasmtime Store is not a portable checkpoint. Browser and SQL workers declare their actual restoration boundary and resource fidelity. Cloning cookies or storage is not cloning arbitrary browser process state.
 
 Logical worldlines can share roots while resident workers remain bounded. The state crate owns a narrow `WorkerBackend` port; the scheduler receives implementations through composition, avoiding a scheduler-to-adapter dependency. A parked worldline waiting for a receipt need not occupy an active worker.
 
@@ -55,7 +59,7 @@ External providers retain their own semantics. Atomic local authorization does n
 
 ## Peer and security boundaries
 
-The planned peer layer transfers bounded, versioned object and proposal frames over authenticated transport. Hash and dependency validation precede branch visibility. Authentication identifies a peer; authorization determines which tenant and domain operations it may request. Transport acknowledgments do not imply durable promotion.
+The peer layer transfers bounded, versioned object and proposal frames over authenticated transport. Hash and dependency validation precede branch visibility. Authentication identifies a peer; authorization determines which tenant and domain operations it may request. Transport acknowledgments do not imply durable promotion.
 
 The initial model is a federation of independent authority domains, with explicit local addresses and optional relay deployment. Loss of contact blocks conflicting promotion. Automatic multi-writer failover, Byzantine authority tolerance and global consensus are outside this initial contract. A future consensus implementation must preserve writer fencing, deduplication and outbox semantics.
 
@@ -76,6 +80,7 @@ Public package names use `attow-*`; internal directories and dependency aliases 
 | `attow-adapters` | Provider contracts, browser/SQL bindings and gateway |
 | `attow-protocol` | Versioned, bounded messages with no sockets |
 | `attow-transport` | Peer connections and application callbacks |
+| `attow-local` | Shared SQLite persistence, receipt composition and trusted peer bridge for facade and CLI |
 | `attow-cli` | Component composition and diagnostics |
 | `attow-network` | Feature-gated public facade |
 | `xtask` | Repository policy and development checks |

@@ -10,6 +10,7 @@ Thumbs.db
 *.rs.bk
 # Keep Cargo.lock and reviewed fixture/corpus files under version control.
 # Local credentials and provider session state must never be fixtures.
+**/.attow/
 .env
 .env.local
 *.pem

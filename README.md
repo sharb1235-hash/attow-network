@@ -1,131 +1,122 @@
 # Attow Network
 
-Attow Network is a Rust project for exploring alternative executions, sharing immutable state and safe computations, and promoting selected effects through an accountable authority.
+Explore alternative executions, share immutable state and safe computations, and
+promote selected effects through one accountable authority per domain.
 
-**Development status: local authority, bounded workers and owned adapters.** The workspace
-provides bounded canonical objects, content identity, transactional SQLite object
-storage, root pins, garbage collection, online backups, isolated branch overlays
-and tracked dependencies, atomic promotion, a durable effect outbox, and offline
-event replay, explicit WASM checkpoints and durable resumption. A bounded graph
-scheduler adds tenant queues, admitted pure reuse, receipt invalidation and offline
-execution-trace verification. Owned SQLite and Chromium adapters share the worker
-contract; a separate gateway dispatches durable authorizations to an independent
-loopback provider simulator and reconciles lost responses. Private authenticated
-peers exchange scoped immutable graphs and submit proposals to an explicitly
-fenced designated authority. The CLI remains a
-development shell.
-The execution system described below is the target
-architecture. A compiling feature or placeholder target does not mean its runtime
-exists. See the [implementation record](docs/progress.md) for completed stages and
-actual validation results.
+Attow Network is an open-source Rust prototype with a working local CLI. It joins
+bounded WASM workers, SQLite snapshots, optional owned Chromium sessions and two
+private authenticated peers in an inspectable workflow. A durable gateway sends
+only authorized intents to the owned provider simulator. A lost response stays
+**Unknown** until reconciliation supplies evidence.
 
-ChronosOS is the internal project name. Public packages use `attow-*`, the facade is `attow-network`, and the executable is `attow`. Internal `crates/chronos-*` paths preserve the implementation plan's layout. The original research package in `docs/chronos` retains its original naming as source material; it does not override the public name or report this workspace's implementation status.
+## Try the local workflow
 
-```text
- Applications / agents / workflow systems
-                   |
-       alternative execution graph
-                   v
- +-------------------------------------------+
- | Worldline kernel                          |
- | immutable state | continuations | history |
- | dependencies | bounded workers | reuse    |
- +----------------------+--------------------+
-                        |
-       +----------------+----------------+
-       |                                 |
- Speculative workers             Authority per domain
- WASM / browser / SQL            validation + rights + outbox
-       |                                 |
- observations and proposals      credentialed effect gateway
-       |                                 |
-       +---- comparison          provider receipt / unknown
+Install Rust **1.95.0** and the native C/C++ build tools, then run from this checkout:
 
- Peers exchange immutable objects and proposals.
- Each domain retains one accepted decision history.
+```sh
+cargo +1.95.0 install --path crates/chronos-cli --locked --root target/install
 ```
 
-## Implementation status
+Add `target/install/bin` to PATH, or invoke its absolute `attow` path (`attow.exe`
+on Windows). Run from a new directory, including paths with spaces:
 
-| Area | Current status |
+```sh
+attow init "my workflow"
+cd "my workflow"
+attow run data-change --workers 2 --json
+attow branch list --json
+attow replay RUN_ID --offline --json
+attow verify RUN_ID --json
+```
+
+Replace `RUN_ID` with `data.run_id` from the actual run output. The non-commerce
+scenario evaluates five alternatives using real WASM and SQL workers, exchanges
+immutable data over two private peers and promotes the selected managed change.
+The checkout scenario adds a simulated external effect:
+
+```sh
+attow run checkout --workers 2 --pause-after-unknown --json
+attow run checkout --workers 2 --resume RUN_ID --json
+```
+
+The first command intentionally exits **3** after a committed simulator response
+is lost. The second reconciles the same logical operation and reruns receipt-bound
+work before promoting a confirmed response. Other exit categories are 0 success,
+2 conflict, 4 invalid input and 5 infrastructure failure. JSON envelopes use schema 1.
+
+See [getting started](docs/getting-started.md) for complete source installation,
+optional browser provisioning and PowerShell paths. Default installation needs no
+Node or browser. Windows x64 is the locally validated platform; Linux/macOS jobs
+are configured but not advertised as tested release artifacts.
+
+## Inspect and exchange evidence
+
+`attow compare BRANCH_A BRANCH_B --json` reports actual branch differences. The
+local inspector shows graph identities, shared nodes, dependencies, proposed
+effects and evidence. Run records distinguish Model observations from actual
+owned-environment browser/SQL execution and confirmed/unknown provider outcomes.
+
+```sh
+attow export RUN_ID --output run.attow
+attow import /absolute/path/to/run.attow --data-only
+```
+
+Import in another initialized workspace. Bundles contain bounded immutable data;
+they confer no authority or credentials. Offline replay checks recorded execution
+without running workers, imported code or provider calls. Native verification also
+rebuilds the local authority history. Portable verification checks consistency of
+the exported evidence and does not attest to an external provider's truth.
+
+## What is implemented
+
+| Area | Implementation |
 | --- | --- |
-| Workspace, crate boundaries, public naming | Foundation |
-| Canonical objects and identifiers | Versioned bounded CBOR, domain-separated BLAKE3, malformed-input tests |
-| CLI | Development help/status; unsupported operations fail explicitly |
-| Repository policy checks | Foundation checks with negative fixtures |
-| Immutable storage | SQLite transactions, verified objects, root pins, GC and online backup |
-| Worldline state | Shared immutable roots, tracked reads/writes/scans, tombstones, diffs and durable admission |
-| Serializable promotion, outbox and recovery | Atomic local authority, reserved rights, durable uncertainty, replay and abrupt crash tests |
-| WASM execution | Admitted components, fuel/memory/output bounds, explicit checkpoints and new-process resume |
-| Bounded scheduling and pure reuse | Tenant queues, resource caps, admitted pure sharing, receipt invalidation and offline traces |
-| Provider/browser/SQL adapters and effect gateway | Owned SQLite snapshots, optional pinned Chromium fixture, durable-ticket gateway and independent provider simulator |
-| Authenticated peer exchange | Private Iroh/noq, scoped durable graphs, bounded protocol and explicit external writer fencing |
-| Integrated CLI demonstration | Planned: stage 9 |
-| Release artifacts and distribution evidence | Planned: stage 10 |
+| Portable state | Versioned canonical objects, BLAKE3 identity, shared worldline roots, tracked reads/writes/scans |
+| Durable storage | SQLite transactions, verified graphs, retention pins, collection and backups |
+| Authority | Atomic promotion, decisions, reserved rights, idempotent requests, durable outbox and crash recovery |
+| Execution | Admitted WASM components, explicit continuations, bounded scheduling and exact pure reuse |
+| Adapters | Owned SQLite and optional pinned Chromium fixtures; provider gateway and independent loopback simulator |
+| Peers | Private Iroh/noq endpoints, scoped durable graph transfer, authenticated proposals and external fencing port |
+| Developer tools | Installed CLI, static inspector, data-only bundles, offline replay, actual demo/install/release checks |
 
-## Build from source
+See the [verification matrix](docs/verification-matrix.md) and
+[stage evidence](docs/progress.md). The initial release candidate is prepared in
+Stage 10; signed distribution readiness requires an authentic configured identity.
+Packages remain `publish = false`; no registry install command is promised.
 
-Install Rust with rustup; the repository selects Rust **1.95.0** side by side using `rust-toolchain.toml`. Run these commands from the repository root:
+## Boundaries
 
-```sh
-cargo run -p attow-cli -- --help
-cargo run -p xtask -- verify-repository
-cargo fmt --all --check
-cargo test --workspace --all-targets --locked
-cargo clippy --workspace --all-targets --locked -- -D warnings
-cargo doc --workspace --no-deps --locked
-```
+Logical forks share data; they do not duplicate spendable authority. Browser
+restoration covers declared owned storage, not arbitrary process state. The
+in-process WASM runtime and browser interception do not constitute an OS security
+sandbox. The demo fence excludes processes on one host; production cross-host
+fencing is an external integration requirement. There is no automatic multiwriter
+failover, universal provider rollback or atomic purchase/payment transaction.
 
-The `local` feature is the default. `sandbox` enables the bounded WASM backend;
-`scheduler` adds graph scheduling, validated result retention and offline replay.
-`adapters` enables SQLite and the effect gateway; `browser` adds the optional
-Node/Playwright bridge. `peer` enables private authenticated object/proposal exchange.
-Features do not grant permission to connect to a network. All packages remain
-`publish = false`.
+No real purchase or payment provider is contacted by the demonstrations. No
+throughput, novelty, patent clearance, customer or production-readiness claim is
+inferred from passing local tests. [Performance methodology](docs/performance-method.md)
+keeps measured raw samples separate from demo event counts.
 
-The sandbox uses Wasmtime in process and links no WASI imports. Its tested contract
-is explicit data checkpoints under a versioned profile; operating-system isolation
-for hostile guests remains outside this support level. See the
-[determinism profile](docs/determinism-profile.md).
-
-The scheduler example runs two distinct branches through one shared WASM
-evaluation, then verifies the recorded trace after dropping the worker. Replay
-uses recorded outcomes and makes zero worker or provider calls; it does not
-independently rerun the guest or establish external-provider truth.
+## Develop
 
 ```sh
-cargo run --example offline_replay --features scheduler --locked
+cargo +1.95.0 run -p xtask --locked -- verify-repository
+cargo +1.95.0 test --workspace --all-targets --locked
+cargo +1.95.0 run -p xtask --locked -- demo --record-json target/demo/events.json
+cargo +1.95.0 run -p xtask --locked -- install-smoke --root target/install-smoke
+cargo +1.95.0 run -p xtask --locked -- release-check --local
 ```
 
-See [scheduler behavior](docs/scheduler.md) and the
-[complete reuse contract](docs/reuse-contract.md) for admission and resource limits.
+The demo and release-check commands require the pinned optional browser
+runtime and policy tool described in the [workflow demo](demos/workflow-studio/README.md)
+and [dependency policy](docs/dependency-policy.md). See
+[architecture](docs/architecture.md), [operations](docs/operations.md),
+[troubleshooting](docs/troubleshooting.md), [security](SECURITY.md) and
+[contributing](CONTRIBUTING.md).
 
-## Local checkout example
-
-The owned fixture explores five alternatives for one purchase decision. Branches share a state root and record their dependencies, then propose offers. One local authority validates a selected proposal, reserves rights, and persists its intent and outbox entry in a single transaction. The example reports five predictions, one pending authorization, four conflicts, and zero confirmations or provider calls.
-
-```sh
-cargo run --example worldline_checkout --locked
-```
-
-The Stage 7 conformance tests exercise five competing branches, one actual
-simulator dispatch, a lost acknowledgement and reconciliation after restart:
-
-```sh
-cargo test --test adapter_conformance --features adapters --locked
-```
-
-For the optional real browser tests, install the exact local runtime described in
-[browser fidelity](docs/browser-fidelity.md), then use `--features browser`.
-See the [provider contract](docs/provider-contract.md) and
-[adapter security boundary](docs/adapter-security.md). Browser snapshots restore
-only the declared owned storage; live credentials and arbitrary sites are unsupported.
-
-An unknown outcome keeps the conflict slot occupied; choosing a different branch
-cannot undo a transmitted request. Tests use owned fixtures and simulators.
-
-## Design and contribution
-
-Start with the [architecture](docs/architecture.md), [threat model](docs/threat-model.md), [contribution guide](CONTRIBUTING.md) and [architecture decisions](docs/adr/0001-worldlines.md). The design supports multiple backends with declared fidelity; it does not promise arbitrary browser process cloning, remote API rollback, universal atomic transactions or automatic authority failover.
-
-Original project code is available under either the [MIT license](LICENSE-MIT) or the [Apache License 2.0](LICENSE-APACHE). See [third-party notices](THIRD_PARTY_NOTICES.md) for attribution policy and retained source material.
+Original code is [MIT](LICENSE-MIT) OR [Apache-2.0](LICENSE-APACHE).
+[Third-party notices](THIRD_PARTY_NOTICES.md) retain separate obligations.
+ChronosOS is the internal name; public packages are `attow-*` and the executable
+is `attow`. Internal `crates/chronos-*` paths and the preserved research package
+retain original names for traceability.

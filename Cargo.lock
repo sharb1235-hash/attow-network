@@ -155,6 +155,27 @@ dependencies = [
 [[package]]
 name = "attow-cli"
 version = "0.1.0"
+dependencies = [
+ "attow-adapters",
+ "attow-codec",
+ "attow-ledger",
+ "attow-local",
+ "attow-protocol",
+ "attow-sandbox",
+ "attow-scheduler",
+ "attow-state",
+ "attow-store",
+ "attow-transport",
+ "blake3",
+ "getrandom 0.4.3",
+ "rusqlite",
+ "serde",
+ "serde_json",
+ "tempfile",
+ "thiserror 2.0.21",
+ "tokio",
+ "wat",
+]
 
 [[package]]
 name = "attow-codec"
@@ -180,12 +201,29 @@ dependencies = [
 ]
 
 [[package]]
+name = "attow-local"
+version = "0.1.0"
+dependencies = [
+ "attow-codec",
+ "attow-ledger",
+ "attow-protocol",
+ "attow-sandbox",
+ "attow-scheduler",
+ "attow-state",
+ "attow-store",
+ "attow-transport",
+ "rusqlite",
+ "tempfile",
+]
+
+[[package]]
 name = "attow-network"
 version = "0.1.0"
 dependencies = [
  "attow-adapters",
  "attow-codec",
  "attow-ledger",
+ "attow-local",
  "attow-protocol",
  "attow-sandbox",
  "attow-scheduler",
@@ -4729,6 +4767,10 @@ dependencies = [
 [[package]]
 name = "xtask"
 version = "0.1.0"
+dependencies = [
+ "serde_json",
+ "tempfile",
+]
 
 [[package]]
 name = "yoke"

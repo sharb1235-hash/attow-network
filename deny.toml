@@ -1,5 +1,4 @@
-# Policy configuration only. cargo-deny is not an installed or executed Stage 1 gate.
-# Review license additions against the resolved dependency graph before allowing them.
+# Checked with pinned cargo-deny 0.20.2. See docs/dependency-policy.md.
 [graph]
 all-features = true
 
@@ -7,8 +6,23 @@ all-features = true
 yanked = "deny"
 
 [licenses]
-allow = ["MIT", "Apache-2.0"]
+allow = [
+  "MIT", "Apache-2.0", "Apache-2.0 WITH LLVM-exception",
+  "BSD-2-Clause", "BSD-3-Clause", "ISC", "Unicode-3.0", "Zlib"
+]
+include-dev = true
 confidence-threshold = 0.95
+exceptions = [
+  # Bounded CBOR implementation, exact direct pin.
+  { crate = "minicbor@2.3.0", allow = ["BlueOak-1.0.0"] },
+  # Mozilla-derived trust-anchor data; retain its data license in distributions.
+  { crate = "webpki-roots@1.0.9", allow = ["CDLA-Permissive-2.0"] },
+  { crate = "webpki-root-certs@1.0.9", allow = ["CDLA-Permissive-2.0"] },
+  # Iroh's target-specific WASM stream support is retained in the all-target graph.
+  { crate = "async_io_stream@0.3.3", allow = ["Unlicense"] },
+  { crate = "pharos@0.5.3", allow = ["Unlicense"] },
+  { crate = "ws_stream_wasm@0.7.5", allow = ["Unlicense"] },
+]
 
 [bans]
 multiple-versions = "warn"

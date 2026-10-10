@@ -16,7 +16,7 @@ pub use effects::{
     DispatchTicket, EvidenceStatus, EvidenceVerifier, VerifiedEvidence, verify_evidence,
 };
 pub use federation::{AuthorityCheckpoint, FenceRequest, WriterFence, WriterLease};
-pub use verify::VerificationReport;
+pub use verify::{VerificationReport, VerifiedPromotion};
 
 pub const MAX_LEDGER_ROWS: usize = 4096;
 pub(crate) const MAX_SNAPSHOT_BYTES: usize = 16 * 1024 * 1024;
@@ -195,6 +195,15 @@ impl Authority {
     }
     pub fn epoch(&self) -> u64 {
         self.epoch
+    }
+    /// Read existing decision metadata without advancing or creating a generation.
+    pub fn decision_generation(&self, decision: ObjectId) -> Result<Option<u64>, LedgerError> {
+        self.store.read_transaction_with(|tx| {
+            Ok(schema::load(tx.sql())?
+                .decisions
+                .get(&decision)
+                .map(|record| record.generation))
+        })
     }
     /// Explicit instrumentation callback; no ambient environment variable hook.
     pub fn set_boundary_hook(&mut self, hook: Option<fn(TransitionBoundary)>) {

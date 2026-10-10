@@ -1,0 +1,31 @@
+[package]
+name = "attow-local"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+publish.workspace = true
+description = "Local persistence and trusted application composition for Attow Network"
+
+[features]
+default = []
+sandbox = ["dep:chronos-sandbox"]
+scheduler = ["sandbox", "dep:chronos-scheduler"]
+peer = ["dep:chronos-protocol", "dep:chronos-transport"]
+
+[dependencies]
+chronos-codec.workspace = true
+chronos-state.workspace = true
+chronos-store.workspace = true
+chronos-ledger.workspace = true
+chronos-sandbox = { workspace = true, optional = true }
+chronos-scheduler = { workspace = true, optional = true }
+chronos-protocol = { workspace = true, optional = true }
+chronos-transport = { workspace = true, optional = true }
+rusqlite.workspace = true
+
+[dev-dependencies]
+tempfile.workspace = true
+
+[lints]
+workspace = true

@@ -17,7 +17,7 @@ All 42 manifest-listed input files passed SHA-256 verification before copying.
 | 6 | Scheduler and safe computation reuse | Complete |
 | 7 | Adapters and effect gateway | Complete |
 | 8 | Peer federation | Complete; native Windows gates passed |
-| 9 | CLI and owned demonstration | Pending |
+| 9 | CLI and owned demonstration | Complete; native Windows gates passed |
 | 10 | Release candidate and signing | Pending |
 
 ## Execution evidence
@@ -530,3 +530,130 @@ release-policy prerequisite, not a passed Stage 8 license check.
 Next: Stage 9 integrated CLI, real owned demonstrations, installation and portable
 verification. GitHub publication is separately authorized by the user's request
 to commit and push to a new public `sharb1235-hash/attow-network` repository.
+
+### Stage 9 (completed)
+
+An explicit `attow-local` composition package shares the existing state/sandbox/
+scheduler SQLite implementations, confirmed-response guard and peer-authority
+callback between the installed CLI and facade. Facade API paths remain reexports;
+no runtime crate depends on the facade. Child default features remain empty.
+The new owned-loopback fixture fence uses a process-exclusive OS file lock and a
+separate FULL-synchronous SQLite head anchor. Enrollment accepts only a fresh
+unfederated checkpoint; resume cannot recreate a missing anchor. Copying the
+external directory or using it for cross-host deployment is unsupported.
+
+The scheduler now encodes bounded canonical execution traces with exact retained
+references. `SqliteResultRepository` atomically persists/pins their complete graph
+and reopens them without worker execution. Read-only ledger decision lookup makes
+initial setup resumable; replay-verified promotion lookup binds native run records
+to their original request, branch, payload, decision, generation, outcome and
+historical state root. Its result is returned only after full chain and materialized
+table validation, including when the requested promotion does not exist.
+
+The CLI composes real WASM/SQL workers, optional owned Chromium, two authenticated
+private peers and the provider simulator. It saves stable operation identities
+before promotion/dispatch and separates Unknown, confirmed and rejected outcomes.
+Portable imports contain bounded canonical data and immutable records; they carry
+no authority, fence or provider secret. Native verification additionally checks
+replayed authoritative promotion records. Static inspector output escapes labels
+and exposes real IDs, dependencies, shared nodes and evidence.
+
+Tests-first focused evidence includes four fence failures against the stub, then
+five passes (including child-process exclusion/termination); two trace-storage
+failures, then two passes (GC/reopen/replay and incomplete-graph rollback); decision
+metadata's None-versus-Some(0) failure, then reopen/inspection success; four trace
+codec failures, then four passes; three verified-promotion failures, then three
+passes including tampered later history and materialized tables. xtask command,
+version and compiler-host tests also observed behavioral failure before their
+implementations. Temporary compilation/Windows concurrent-relink failures are
+infrastructure issues, not counted as behavioral RED evidence.
+
+Independent review added regressions for missing completion evidence in imported
+records, rejected imports leaving pins, substituted native promotion IDs, paused
+checkout interleaving and terminal simulator rejection. The final integrated
+results below include those repairs; focused subsets alone were not accepted as
+the complete Stage 9 outcome.
+
+Dependency versions and connections are unchanged for registry crates. After the
+new composition/CLI/xtask workspace edges, `cargo generate-lockfile --offline`
+produced byte-identical output to the coordinated lockfile update. Pinned
+cargo-deny 0.20.2's official Windows archive matched its published GitHub asset
+SHA256; version and executable hash are recorded in `docs/research/stage9-tools.json`.
+Reviewed all-target licenses (including dev/build), sources and bans pass. The
+native Windows advisory scan passes. The all-target advisory scan fails on the
+unmaintained Linux-only paste/netlink dependency chain; no ignore was added and
+Linux release qualification remains blocked. See `docs/dependency-policy.md`.
+
+The no-default-feature facade and each of local, sandbox, scheduler, adapters,
+browser and peer pass `cargo check -p attow-network --no-default-features --locked`
+with their explicit `--features` selection. Also checked: local+sandbox,
+local+scheduler, local+peer, scheduler+adapters and scheduler+browser+peer. Logs are
+`target/stage9-feature-*.log`, with the minimal lane in `stage9-minimal-check.log`.
+These compile checks are distinct from the full runtime gates recorded below.
+
+Final-source focused review added a portable receipt-consumption regression:
+a completed checkout relinked to its baseline Model trace was accepted before
+the fix. Verification now requires the actual observation-replacement event and
+receipt-bound final outcomes for every response node. The focused CLI suite
+passes 14 tests (seven bundle, five parser/workspace, two command tests). The
+browser demo suite passes eight tests, including five abrupt process boundaries,
+no-progress reconciliation, terminal rejection, conflict before a new promotion
+after another run changes the base, and exact historical-root retries. The demo
+test harness serializes its heavyweight fixture scenarios while each graph still
+uses two workers; it retains the original production deadlines and assertions.
+
+Final native Windows gates:
+
+- `cargo +1.95.0 fmt --all --check` — passed after formatting the new decision
+  metadata getter; `target/stage9-final-fmt.log`.
+- `cargo +1.95.0 test --workspace --all-targets --locked -j 2` — 262 passed,
+  zero failed; `target/stage9-final-default-tests.log`.
+- `cargo +1.95.0 clippy --workspace --all-targets --locked -j 2 -- -D warnings`
+  — passed; `target/stage9-final-default-clippy.log`.
+- `cargo +1.95.0 doc --workspace --no-deps --locked -j 2` — passed;
+  `target/stage9-final-default-doc.log`.
+- `cargo +1.95.0 test --workspace --all-targets --all-features --locked -j 2`
+  — 314 passed, zero failed with the pinned Node/Playwright/Chromium environment;
+  `target/stage9-final-all-tests.log`.
+- `cargo +1.95.0 clippy --workspace --all-targets --all-features --locked -j 2
+  -- -D warnings` — passed; `target/stage9-final-all-clippy.log`.
+
+- `cargo +1.95.0 run -p xtask --locked -- demo --record-json target/demo/events.json`
+  — passed. Checkout recorded 15 logical nodes, seven executions, eight reuses,
+  one observed peak resident worker with a configured limit of two, one provider
+  dispatch and one reconciliation lookup. Its first run exited 3 as Unknown;
+  resuming the same run completed, followed by successful offline replay and
+  verification. Data-change recorded ten nodes, two executions and eight reuses,
+  then successful replay and verification. `target/stage9-final-demo.log` and
+  `target/demo/events.json` retain the actual command envelopes.
+- `cargo +1.95.0 run -p xtask --locked -- install-smoke --root target/install-smoke`
+  — passed. This is an explicitly labelled fresh debug source installation,
+  using the existing compiler cache, followed by the installed binary's init,
+  doctor, data-change, offline replay and verification from a separate directory
+  containing spaces. It is not a new operating-system installation. Evidence:
+  `target/stage9-final-install.log`, `target/install-smoke/report.json`.
+- `cargo +1.95.0 run -p xtask --locked -- release-check --local` — passed all
+  twelve recorded checks, including repository policy, all-target licenses,
+  native Windows advisories, fmt, separate default/all-feature test and Clippy
+  invocations, both documentation lanes, actual demo and fresh source install.
+  The repeated suites passed 262 and 314 tests respectively; totals overlap.
+  Evidence: `target/stage9-final-release-check.log` and
+  `target/release-check/report.json`, with status `success` and every exit zero.
+
+The browser gates used Node 24.21.0, Playwright 1.64.0 and Chromium revision 1248
+through explicit `ATTOW_NODE`, `ATTOW_BROWSER_SIDECAR` and
+`PLAYWRIGHT_BROWSERS_PATH`. The policy gate used the verified cargo-deny 0.20.2
+through `ATTOW_CARGO_DENY`. No new benchmark run or performance claim was added;
+`bench-report` orchestration and validation are tested, while the earlier raw
+executed measurements remain available. Native CI compilation is bounded to
+two jobs. Cargo.lock now has explicit LF checkout policy for stable hash evidence.
+
+Build-storage maintenance used NTFS compression on generated symbols,
+executables and libraries, with sampled SHA256 values unchanged. New files in
+the generated debug dependency directory inherit compression. No source or
+dependency content was replaced or deleted to reduce disk use.
+
+Next: Stage 10 native Windows release candidate, safe bounded archives, resolved
+SBOM/notices, actual archive installation, recorded terminal demonstration and
+external-trust signature verification. No maintainer signing credentials are
+configured; the permitted unsigned outcome is `candidate-complete; signing-pending`.

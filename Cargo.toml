@@ -15,7 +15,7 @@ members = [
   "crates/chronos-state", "crates/chronos-ledger",
   "crates/chronos-sandbox", "crates/chronos-scheduler",
   "crates/chronos-adapters", "crates/chronos-protocol",
-  "crates/chronos-transport", "crates/chronos-cli"
+  "crates/chronos-transport", "crates/chronos-local", "crates/chronos-cli"
 ]
 default-members = ["."]
 exclude = ["docs/chronos/reference-kernel", "docs/chronos/validation/runtime-probe", "fuzz"]
@@ -28,6 +28,7 @@ license = "MIT OR Apache-2.0"
 publish = false
 
 [workspace.dependencies]
+chronos-local = { package = "attow-local", path = "crates/chronos-local", version = "=0.1.0", default-features = false }
 chronos-codec = { package = "attow-codec", path = "crates/chronos-codec", version = "=0.1.0", default-features = false }
 chronos-store = { package = "attow-store", path = "crates/chronos-store", version = "=0.1.0", default-features = false }
 chronos-state = { package = "attow-state", path = "crates/chronos-state", version = "=0.1.0", default-features = false }
@@ -69,14 +70,15 @@ tempfile = "=3.27.0"
 
 [features]
 default = ["local"]
-local = ["dep:chronos-store", "dep:chronos-ledger"]
-sandbox = ["dep:chronos-sandbox"]
-scheduler = ["sandbox", "dep:chronos-scheduler"]
+local = ["dep:chronos-store", "dep:chronos-ledger", "dep:chronos-local"]
+sandbox = ["dep:chronos-sandbox", "chronos-local?/sandbox"]
+scheduler = ["sandbox", "dep:chronos-scheduler", "chronos-local?/scheduler"]
 adapters = ["local", "dep:chronos-adapters"]
 browser = ["adapters", "chronos-adapters/browser"]
-peer = ["dep:chronos-protocol", "dep:chronos-transport"]
+peer = ["dep:chronos-protocol", "dep:chronos-transport", "chronos-local?/peer"]
 
 [dependencies]
+chronos-local = { workspace = true, optional = true }
 chronos-codec.workspace = true
 chronos-state.workspace = true
 chronos-store = { workspace = true, optional = true }

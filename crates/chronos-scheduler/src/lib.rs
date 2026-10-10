@@ -7,6 +7,7 @@ pub mod invalidate;
 mod metrics;
 mod queue;
 pub mod replay;
+mod trace_codec;
 
 pub use cache::EvaluationKey;
 use chronos_codec::ObjectId;
