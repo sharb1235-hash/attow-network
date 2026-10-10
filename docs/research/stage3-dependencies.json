@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "verified_utc": "2026-10-10T05:46:41.7541390Z",
+  "name": "rpds",
+  "version": "1.2.1",
+  "checksum": "e025feb26210bc196b908e72deb063b1b4000754304341cbc168a1e72c857ebc",
+  "license": "MIT",
+  "rust_version": "1.85.0",
+  "source": "https://crates.io/api/v1/crates/rpds/1.2.1"
+}

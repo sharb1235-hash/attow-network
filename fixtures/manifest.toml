@@ -1,0 +1,184 @@
+# Original Attow Network fixtures; paths are relative to the repository root.
+# Upstream revision/source URL fields apply only when importing third-party data.
+schema_version = 1
+path_base = "repository_root"
+
+[[fixtures]]
+id = "codec-v1-golden-vectors"
+path = "fixtures/original/protocol/codec-v1.txt"
+origin = "original"
+license = "MIT OR Apache-2.0"
+notice_paths = ["LICENSE-MIT", "LICENSE-APACHE"]
+sha256 = "80f0eb029f755585b5dcf9355f4198bb08a37bf4c154db29e0ec6d3498d7be6a"
+construction = "Original schema examples recorded by cargo run -p attow-codec --example vectors --locked; no third-party fixture bytes copied."
+expected = "Null, mixed-length map keys and explicit reference retain exact canonical CBOR bytes and domain-separated BLAKE3 identity."
+
+[[fixtures]]
+id = "codec-seed-null"
+path = "fuzz/corpus/codec/null"
+origin = "original"
+license = "MIT OR Apache-2.0"
+notice_paths = ["LICENSE-MIT", "LICENSE-APACHE"]
+sha256 = "b0b2988b6bbe724bacda5e9e524736de0bc7dae41c46b4213c50e1d35d4e5f13"
+construction = "Single byte f6, the admitted null value."
+expected = "Value accepts and re-encodes byte-for-byte under sufficient limits."
+
+[[fixtures]]
+id = "codec-seed-array-one"
+path = "fuzz/corpus/codec/array-one"
+origin = "original"
+license = "MIT OR Apache-2.0"
+notice_paths = ["LICENSE-MIT", "LICENSE-APACHE"]
+sha256 = "ac38783f6a3b2fe3b579718d6ba8493a456d800665b4433a0e7c823cff90a603"
+construction = "Hex 8101, an array containing the unsigned integer one."
+expected = "Value accepts and re-encodes byte-for-byte under sufficient limits."
+
+[[fixtures]]
+id = "codec-seed-object-null"
+path = "fuzz/corpus/codec/object-null"
+origin = "original"
+license = "MIT OR Apache-2.0"
+notice_paths = ["LICENSE-MIT", "LICENSE-APACHE"]
+sha256 = "95bd2821c494fa0c2893ab6c43943bd123c4d35e6d7032bfc1efb53195502712"
+construction = "Hex 841a4154544f0180f6: project magic, schema one, no references, null payload."
+expected = "Object accepts and re-encodes byte-for-byte under sufficient limits."
+
+[[fixtures]]
+id = "codec-seed-reject-indefinite"
+path = "fuzz/corpus/codec/reject-indefinite"
+origin = "original"
+license = "MIT OR Apache-2.0"
+notice_paths = ["LICENSE-MIT", "LICENSE-APACHE"]
+sha256 = "d9470ee95b15b9d9ab663359a2544ef21b23c8db07a505897019fb76348e7ef8"
+construction = "Hex 9f01ff, an indefinite-length array."
+expected = "Reject as outside the deterministic admitted subset."
+
+[[fixtures]]
+id = "codec-seed-reject-non-shortest"
+path = "fuzz/corpus/codec/reject-non-shortest"
+origin = "original"
+license = "MIT OR Apache-2.0"
+notice_paths = ["LICENSE-MIT", "LICENSE-APACHE"]
+sha256 = "39bf521a8d4b506198f78cfe94c16dd53d39d745ca35e38562bcdb85e43a71e7"
+construction = "Hex 1817 encodes twenty-three using an unnecessary additional byte."
+expected = "Reject non-shortest integer encoding."
+
+[[fixtures]]
+id = "codec-seed-reject-truncated"
+path = "fuzz/corpus/codec/reject-truncated"
+origin = "original"
+license = "MIT OR Apache-2.0"
+notice_paths = ["LICENSE-MIT", "LICENSE-APACHE"]
+sha256 = "3a898eecdae167231275338e9a79153cbe53f7bf99943eeb72ee64e57bb58699"
+construction = "Hex 1b00 provides only one of the required eight argument bytes."
+expected = "Reject truncated input without reading out of bounds."
+
+[[fixtures]]
+id = "state-branch-sql-model"
+path = "fixtures/original/sql/branch-model.sql"
+origin = "original"
+license = "MIT OR Apache-2.0"
+notice_paths = ["LICENSE-MIT", "LICENSE-APACHE"]
+sha256 = "192df50f8eb3e0e4b3aed4e87494cfcede42e7b2d5770a395c051d7fc65bdcdb"
+construction = "Original deterministic rows compared against state branch operations in the independent integration tests."
+expected = "SQLite and the state model agree on ordered fixture values and prefix selection."
+
+[[fixtures]]
+id = "wasm-arithmetic"
+path = "fixtures/original/wasm/arithmetic.wat"
+origin = "original"
+license = "MIT OR Apache-2.0"
+notice_paths = ["LICENSE-MIT", "LICENSE-APACHE"]
+sha256 = "36944536ec460304765d29b0f560434144993a2a2bbe56d72dbfa3c7c2499ef0"
+construction = "Original bounded component WAT authored for Attow Network; canonical lowering of typed scalar host imports and lifting of step. No third-party guest source copied."
+expected = "Result byte equals the sum of explicit state and continuation bytes."
+
+[[fixtures]]
+id = "wasm-conditional-trap"
+path = "fixtures/original/wasm/conditional-trap.wat"
+origin = "original"
+license = "MIT OR Apache-2.0"
+notice_paths = ["LICENSE-MIT", "LICENSE-APACHE"]
+sha256 = "5921292a434a388ec7ace2744d144ce3bc2b457bcd2a9aef8e4f0415576f5cf5"
+construction = "Original bounded component WAT authored for Attow Network; canonical lowering of typed scalar host imports and lifting of step. No third-party guest source copied."
+expected = "Failed attempt output is discarded; a fresh attempt returns only byte1."
+
+[[fixtures]]
+id = "wasm-continuation"
+path = "fixtures/original/wasm/continuation.wat"
+origin = "original"
+license = "MIT OR Apache-2.0"
+notice_paths = ["LICENSE-MIT", "LICENSE-APACHE"]
+sha256 = "c7acc5c868ced6dd5187f3519576af8dc9cbcabe521eff0f26c8add11c7b69d0"
+construction = "Original bounded component WAT authored for Attow Network; canonical lowering of typed scalar host imports and lifting of step. No third-party guest source copied."
+expected = "Suspension persists continuation7/request99/delta3; explicit recorded observation enables deterministic resume."
+
+[[fixtures]]
+id = "wasm-fuel-loop"
+path = "fixtures/original/wasm/fuel-loop.wat"
+origin = "original"
+license = "MIT OR Apache-2.0"
+notice_paths = ["LICENSE-MIT", "LICENSE-APACHE"]
+sha256 = "992a404ebfc6b99333e83091284531fa93525ddc833ba55638717b1dc93dbb59"
+construction = "Original bounded component WAT authored for Attow Network; canonical lowering of typed scalar host imports and lifting of step. No third-party guest source copied."
+expected = "Finite fuel traps the actual guest loop without publishing a completed result."
+
+[[fixtures]]
+id = "wasm-hidden-global"
+path = "fixtures/original/wasm/hidden-global.wat"
+origin = "original"
+license = "MIT OR Apache-2.0"
+notice_paths = ["LICENSE-MIT", "LICENSE-APACHE"]
+sha256 = "49ef3e46fbad96282f15f1ef966afcb3a44a2869d7539a0b596b3f2660048bfd"
+construction = "Original bounded component WAT authored for Attow Network; canonical lowering of typed scalar host imports and lifting of step. No third-party guest source copied."
+expected = "Admission rejects mutable global state that is absent from a checkpoint."
+
+[[fixtures]]
+id = "wasm-invalid-input-channel"
+path = "fixtures/original/wasm/invalid-input-channel.wat"
+origin = "original"
+license = "MIT OR Apache-2.0"
+notice_paths = ["LICENSE-MIT", "LICENSE-APACHE"]
+sha256 = "ad92b0129563269d9bd44bf3e3284158b8121470cc56d261b46acb1be0279c94"
+construction = "Original bounded component WAT authored for Attow Network; canonical lowering of typed scalar host imports and lifting of step. No third-party guest source copied."
+expected = "The host rejects an undeclared input source."
+
+[[fixtures]]
+id = "wasm-invalid-output-byte"
+path = "fixtures/original/wasm/invalid-output-byte.wat"
+origin = "original"
+license = "MIT OR Apache-2.0"
+notice_paths = ["LICENSE-MIT", "LICENSE-APACHE"]
+sha256 = "281bb53c9187debc73bc136f7ee16f501fee190965d43d3bc2822042762cdd58"
+construction = "Original bounded component WAT authored for Attow Network; canonical lowering of typed scalar host imports and lifting of step. No third-party guest source copied."
+expected = "The host rejects an integer outside the byte range."
+
+[[fixtures]]
+id = "wasm-memory-two-pages"
+path = "fixtures/original/wasm/memory-two-pages.wat"
+origin = "original"
+license = "MIT OR Apache-2.0"
+notice_paths = ["LICENSE-MIT", "LICENSE-APACHE"]
+sha256 = "ca628fd1601e3d167b0fcbd75f5ca0eea42345d1f34ccfbb62364ce3f12e3f0f"
+construction = "Original bounded component WAT authored for Attow Network; canonical lowering of typed scalar host imports and lifting of step. No third-party guest source copied."
+expected = "Two-page fixed guest memory cannot run under a one-page worker profile."
+
+[[fixtures]]
+id = "wasm-multiple-memories"
+path = "fixtures/original/wasm/multiple-memories.wat"
+origin = "original"
+license = "MIT OR Apache-2.0"
+notice_paths = ["LICENSE-MIT", "LICENSE-APACHE"]
+sha256 = "326e52667fd31a0e9d18d513c2015ce84813eef7b67c6ba8a74a2eda3d923ff2"
+construction = "Original bounded component WAT authored for Attow Network; canonical lowering of typed scalar host imports and lifting of step. No third-party guest source copied."
+expected = "Admission rejects aggregate memory multiplication through multiple memories."
+
+[[fixtures]]
+id = "wasm-output-overflow"
+path = "fixtures/original/wasm/output-overflow.wat"
+origin = "original"
+license = "MIT OR Apache-2.0"
+notice_paths = ["LICENSE-MIT", "LICENSE-APACHE"]
+sha256 = "0aca4eb5532b522b545f4245e85a4b0f2985e02287c06ff67809e53bc4b42176"
+construction = "Original bounded component WAT authored for Attow Network; canonical lowering of typed scalar host imports and lifting of step. No third-party guest source copied."
+expected = "Host aggregate output budget rejects the guest before persisting partial output."

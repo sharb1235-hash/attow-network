@@ -1,0 +1,13 @@
+package attow:worldline@1.0.0;
+
+/// The executable ABI deliberately transfers scalar bytes. Host checks occur
+/// before a byte is appended; guest-sized lists never allocate during lifting.
+world step {
+    /// Sources: state=0, continuation=1, recorded observation=2.
+    import input-len: func(source: u32) -> u32;
+    import input-byte: func(source: u32, index: u32) -> u32;
+    /// Targets: result=0, continuation=1, request=2, delta=3. Value must be <=255.
+    import output-byte: func(target: u32, value: u32);
+    /// Return 0 for Done or 1 for Suspended. Other values are rejected.
+    export step: func() -> u32;
+}

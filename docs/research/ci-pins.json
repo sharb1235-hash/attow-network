@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "retrieved_at_utc": "2026-10-10T05:35:43.5498763Z",
+  "project": "Attow Network",
+  "actions": [
+    {
+      "repository": "actions/checkout",
+      "release": "v7.0.1",
+      "commit": "3d3c42e5aac5ba805825da76410c181273ba90b1",
+      "release_published_at_utc": "2026-07-20T15:10:05Z",
+      "release_url": "https://github.com/actions/checkout/releases/tag/v7.0.1",
+      "release_metadata_url": "https://api.github.com/repos/actions/checkout/releases/356804776",
+      "tag_metadata_url": "https://api.github.com/repos/actions/checkout/git/refs/tags/v7.0.1",
+      "commit_metadata_url": "https://api.github.com/repos/actions/checkout/git/commits/3d3c42e5aac5ba805825da76410c181273ba90b1",
+      "verification": "Read the official upstream releases/latest and git/ref/tags/v7.0.1 APIs. The release tag resolved directly to an object with type commit and the full SHA recorded here."
+    }
+  ],
+  "rust": {
+    "toolchain": "1.95.0",
+    "components": ["rustfmt", "clippy"],
+    "installation": "rustup toolchain install 1.95.0 --profile minimal --component rustfmt --component clippy",
+    "selection": "All CI and script Cargo invocations select +1.95.0. No global default is changed."
+  },
+  "native_runners": [
+    { "label": "ubuntu-24.04", "rust_host": "x86_64-unknown-linux-gnu" },
+    { "label": "windows-2025", "rust_host": "x86_64-pc-windows-msvc" },
+    { "label": "macos-15", "rust_host": "aarch64-apple-darwin" }
+  ],
+  "runner_sources": [
+    "https://docs.github.com/en/actions/reference/runners/github-hosted-runners",
+    "https://github.com/actions/runner-images/blob/main/README.md"
+  ],
+  "runner_verification": "Official GitHub runner documentation lists these native operating-system and architecture combinations. Each workflow job verifies rustc's actual host before running gates. Runner labels identify hosted images, not immutable image digests.",
+  "remote_execution_status": "Not executed. Workflow configuration and upstream metadata verification are not evidence of a passed remote CI run."
+}

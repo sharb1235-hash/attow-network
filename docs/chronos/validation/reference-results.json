@@ -1,0 +1,82 @@
+{
+  "artifact": "chronosos-reference",
+  "version": "0.1.0",
+  "verification_date": "2026-10-09",
+  "verification_timezone": "America/Los_Angeles",
+  "record_type": "observed functional validation, not a benchmark",
+  "environment": {
+    "platform": "Windows",
+    "rustc": "rustc 1.95.0 (59807616e 2026-04-14)",
+    "cargo": "cargo 1.95.0 (f2d3ce0bd 2026-03-21)",
+    "sqlite": "bundled through rusqlite 0.40.2"
+  },
+  "checks": [
+    {
+      "command": "cargo fmt --all --check",
+      "exit_code": 0,
+      "result": "passed"
+    },
+    {
+      "command": "cargo test --all-targets --locked",
+      "exit_code": 0,
+      "result": "passed",
+      "integration_tests_passed": 13,
+      "integration_tests_failed": 0,
+      "integration_tests_ignored": 0,
+      "library_unit_tests": 0,
+      "example_unit_tests": 0
+    },
+    {
+      "command": "cargo clippy --all-targets --locked -- -D warnings",
+      "exit_code": 0,
+      "result": "passed with warnings denied"
+    },
+    {
+      "command": "cargo run --locked --example parallel_checkout",
+      "exit_code": 0,
+      "result": "passed",
+      "stdout": [
+        "branches=5 promoted=1 conflicts=4 pending_effects=1 external_calls=0",
+        "Local intent chosen. No external seat has been booked."
+      ]
+    }
+  ],
+  "integration_tests": [
+    "isolated_forks_and_disjoint_promotions",
+    "write_skew_is_rejected",
+    "missing_reads_and_tombstones_detect_aba",
+    "scan_rejects_phantom",
+    "concurrent_branches_choose_one_effect",
+    "conflicting_effect_rolls_back_other_writes",
+    "restart_keeps_ambiguous_effect_occupied",
+    "identical_logical_run_has_identical_commit_hashes",
+    "matching_versions_do_not_allow_cross_authority_promotion",
+    "same_authority_reopen_accepts_existing_branch",
+    "legacy_metadata_gains_stable_authority_identity",
+    "independent_connections_atomically_choose_one_effect_per_slot",
+    "chain_verification_uses_consistent_snapshot_during_other_connection_commits"
+  ],
+  "independent_connection_scenario": {
+    "sqlite_connections": 2,
+    "rounds": 10,
+    "candidates_per_slot": 2,
+    "expected_and_observed_winners_per_slot": 1,
+    "effect_slots_retained": 10,
+    "assertions": [
+      "writes are disjoint, so the shared effect slot arbitrates",
+      "loser returns a Conflict rather than treating every error as a conflict",
+      "loser writes are absent",
+      "a fresh connection sees the expected effect count and valid commit chain"
+    ]
+  },
+  "limitations": [
+    "No external API or booking was executed.",
+    "The example uses one mutex-protected authority; independent SQLite connections are exercised separately in tests.",
+    "No request-ID/result deduplication API is implemented.",
+    "Effect-state transitions and receipts are not appended to the commit ledger.",
+    "Chain checking is not complete materialized-state reconstruction or provider-receipt authentication.",
+    "Authority identity does not authenticate peers or support independently writable database copies.",
+    "No crash-fault injection, power-loss test, distributed consensus test, security audit or formal proof was performed.",
+    "No performance or scale benchmark was performed."
+  ]
+}

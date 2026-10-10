@@ -1,0 +1,32 @@
+package attow:worldline@1.0.0;
+
+/// Portable descriptors. Object IDs contain exactly 32 bytes; Rust admission
+/// enforces this invariant. These records describe durable data, not authority.
+interface types {
+    type object-id = list<u8>;
+    record execution-profile {
+        fuel: u64,
+        memory-bytes: u64,
+        output-bytes: u64,
+        profile-hash: object-id,
+    }
+    record step-input {
+        code: object-id,
+        state: object-id,
+        continuation: object-id,
+        observation: option<object-id>,
+    }
+    record done-exit {
+        %result: object-id,
+        delta: object-id,
+    }
+    record suspended-exit {
+        continuation: object-id,
+        request: object-id,
+        delta: object-id,
+    }
+    variant step-exit {
+        done(done-exit),
+        suspended(suspended-exit),
+    }
+}

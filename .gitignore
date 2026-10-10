@@ -1,0 +1,16 @@
+/target/
+**/target/
+/fuzz/artifacts/
+/fuzz/coverage/
+/demos/workflow-studio/browser/node_modules/
+/demos/workflow-studio/browser/playwright-report/
+/demos/workflow-studio/browser/test-results/
+.DS_Store
+Thumbs.db
+*.rs.bk
+# Keep Cargo.lock and reviewed fixture/corpus files under version control.
+# Local credentials and provider session state must never be fixtures.
+.env
+.env.local
+*.pem
+*.key

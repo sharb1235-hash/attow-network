@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "verified_utc": "2026-10-10T05:57:23.5278257Z",
+  "name": "getrandom",
+  "version": "0.4.3",
+  "checksum": "300e883d756b2e4ec94e02791f39b04b522276138852cfc41d9fb7e904106099",
+  "license": "MIT OR Apache-2.0",
+  "rust_version": "1.85",
+  "source": "https://crates.io/api/v1/crates/getrandom/0.4.3"
+}

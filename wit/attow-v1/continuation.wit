@@ -1,0 +1,12 @@
+package attow:worldline@1.0.0;
+
+/// The host persists these explicit bytes bound to code and profile identities.
+/// A checkpoint never serializes a native stack, Store, Future or open resource.
+interface continuation {
+    use types.{object-id};
+    record checkpoint {
+        code: object-id,
+        profile: object-id,
+        data: list<u8>,
+    }
+}

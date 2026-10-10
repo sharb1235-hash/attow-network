@@ -1,0 +1,22 @@
+[package]
+name = "attow-store"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+publish.workspace = true
+description = "Attow Network store module"
+
+[features]
+default = []
+
+[dependencies]
+chronos-codec.workspace = true
+rusqlite.workspace = true
+thiserror.workspace = true
+
+[dev-dependencies]
+tempfile.workspace = true
+
+[lints]
+workspace = true

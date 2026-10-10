@@ -1,0 +1,18 @@
+[package]
+name = "attow-cli"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+publish.workspace = true
+description = "Attow Network cli module"
+
+[features]
+default = []
+
+[lints]
+workspace = true
+[[bin]]
+name = "attow"
+path = "src/main.rs"
+

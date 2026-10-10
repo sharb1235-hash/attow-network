@@ -1,0 +1,162 @@
+[package]
+name = "attow-network"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+publish.workspace = true
+description = "Worldline execution facade for Attow Network"
+
+[workspace]
+resolver = "3"
+members = [
+  ".", "xtask",
+  "crates/chronos-codec", "crates/chronos-store",
+  "crates/chronos-state", "crates/chronos-ledger",
+  "crates/chronos-sandbox", "crates/chronos-scheduler",
+  "crates/chronos-adapters", "crates/chronos-protocol",
+  "crates/chronos-transport", "crates/chronos-cli"
+]
+default-members = ["."]
+exclude = ["docs/chronos/reference-kernel", "docs/chronos/validation/runtime-probe", "fuzz"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.95"
+license = "MIT OR Apache-2.0"
+publish = false
+
+[workspace.dependencies]
+chronos-codec = { package = "attow-codec", path = "crates/chronos-codec", version = "=0.1.0", default-features = false }
+chronos-store = { package = "attow-store", path = "crates/chronos-store", version = "=0.1.0", default-features = false }
+chronos-state = { package = "attow-state", path = "crates/chronos-state", version = "=0.1.0", default-features = false }
+chronos-ledger = { package = "attow-ledger", path = "crates/chronos-ledger", version = "=0.1.0", default-features = false }
+chronos-sandbox = { package = "attow-sandbox", path = "crates/chronos-sandbox", version = "=0.1.0", default-features = false }
+chronos-scheduler = { package = "attow-scheduler", path = "crates/chronos-scheduler", version = "=0.1.0", default-features = false }
+chronos-adapters = { package = "attow-adapters", path = "crates/chronos-adapters", version = "=0.1.0", default-features = false }
+chronos-protocol = { package = "attow-protocol", path = "crates/chronos-protocol", version = "=0.1.0", default-features = false }
+chronos-transport = { package = "attow-transport", path = "crates/chronos-transport", version = "=0.1.0", default-features = false }
+wasmtime = { version = "=48.0.5", default-features = false, features = [
+  "std", "runtime", "cranelift", "component-model", "wat", "anyhow", "pooling-allocator"
+] }
+wasmparser = "=0.254.2"
+wat = "=1.261.0"
+iroh = { version = "=1.3.0", default-features = false, features = ["tls-ring"] }
+tokio = { version = "=1.53.2", default-features = false, features = [
+  "rt-multi-thread", "macros", "sync", "time", "io-util", "fs"
+] }
+rusqlite = { version = "=0.40.2", features = ["bundled", "backup"] }
+blake3 = "=1.8.7"
+minicbor = { version = "=2.3.0", default-features = false, features = ["alloc"] }
+serde = { version = "=1.0.229", features = ["derive"] }
+serde_json = "=1.0.151"
+ed25519-dalek = "=3.0.0"
+getrandom = "=0.4.3"
+zeroize = "=1.9.1"
+rpds = "=1.2.1"
+thiserror = "=2.0.21"
+anyhow = "=1.0.104"
+tracing = "=0.1.44"
+tracing-subscriber = "=0.3.23"
+proptest = "=1.11.0"
+loom = "=0.7.2"
+shuttle = "=0.9.6"
+turmoil = "=0.7.2"
+stateright = "=0.31.0"
+criterion = "=0.8.2"
+tempfile = "=3.27.0"
+
+[features]
+default = ["local"]
+local = ["dep:chronos-store", "dep:chronos-ledger"]
+sandbox = ["dep:chronos-sandbox"]
+scheduler = ["sandbox", "dep:chronos-scheduler"]
+adapters = ["local", "dep:chronos-adapters"]
+browser = ["adapters", "chronos-adapters/browser"]
+peer = ["dep:chronos-protocol", "dep:chronos-transport"]
+
+[dependencies]
+chronos-codec.workspace = true
+chronos-state.workspace = true
+chronos-store = { workspace = true, optional = true }
+chronos-ledger = { workspace = true, optional = true }
+chronos-sandbox = { workspace = true, optional = true }
+chronos-scheduler = { workspace = true, optional = true }
+chronos-adapters = { workspace = true, optional = true }
+chronos-protocol = { workspace = true, optional = true }
+chronos-transport = { workspace = true, optional = true }
+
+[dev-dependencies]
+proptest.workspace = true
+tempfile.workspace = true
+rusqlite.workspace = true
+wat.workspace = true
+
+[[test]]
+name = "sandbox_backend"
+path = "tests/sandbox_backend.rs"
+required-features = ["local", "sandbox"]
+
+[[test]]
+name = "sandbox_resume"
+path = "tests/sandbox_resume.rs"
+required-features = ["local", "sandbox"]
+
+[[test]]
+name = "sandbox_storage"
+path = "tests/sandbox_storage.rs"
+required-features = ["local", "sandbox"]
+
+[[test]]
+name = "promotion"
+path = "tests/promotion.rs"
+required-features = ["local"]
+
+[[test]]
+name = "storage_crash"
+path = "tests/storage_crash.rs"
+required-features = ["local"]
+
+[[test]]
+name = "replay"
+path = "tests/replay.rs"
+required-features = ["local"]
+
+[[test]]
+name = "state_properties"
+path = "tests/state_properties.rs"
+required-features = ["local"]
+
+[[test]]
+name = "ledger_model"
+path = "model/ledger.rs"
+required-features = ["local"]
+
+[[example]]
+name = "worldline_checkout"
+path = "examples/worldline_checkout.rs"
+required-features = ["local"]
+
+[[bench]]
+name = "worldline"
+path = "benches/worldline.rs"
+harness = false
+required-features = ["local"]
+
+[workspace.lints.rust]
+unsafe_code = "forbid"
+
+[workspace.lints.clippy]
+all = { level = "warn", priority = -1 }
+unwrap_used = "warn"
+
+[lints]
+workspace = true
+
+[profile.release]
+lto = "thin"
+codegen-units = 1
+
+[profile.bench]
+debug = true

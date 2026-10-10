@@ -1,0 +1,22 @@
+[package]
+name = "chronos-dep-probe"
+version = "0.0.0"
+edition = "2024"
+rust-version = "1.95"
+publish = false
+
+[dependencies]
+anyhow = "=1.0.104"
+wasmtime = { version = "=48.0.5", default-features = false, features = ["std", "runtime", "cranelift", "component-model", "wat", "anyhow", "pooling-allocator"] }
+tokio = { version = "=1.53.2", features = ["rt-multi-thread", "macros", "time"] }
+iroh = { version = "=1.3.0", default-features = false, features = ["tls-ring"] }
+rusqlite = { version = "=0.40.2", features = ["bundled", "backup"] }
+blake3 = "=1.8.7"
+minicbor = { version = "=2.3.0", features = ["alloc"] }
+ed25519-dalek = "=3.0.0"
+tempfile = "=3.27.0"
+rpds = "=1.2.1"
+
+[profile.dev]
+debug = 0
+

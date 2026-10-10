@@ -1,0 +1,29 @@
+[package]
+name = "attow-fuzz"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.95"
+license = "MIT OR Apache-2.0"
+publish = false
+description = "Bounded Attow Network codec fuzz targets"
+
+[package.metadata]
+cargo-fuzz = true
+
+[workspace]
+members = ["."]
+resolver = "3"
+
+[dependencies]
+attow-codec = { path = "../crates/chronos-codec", version = "=0.1.0", default-features = false }
+libfuzzer-sys = "=0.4.13"
+
+[[bin]]
+name = "codec"
+path = "fuzz_targets/codec.rs"
+test = false
+doc = false
+bench = false
+
+[lints.rust]
+unsafe_code = "forbid"

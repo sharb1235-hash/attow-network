@@ -1,0 +1,7 @@
+package attow:worldline@1.0.0;
+
+/// A returned request names proposal data; it is not permission to dispatch.
+interface effects {
+    use types.{object-id};
+    type proposed-request = object-id;
+}

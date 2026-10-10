@@ -1,0 +1,10 @@
+* text=auto
+*.rs text eol=lf
+*.toml text eol=lf
+*.yml text eol=lf
+*.sh text eol=lf
+# Preserve the supplied research package's integrity evidence byte-for-byte.
+docs/chronos/** -text
+# Fixture hashes describe exact bytes on every checkout platform.
+fixtures/** -text
+fuzz/corpus/** -text

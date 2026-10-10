@@ -1,0 +1,26 @@
+[package]
+name = "attow-sandbox"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+publish.workspace = true
+description = "Attow Network sandbox module"
+
+[features]
+default = []
+
+[dependencies]
+chronos-codec.workspace = true
+chronos-state.workspace = true
+wasmtime.workspace = true
+wasmparser.workspace = true
+anyhow.workspace = true
+thiserror.workspace = true
+
+[dev-dependencies]
+tempfile.workspace = true
+wat.workspace = true
+
+[lints]
+workspace = true

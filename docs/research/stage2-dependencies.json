@@ -1,0 +1,54 @@
+{
+  "schema": 1,
+  "verified_utc": "2026-10-10T05:39:22.6542048Z",
+  "packages": [
+    {
+      "name": "blake3",
+      "version": "1.8.7",
+      "checksum": "6d9e454fc11f76977dc803893aff6304ed33d6a26efae8696573bea74baa27ae",
+      "license": "CC0-1.0 OR Apache-2.0 OR Apache-2.0 WITH LLVM-exception",
+      "rust_version": null,
+      "source": "https://crates.io/api/v1/crates/blake3/1.8.7"
+    },
+    {
+      "name": "minicbor",
+      "version": "2.3.0",
+      "checksum": "c12b4033ffaa92fbf9df03df38d19324f52bad130dd223f811734a8006dd2d69",
+      "license": "BlueOak-1.0.0",
+      "rust_version": null,
+      "source": "https://crates.io/api/v1/crates/minicbor/2.3.0"
+    },
+    {
+      "name": "rusqlite",
+      "version": "0.40.2",
+      "checksum": "23f2a97da3e3873c73cb2a2e71b35c40ff95e0b1eefa8d72d8499a6928c3b5b3",
+      "license": "MIT",
+      "rust_version": null,
+      "source": "https://crates.io/api/v1/crates/rusqlite/0.40.2"
+    },
+    {
+      "name": "thiserror",
+      "version": "2.0.21",
+      "checksum": "09e52cb86a36cede5cb101bf8908837b3e4c6e5e59fe7fd85c23fb56200d189e",
+      "license": "MIT OR Apache-2.0",
+      "rust_version": "1.77",
+      "source": "https://crates.io/api/v1/crates/thiserror/2.0.21"
+    },
+    {
+      "name": "tempfile",
+      "version": "3.27.0",
+      "checksum": "32497e9a4c7b38532efcdebeef879707aa9f794296a4f0244f6f69e9bc8574bd",
+      "license": "MIT OR Apache-2.0",
+      "rust_version": "1.63",
+      "source": "https://crates.io/api/v1/crates/tempfile/3.27.0"
+    },
+    {
+      "name": "proptest",
+      "version": "1.11.0",
+      "checksum": "4b45fcc2344c680f5025fe57779faef368840d0bd1f42f216291f0dc4ace4744",
+      "license": "MIT OR Apache-2.0",
+      "rust_version": "1.85",
+      "source": "https://crates.io/api/v1/crates/proptest/1.11.0"
+    }
+  ]
+}

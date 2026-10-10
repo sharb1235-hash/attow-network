@@ -1,0 +1,8 @@
+package attow:worldline@1.0.0;
+
+/// A recorded immutable observation is explicit input. This interface grants
+/// no clock, random generator, socket, filesystem or observation-fetch function.
+interface observation {
+    use types.{object-id};
+    type recorded-observation = object-id;
+}

@@ -1,0 +1,49 @@
+name: Attow Network bounded codec fuzzing
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: fuzz-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  codec:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      CARGO_TERM_COLOR: always
+      RUST_BACKTRACE: "1"
+    steps:
+      - name: Check out sources
+        # actions/checkout v7.0.1; provenance: docs/research/ci-pins.json
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - name: Install the pinned nightly and fuzz driver
+        shell: bash
+        run: |
+          set -euo pipefail
+          rustup toolchain install nightly-2026-10-08 --profile minimal
+          rustc +nightly-2026-10-08 --version --verbose
+          test "$(rustc +nightly-2026-10-08 --version --verbose | sed -n 's/^host: //p')" = "x86_64-unknown-linux-gnu"
+          cargo +nightly-2026-10-08 install cargo-fuzz --version =0.13.2 --locked
+          cargo +nightly-2026-10-08 fuzz --version
+      - name: Fetch the committed fuzz dependency graph
+        shell: bash
+        run: cargo +nightly-2026-10-08 fetch --manifest-path fuzz/Cargo.toml --locked
+      - name: Run codec fuzzing with AddressSanitizer and fixed budgets
+        shell: bash
+        env:
+          CARGO_NET_OFFLINE: "true"
+        run: cargo +nightly-2026-10-08 fuzz run codec --sanitizer address -- -max_total_time=60 -max_len=65536 -timeout=5 -rss_limit_mb=1024
+      - name: Reject dependency drift
+        if: always()
+        shell: bash
+        run: git diff --exit-code -- fuzz/Cargo.lock
+
+# A configured workflow is not evidence of an executed sanitizer run.
+# Tools and nightly availability: docs/research/stage2-sources.md.

@@ -1,0 +1,21 @@
+name: Feature request
+description: Propose an Attow Network capability or improvement.
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem and use case
+      description: Explain the user-visible outcome and current limitation.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior and alternatives
+    validations:
+      required: true
+  - type: textarea
+    id: guarantees
+    attributes:
+      label: Required guarantees and limitations
+      description: Describe relevant authority, recovery, resource limits, and backend capabilities.

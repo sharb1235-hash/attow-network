@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "verified_utc": "2026-10-10T06:18:03.9551047Z",
+  "dependencies": [
+    {
+      "name": "wasmtime",
+      "version": "48.0.5",
+      "checksum": "b94eda6b1c1d8ade526a67e4ce50cc6234d1c7af68e5d7bf13f40bc07e70daba",
+      "license": "Apache-2.0 WITH LLVM-exception",
+      "rust_version": "1.95.0",
+      "source": "https://crates.io/api/v1/crates/wasmtime/48.0.5"
+    },
+    {
+      "name": "wasmparser",
+      "version": "0.254.2",
+      "checksum": "c5ff8685b587722894b6f25958fc608d315b93b8d23647bfb567664e7006d757",
+      "license": "Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT",
+      "rust_version": "1.85.0",
+      "source": "https://crates.io/api/v1/crates/wasmparser/0.254.2"
+    },
+    {
+      "name": "wat",
+      "version": "1.261.0",
+      "checksum": "a7b4d1a49ea73a8f3326e74e3a05db667001b16bd1035ed3356fc1a0ed05ca7f",
+      "license": "Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT",
+      "rust_version": "1.88.0",
+      "source": "https://crates.io/api/v1/crates/wat/1.261.0"
+    },
+    {
+      "name": "anyhow",
+      "version": "1.0.104",
+      "checksum": "330a5ed07fa54e4702c9d6c4174f74427fc0ef6e214bbd677ae50a5099946470",
+      "license": "MIT OR Apache-2.0",
+      "rust_version": "1.68",
+      "source": "https://crates.io/api/v1/crates/anyhow/1.0.104"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+name: Bug report
+description: Report a reproducible problem in implemented Attow Network behavior.
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Check the implementation status in the README before reporting a planned feature as broken.
+        For security-sensitive reports, follow SECURITY.md and do not post secrets or exploit details publicly.
+  - type: input
+    id: revision
+    attributes:
+      label: Revision and platform
+      description: Include the commit, operating system, CPU architecture, and rustc version.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction
+      description: Give minimal commands and sanitized input that reproduce the problem.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected and actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Sanitized logs and evidence
+      description: Remove credentials, private records, and provider session state.

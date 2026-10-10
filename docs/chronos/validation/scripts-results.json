@@ -1,0 +1,27 @@
+{
+  "real_cargo_builds": 0,
+  "calls_path": "C:\\Users\\Sharb\\Documents\\Codex\\2026-10-09\\files-pasted-by-the-user-you\\work\\chronos-script-mocks\\calls-c68ee885150f4a0eb19532f59aa8af14.jsonl",
+  "checked_utc": "2026-10-10T05:17:46.8451475Z",
+  "mocked_agent_calls": 3,
+  "schema": "chronos.script-tests.v1",
+  "checks": [
+    "agent exit 7 stops stage",
+    "agent exit 0 plus cargo test exit 23 stays incomplete",
+    "successful mocked gates record completion",
+    "resume revalidates and skips completed requested stage",
+    "prompt travels through stdin",
+    "default model is preserved"
+  ],
+  "real_codex_calls": 0,
+  "initializer_checks": [
+    "all five PowerShell files parsed",
+    "WhatIf did not create target",
+    "real new smoke Git repository initialized",
+    "copied-input manifest hashes verified",
+    "foreground and background DryRun did not create execution state",
+    "nonempty target rejected",
+    "outside-workspace target rejected"
+  ],
+  "live_agent_path_tested": false,
+  "full_production_build_tested": false
+}
