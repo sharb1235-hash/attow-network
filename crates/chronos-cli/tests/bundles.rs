@@ -204,6 +204,7 @@ async fn portable_response_rejects_a_baseline_only_model_trace() -> Result<(), B
             workers: 2,
             resume: None,
             browser: false,
+            pause_after_prepared: false,
             pause_after_unknown: false,
             boundary_hook: None,
         },

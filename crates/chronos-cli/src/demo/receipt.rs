@@ -162,7 +162,7 @@ pub(super) async fn complete(
         ))
         .map_err(CliError::infrastructure)?,
     )?;
-    let profile = ExecutionProfile::new(50_000, 65_536, 1024)?;
+    let profile = execution_profile()?;
     let continuation = executor.initial_continuation(&code, &profile, &[0])?;
     let input = executor.store_data(&[0])?;
     let model = store.put_object(

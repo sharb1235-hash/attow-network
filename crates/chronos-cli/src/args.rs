@@ -11,6 +11,7 @@ pub enum Command {
         workers: usize,
         resume: Option<String>,
         browser: bool,
+        pause_after_prepared: bool,
         pause_after_unknown: bool,
     },
     BranchList,
@@ -73,8 +74,9 @@ impl Args {
                     validate_id(id)?;
                 }
                 let browser = flag(&mut words, "--browser")?;
+                let pause_after_prepared = flag(&mut words, "--pause-after-prepared")?;
                 let pause_after_unknown = flag(&mut words, "--pause-after-unknown")?;
-                if words.len() != 2 {
+                if words.len() != 2 || (pause_after_prepared && pause_after_unknown) {
                     return Err(bad());
                 }
                 let scenario = match words[1].as_str() {
@@ -90,6 +92,7 @@ impl Args {
                     workers,
                     resume,
                     browser,
+                    pause_after_prepared,
                     pause_after_unknown,
                 }
             }

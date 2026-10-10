@@ -1,9 +1,11 @@
 # Security policy
 
-Attow Network is in development and has no declared stable release or supported production deployment. Security controls described in the [threat model](docs/threat-model.md) are requirements until implementation and validation are recorded. There is no response-time or backport commitment yet.
+Attow Network 0.1.0 is an experimental candidate. No stable release line, production support, response-time commitment or backport window is established. Implemented controls and their limits are documented in the [threat model](docs/threat-model.md) and [progress record](docs/progress.md).
 
-Report suspected vulnerabilities through the repository's **maintainer-configured private security reporting channel** when it is available, such as GitHub private vulnerability reporting. Do not submit exploitable details, secrets, credentials or personal data in a public issue. If a private channel has not been configured, request a private reporting route from the repository owner without including sensitive details. No reporting email address or external endpoint is configured by this file.
+Do not post vulnerabilities, credentials, provider sessions, authority databases, writer-fence state or private evidence in public issues. Use a verified private reporting channel once the repository owner has configured it. At this candidate checkpoint, that private channel has not been verified; ask the owner to establish a private route without including vulnerability details. No reporting email is invented by this policy.
 
 A useful private report includes the affected revision/profile, a minimal owned-fixture reproduction, expected versus actual behavior, potential impact, and any mitigation. Avoid contacting real purchase/payment providers or accessing another person's data to demonstrate a report.
 
-Before the first public release, maintainers must configure and verify the private reporting channel, identify supported release lines, and document coordinated disclosure and response expectations. See the [release runbook](docs/release-runbook.md).
+The owner must enable and test private reporting for the planned repository `sharb1235-hash/attow-network`, assign a responsible recipient, and publish coordinated-disclosure expectations before claiming a supported public release. Repository creation alone does not establish those controls.
+
+Known boundaries include in-process WASM/browser execution, owner-scoped SQLite without encryption at rest, simulator-specific provider evidence, bounded local histories, and an owned-loopback fence that is not a distributed deployment fence. Imported bundles grant no writer activation; replay does not establish provider truth. See [adapter security](docs/adapter-security.md), [dependency policy](docs/dependency-policy.md) and the [launch checklist](docs/launch-checklist.md). The Linux-only unresolved advisory remains a failed qualification gate, not an ignored warning.

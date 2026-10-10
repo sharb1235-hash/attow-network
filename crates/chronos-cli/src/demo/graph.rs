@@ -7,7 +7,7 @@ use chronos_local::{
     core::persistence::LocalStateStorage, sandbox::SqliteSandboxRepository,
     scheduler::SqliteResultRepository,
 };
-use chronos_sandbox::{ExecutionProfile, Executor, WorkerAdmission, profile::MAX_HOST_CALLS};
+use chronos_sandbox::{Executor, WorkerAdmission, profile::MAX_HOST_CALLS};
 use chronos_scheduler::{GraphNode, ScheduleLimits, Scheduler, WorldlineGraph};
 use chronos_state::{
     Worldline,
@@ -71,7 +71,7 @@ pub(super) async fn prepare(
         ))
         .map_err(CliError::infrastructure)?,
     )?;
-    let profile = ExecutionProfile::new(50_000, 65_536, 1024)?;
+    let profile = execution_profile()?;
     let wasm_fidelity = executor.store_data(b"attow-original-arithmetic-pure-v1")?;
     let wasm_request = StepRequest {
         attempt: derive(&record.run_id, "wasm-template"),

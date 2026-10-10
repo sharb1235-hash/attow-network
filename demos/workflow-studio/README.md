@@ -32,7 +32,10 @@ The installed default CLI runs both scenarios without the optional browser:
 ```sh
 attow init "demo workspace"
 cd "demo workspace"
-attow run checkout --workers 2 --pause-after-unknown --json
+attow run checkout --workers 2 --pause-after-prepared --json
+attow branch list --json
+attow compare FIRST_BRANCH_ID SECOND_BRANCH_ID --json
+attow run checkout --resume RUN_ID --workers 2 --pause-after-unknown --json
 attow run checkout --resume RUN_ID --workers 2 --json
 ```
 
@@ -40,6 +43,13 @@ Use the actual returned run ID. Run records and the local inspector expose real
 branch IDs, shared graph nodes, changed values, dependencies, proposed effects,
 trace roots and evidence. Numeric timings and hashes are taken from execution;
 there is no expected canned event history or speedup claim.
+
+The prepared pause persists the immutable graph before any promotion or provider
+dispatch. It supports inspection before choosing to resume. The two pause flags
+are mutually exclusive. The Stage 10 terminal recorder follows this sequence with
+the extracted release binary and actual optional browser, then performs offline
+replay and a separate data-change scenario. See the
+[release runbook](../../docs/release-runbook.md) for its artifact and trust gates.
 
 Source installation is separately exercised from a path containing spaces:
 

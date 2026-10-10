@@ -1,0 +1,920 @@
+{
+  "schema": 1,
+  "scope": "Exact immutable upstream notice recovery, not source-code vendoring or independent license clearance",
+  "packages": [
+    {
+      "name": "block2",
+      "version": "0.6.2",
+      "license": "MIT",
+      "repository": "madsmtm/objc2",
+      "commit": "b4167b582b2f75f9a1be75495c41b765344fd03c",
+      "basis": "Published archive .cargo_vcs_info.json identifies the immutable upstream commit; missing workspace license files recovered without modification.",
+      "files": [
+        {
+          "path": "madsmtm-objc2/b4167b582b2f75f9a1be75495c41b765344fd03c/LICENSE.md",
+          "sha256": "7f976f7e9cb2d87df7230606feb932c3f21ac0e664045a775b600046ff850c54",
+          "bytes": 1339,
+          "source": "https://raw.githubusercontent.com/madsmtm/objc2/b4167b582b2f75f9a1be75495c41b765344fd03c/LICENSE.md",
+          "kind": "upstream-license"
+        }
+      ],
+      "has_upstream_license": true
+    },
+    {
+      "name": "cranelift-assembler-x64",
+      "version": "0.135.5",
+      "license": "Apache-2.0 WITH LLVM-exception",
+      "repository": "bytecodealliance/wasmtime",
+      "commit": "563544c6296610b1b3fbbe2e4643f9999899ec66",
+      "basis": "Published archive .cargo_vcs_info.json identifies the immutable upstream commit; missing workspace license files recovered without modification.",
+      "files": [
+        {
+          "path": "bytecodealliance-wasmtime/563544c6296610b1b3fbbe2e4643f9999899ec66/LICENSE",
+          "sha256": "268872b9816f90fd8e85db5a28d33f8150ebb8dd016653fb39ef1f94f2686bc5",
+          "bytes": 12243,
+          "source": "https://raw.githubusercontent.com/bytecodealliance/wasmtime/563544c6296610b1b3fbbe2e4643f9999899ec66/LICENSE",
+          "kind": "upstream-license"
+        }
+      ],
+      "has_upstream_license": true
+    },
+    {
+      "name": "cranelift-assembler-x64-meta",
+      "version": "0.135.5",
+      "license": "Apache-2.0 WITH LLVM-exception",
+      "repository": "bytecodealliance/wasmtime",
+      "commit": "563544c6296610b1b3fbbe2e4643f9999899ec66",
+      "basis": "Published archive .cargo_vcs_info.json identifies the immutable upstream commit; missing workspace license files recovered without modification.",
+      "files": [
+        {
+          "path": "bytecodealliance-wasmtime/563544c6296610b1b3fbbe2e4643f9999899ec66/LICENSE",
+          "sha256": "268872b9816f90fd8e85db5a28d33f8150ebb8dd016653fb39ef1f94f2686bc5",
+          "bytes": 12243,
+          "source": "https://raw.githubusercontent.com/bytecodealliance/wasmtime/563544c6296610b1b3fbbe2e4643f9999899ec66/LICENSE",
+          "kind": "upstream-license"
+        }
+      ],
+      "has_upstream_license": true
+    },
+    {
+      "name": "cranelift-bitset",
+      "version": "0.135.5",
+      "license": "Apache-2.0 WITH LLVM-exception",
+      "repository": "bytecodealliance/wasmtime",
+      "commit": "563544c6296610b1b3fbbe2e4643f9999899ec66",
+      "basis": "Published archive .cargo_vcs_info.json identifies the immutable upstream commit; missing workspace license files recovered without modification.",
+      "files": [
+        {
+          "path": "bytecodealliance-wasmtime/563544c6296610b1b3fbbe2e4643f9999899ec66/LICENSE",
+          "sha256": "268872b9816f90fd8e85db5a28d33f8150ebb8dd016653fb39ef1f94f2686bc5",
+          "bytes": 12243,
+          "source": "https://raw.githubusercontent.com/bytecodealliance/wasmtime/563544c6296610b1b3fbbe2e4643f9999899ec66/LICENSE",
+          "kind": "upstream-license"
+        }
+      ],
+      "has_upstream_license": true
+    },
+    {
+      "name": "cranelift-isle",
+      "version": "0.135.5",
+      "license": "Apache-2.0 WITH LLVM-exception",
+      "repository": "bytecodealliance/wasmtime",
+      "commit": "563544c6296610b1b3fbbe2e4643f9999899ec66",
+      "basis": "Published archive .cargo_vcs_info.json identifies the immutable upstream commit; missing workspace license files recovered without modification.",
+      "files": [
+        {
+          "path": "bytecodealliance-wasmtime/563544c6296610b1b3fbbe2e4643f9999899ec66/LICENSE",
+          "sha256": "268872b9816f90fd8e85db5a28d33f8150ebb8dd016653fb39ef1f94f2686bc5",
+          "bytes": 12243,
+          "source": "https://raw.githubusercontent.com/bytecodealliance/wasmtime/563544c6296610b1b3fbbe2e4643f9999899ec66/LICENSE",
+          "kind": "upstream-license"
+        }
+      ],
+      "has_upstream_license": true
+    },
+    {
+      "name": "cranelift-srcgen",
+      "version": "0.135.5",
+      "license": "Apache-2.0 WITH LLVM-exception",
+      "repository": "bytecodealliance/wasmtime",
+      "commit": "563544c6296610b1b3fbbe2e4643f9999899ec66",
+      "basis": "Published archive .cargo_vcs_info.json identifies the immutable upstream commit; missing workspace license files recovered without modification.",
+      "files": [
+        {
+          "path": "bytecodealliance-wasmtime/563544c6296610b1b3fbbe2e4643f9999899ec66/LICENSE",
+          "sha256": "268872b9816f90fd8e85db5a28d33f8150ebb8dd016653fb39ef1f94f2686bc5",
+          "bytes": 12243,
+          "source": "https://raw.githubusercontent.com/bytecodealliance/wasmtime/563544c6296610b1b3fbbe2e4643f9999899ec66/LICENSE",
+          "kind": "upstream-license"
+        }
+      ],
+      "has_upstream_license": true
+    },
+    {
+      "name": "dispatch2",
+      "version": "0.3.1",
+      "license": "Zlib OR Apache-2.0 OR MIT",
+      "repository": "madsmtm/objc2",
+      "commit": "8852b424193ca41602281b3d7540d7c8ed51e49a",
+      "basis": "Published archive .cargo_vcs_info.json identifies the immutable upstream commit; missing workspace license files recovered without modification.",
+      "files": [
+        {
+          "path": "madsmtm-objc2/8852b424193ca41602281b3d7540d7c8ed51e49a/LICENSE.md",
+          "sha256": "7f976f7e9cb2d87df7230606feb932c3f21ac0e664045a775b600046ff850c54",
+          "bytes": 1339,
+          "source": "https://raw.githubusercontent.com/madsmtm/objc2/8852b424193ca41602281b3d7540d7c8ed51e49a/LICENSE.md",
+          "kind": "upstream-license"
+        }
+      ],
+      "has_upstream_license": true
+    },
+    {
+      "name": "dlopen2",
+      "version": "0.8.2",
+      "license": "MIT",
+      "repository": "OpenByteDev/dlopen2",
+      "commit": "cc80e4a0a90d499b677fdf7743699b4b3a43a989",
+      "basis": "Published archive .cargo_vcs_info.json identifies the immutable upstream commit; missing workspace license files recovered without modification.",
+      "files": [
+        {
+          "path": "OpenByteDev-dlopen2/cc80e4a0a90d499b677fdf7743699b4b3a43a989/LICENSE",
+          "sha256": "39fa265207450e77c62e90c5594a06c085b655d8374c7ced4bf7894b6bd95dd2",
+          "bytes": 1184,
+          "source": "https://raw.githubusercontent.com/OpenByteDev/dlopen2/cc80e4a0a90d499b677fdf7743699b4b3a43a989/LICENSE",
+          "kind": "upstream-license"
+        }
+      ],
+      "has_upstream_license": true
+    },
+    {
+      "name": "enum-assoc",
+      "version": "1.4.1",
+      "license": "MIT OR Apache-2.0",
+      "repository": "Eolu/enum-assoc",
+      "commit": "351b306939b150601451df752a183b077b0de85a",
+      "basis": "Published package and exact upstream commit omit a standalone license text. Retain the original declaration/attribution and the complete declared standard license text from its official publisher. No package-specific copyright notice is invented.",
+      "files": [
+        {
+          "path": "declarations/enum-assoc-1.4.1/Cargo.toml",
+          "sha256": "a35b747a99e08ce7bb239c2e0843bec0c828ceb61092217c628dcb32ec9dc442",
+          "bytes": 1355,
+          "source": "https://crates.io/api/v1/crates/enum-assoc/1.4.1/download#Cargo.toml",
+          "kind": "published-declaration"
+        },
+        {
+          "path": "declarations/enum-assoc-1.4.1/README.md",
+          "sha256": "9ac48569e54d844fd3d831b38cca3968deb853fe93ec12bd5d771cf4ccc06e4b",
+          "bytes": 9286,
+          "source": "https://crates.io/api/v1/crates/enum-assoc/1.4.1/download#README.md",
+          "kind": "published-declaration"
+        },
+        {
+          "path": "standard-texts/Apache-2.0.txt",
+          "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+          "bytes": 11358,
+          "source": "https://www.apache.org/licenses/LICENSE-2.0.txt",
+          "kind": "standard-license-text-not-upstream-package-file"
+        }
+      ],
+      "has_upstream_license": false
+    },
+    {
+      "name": "gloo-timers",
+      "version": "0.3.0",
+      "license": "MIT OR Apache-2.0",
+      "repository": "rustwasm/gloo",
+      "commit": "f3bb1d1a1c33dbcccaf26446aca7d0cea8e9d574",
+      "basis": "Published archive .cargo_vcs_info.json identifies the immutable upstream commit; missing workspace license files recovered without modification.",
+      "files": [
+        {
+          "path": "rustwasm-gloo/f3bb1d1a1c33dbcccaf26446aca7d0cea8e9d574/LICENSE-APACHE",
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+          "bytes": 10847,
+          "source": "https://raw.githubusercontent.com/rustwasm/gloo/f3bb1d1a1c33dbcccaf26446aca7d0cea8e9d574/LICENSE-APACHE",
+          "kind": "upstream-license"
+        },
+        {
+          "path": "rustwasm-gloo/f3bb1d1a1c33dbcccaf26446aca7d0cea8e9d574/LICENSE-MIT",
+          "sha256": "5a6f5443ea473f130adbdcf84254761d1292bc79759b5253915d4b5e7afbef66",
+          "bytes": 1078,
+          "source": "https://raw.githubusercontent.com/rustwasm/gloo/f3bb1d1a1c33dbcccaf26446aca7d0cea8e9d574/LICENSE-MIT",
+          "kind": "upstream-license"
+        }
+      ],
+      "has_upstream_license": true
+    },
+    {
+      "name": "iroh",
+      "version": "1.3.0",
+      "license": "MIT OR Apache-2.0",
+      "repository": "n0-computer/iroh",
+      "commit": "0072d7d84b233f9e7185eb676f049beaf557ac03",
+      "basis": "Published archive .cargo_vcs_info.json identifies the immutable upstream commit; missing workspace license files recovered without modification.",
+      "files": [
+        {
+          "path": "n0-computer-iroh/0072d7d84b233f9e7185eb676f049beaf557ac03/LICENSE-APACHE",
+          "sha256": "903131e2786f073a942fbf8fae122d9e576e4dad758c6da7f9f2ba58fd8611ab",
+          "bytes": 10831,
+          "source": "https://raw.githubusercontent.com/n0-computer/iroh/0072d7d84b233f9e7185eb676f049beaf557ac03/LICENSE-APACHE",
+          "kind": "upstream-license"
+        },
+        {
+          "path": "n0-computer-iroh/0072d7d84b233f9e7185eb676f049beaf557ac03/LICENSE-MIT",
+          "sha256": "f169adb8124d3b005416d8485d00777c9a7bdd9099982c52a4493f9732e6d050",
+          "bytes": 1048,
+          "source": "https://raw.githubusercontent.com/n0-computer/iroh/0072d7d84b233f9e7185eb676f049beaf557ac03/LICENSE-MIT",
+          "kind": "upstream-license"
+        }
+      ],
+      "has_upstream_license": true
+    },
+    {
+      "name": "iroh-base",
+      "version": "1.3.0",
+      "license": "MIT OR Apache-2.0",
+      "repository": "n0-computer/iroh",
+      "commit": "0072d7d84b233f9e7185eb676f049beaf557ac03",
+      "basis": "Published archive .cargo_vcs_info.json identifies the immutable upstream commit; missing workspace license files recovered without modification.",
+      "files": [
+        {
+          "path": "n0-computer-iroh/0072d7d84b233f9e7185eb676f049beaf557ac03/LICENSE-APACHE",
+          "sha256": "903131e2786f073a942fbf8fae122d9e576e4dad758c6da7f9f2ba58fd8611ab",
+          "bytes": 10831,
+          "source": "https://raw.githubusercontent.com/n0-computer/iroh/0072d7d84b233f9e7185eb676f049beaf557ac03/LICENSE-APACHE",
+          "kind": "upstream-license"
+        },
+        {
+          "path": "n0-computer-iroh/0072d7d84b233f9e7185eb676f049beaf557ac03/LICENSE-MIT",
+          "sha256": "f169adb8124d3b005416d8485d00777c9a7bdd9099982c52a4493f9732e6d050",
+          "bytes": 1048,
+          "source": "https://raw.githubusercontent.com/n0-computer/iroh/0072d7d84b233f9e7185eb676f049beaf557ac03/LICENSE-MIT",
+          "kind": "upstream-license"
+        }
+      ],
+      "has_upstream_license": true
+    },
+    {
+      "name": "iroh-dns",
+      "version": "1.3.0",
+      "license": "MIT OR Apache-2.0",
+      "repository": "n0-computer/iroh",
+      "commit": "17c0612f80f78f5288e97b818b1360ae6ea0a51a",
+      "basis": "Published archive .cargo_vcs_info.json identifies the immutable upstream commit; missing workspace license files recovered without modification.",
+      "files": [
+        {
+          "path": "n0-computer-iroh/17c0612f80f78f5288e97b818b1360ae6ea0a51a/LICENSE-APACHE",
+          "sha256": "903131e2786f073a942fbf8fae122d9e576e4dad758c6da7f9f2ba58fd8611ab",
+          "bytes": 10831,
+          "source": "https://raw.githubusercontent.com/n0-computer/iroh/17c0612f80f78f5288e97b818b1360ae6ea0a51a/LICENSE-APACHE",
+          "kind": "upstream-license"
+        },
+        {
+          "path": "n0-computer-iroh/17c0612f80f78f5288e97b818b1360ae6ea0a51a/LICENSE-MIT",
+          "sha256": "f169adb8124d3b005416d8485d00777c9a7bdd9099982c52a4493f9732e6d050",
+          "bytes": 1048,
+          "source": "https://raw.githubusercontent.com/n0-computer/iroh/17c0612f80f78f5288e97b818b1360ae6ea0a51a/LICENSE-MIT",
+          "kind": "upstream-license"
+        }
+      ],
+      "has_upstream_license": true
+    },
+    {
+      "name": "iroh-metrics-derive",
+      "version": "1.0.1",
+      "license": "MIT OR Apache-2.0",
+      "repository": "n0-computer/iroh-metrics",
+      "commit": "a9afb7cd49bb3804fffefec61647993851f9b8c8",
+      "basis": "Published archive .cargo_vcs_info.json identifies the immutable upstream commit; missing workspace license files recovered without modification.",
+      "files": [
+        {
+          "path": "n0-computer-iroh-metrics/a9afb7cd49bb3804fffefec61647993851f9b8c8/LICENSE-APACHE",
+          "sha256": "7953ad8cebf4e01199521a5faa221ef59bec5cee0a9856b179590613a8560cbc",
+          "bytes": 10831,
+          "source": "https://raw.githubusercontent.com/n0-computer/iroh-metrics/a9afb7cd49bb3804fffefec61647993851f9b8c8/LICENSE-APACHE",
+          "kind": "upstream-license"
+        },
+        {
+          "path": "n0-computer-iroh-metrics/a9afb7cd49bb3804fffefec61647993851f9b8c8/LICENSE-MIT",
+          "sha256": "339060c99d5c80c2742cae417f765980afe6b0149a78f959bbf2a79f19ab3af5",
+          "bytes": 1048,
+          "source": "https://raw.githubusercontent.com/n0-computer/iroh-metrics/a9afb7cd49bb3804fffefec61647993851f9b8c8/LICENSE-MIT",
+          "kind": "upstream-license"
+        }
+      ],
+      "has_upstream_license": true
+    },
+    {
+      "name": "jni",
+      "version": "0.22.4",
+      "license": "MIT OR Apache-2.0",
+      "repository": "jni-rs/jni-rs",
+      "commit": "5ae9458a4ec44c5318f37ddc7569c1d4ae8a69e7",
+      "basis": "Published archive .cargo_vcs_info.json identifies the immutable upstream commit; missing workspace license files recovered without modification.",
+      "files": [
+        {
+          "path": "jni-rs-jni-rs/5ae9458a4ec44c5318f37ddc7569c1d4ae8a69e7/LICENSE-APACHE",
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+          "bytes": 10847,
+          "source": "https://raw.githubusercontent.com/jni-rs/jni-rs/5ae9458a4ec44c5318f37ddc7569c1d4ae8a69e7/LICENSE-APACHE",
+          "kind": "upstream-license"
+        },
+        {
+          "path": "jni-rs-jni-rs/5ae9458a4ec44c5318f37ddc7569c1d4ae8a69e7/LICENSE-MIT",
+          "sha256": "fea1d5bf3dd71605ce5d7d2ff695c1837e914c77195e523a86b5391716477960",
+          "bytes": 1104,
+          "source": "https://raw.githubusercontent.com/jni-rs/jni-rs/5ae9458a4ec44c5318f37ddc7569c1d4ae8a69e7/LICENSE-MIT",
+          "kind": "upstream-license"
+        }
+      ],
+      "has_upstream_license": true
+    },
+    {
+      "name": "jni-macros",
+      "version": "0.22.4",
+      "license": "MIT OR Apache-2.0",
+      "repository": "jni-rs/jni-rs",
+      "commit": "33045a124105c939d1e2cbdcb5a39e5d868ffa03",
+      "basis": "Published archive .cargo_vcs_info.json identifies the immutable upstream commit; missing workspace license files recovered without modification.",
+      "files": [
+        {
+          "path": "jni-rs-jni-rs/33045a124105c939d1e2cbdcb5a39e5d868ffa03/LICENSE-APACHE",
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+          "bytes": 10847,
+          "source": "https://raw.githubusercontent.com/jni-rs/jni-rs/33045a124105c939d1e2cbdcb5a39e5d868ffa03/LICENSE-APACHE",
+          "kind": "upstream-license"
+        },
+        {
+          "path": "jni-rs-jni-rs/33045a124105c939d1e2cbdcb5a39e5d868ffa03/LICENSE-MIT",
+          "sha256": "fea1d5bf3dd71605ce5d7d2ff695c1837e914c77195e523a86b5391716477960",
+          "bytes": 1104,
+          "source": "https://raw.githubusercontent.com/jni-rs/jni-rs/33045a124105c939d1e2cbdcb5a39e5d868ffa03/LICENSE-MIT",
+          "kind": "upstream-license"
+        }
+      ],
+      "has_upstream_license": true
+    },
+    {
+      "name": "jni-sys-macros",
+      "version": "0.4.1",
+      "license": "MIT OR Apache-2.0",
+      "repository": "jni-rs/jni-sys",
+      "commit": "64d77b7a5f119d7b55b4e2c169a4668067ff59e6",
+      "basis": "Published archive .cargo_vcs_info.json identifies the immutable upstream commit; missing workspace license files recovered without modification.",
+      "files": [
+        {
+          "path": "jni-rs-jni-sys/64d77b7a5f119d7b55b4e2c169a4668067ff59e6/LICENSE-APACHE",
+          "sha256": "c6596eb7be8581c18be736c846fb9173b69eccf6ef94c5135893ec56bd92ba08",
+          "bytes": 11358,
+          "source": "https://raw.githubusercontent.com/jni-rs/jni-sys/64d77b7a5f119d7b55b4e2c169a4668067ff59e6/LICENSE-APACHE",
+          "kind": "upstream-license"
+        },
+        {
+          "path": "jni-rs-jni-sys/64d77b7a5f119d7b55b4e2c169a4668067ff59e6/LICENSE-MIT",
+          "sha256": "1d85bd754b04ceec93e98e890edd1fa3c6a22e81bcb32135806beeccefa51cd1",
+          "bytes": 1071,
+          "source": "https://raw.githubusercontent.com/jni-rs/jni-sys/64d77b7a5f119d7b55b4e2c169a4668067ff59e6/LICENSE-MIT",
+          "kind": "upstream-license"
+        }
+      ],
+      "has_upstream_license": true
+    },
+    {
+      "name": "n0-error-macros",
+      "version": "1.0.1",
+      "license": "MIT OR Apache-2.0",
+      "repository": "n0-computer/n0-error",
+      "commit": "596f4113918712d545cbb25b7fa12c7153706f54",
+      "basis": "Published archive .cargo_vcs_info.json identifies the immutable upstream commit; missing workspace license files recovered without modification.",
+      "files": [
+        {
+          "path": "n0-computer-n0-error/596f4113918712d545cbb25b7fa12c7153706f54/LICENSE-APACHE",
+          "sha256": "7953ad8cebf4e01199521a5faa221ef59bec5cee0a9856b179590613a8560cbc",
+          "bytes": 10831,
+          "source": "https://raw.githubusercontent.com/n0-computer/n0-error/596f4113918712d545cbb25b7fa12c7153706f54/LICENSE-APACHE",
+          "kind": "upstream-license"
+        },
+        {
+          "path": "n0-computer-n0-error/596f4113918712d545cbb25b7fa12c7153706f54/LICENSE-MIT",
+          "sha256": "339060c99d5c80c2742cae417f765980afe6b0149a78f959bbf2a79f19ab3af5",
+          "bytes": 1048,
+          "source": "https://raw.githubusercontent.com/n0-computer/n0-error/596f4113918712d545cbb25b7fa12c7153706f54/LICENSE-MIT",
+          "kind": "upstream-license"
+        }
+      ],
+      "has_upstream_license": true
+    },
+    {
+      "name": "ndk-context",
+      "version": "0.1.1",
+      "license": "MIT OR Apache-2.0",
+      "repository": "rust-windowing/android-ndk-rs",
+      "commit": "10f2ba388fca20f7349996ebae26ccda7a6fda5c",
+      "basis": "Published archive .cargo_vcs_info.json identifies the immutable upstream commit; missing workspace license files recovered without modification.",
+      "files": [
+        {
+          "path": "rust-windowing-android-ndk-rs/10f2ba388fca20f7349996ebae26ccda7a6fda5c/LICENSE-APACHE",
+          "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+          "bytes": 11357,
+          "source": "https://raw.githubusercontent.com/rust-windowing/android-ndk-rs/10f2ba388fca20f7349996ebae26ccda7a6fda5c/LICENSE-APACHE",
+          "kind": "upstream-license"
+        },
+        {
+          "path": "rust-windowing-android-ndk-rs/10f2ba388fca20f7349996ebae26ccda7a6fda5c/LICENSE-MIT",
+          "sha256": "508a77d2e7b51d98adeed32648ad124b7b30241a8e70b2e72c99f92d8e5874d1",
+          "bytes": 1036,
+          "source": "https://raw.githubusercontent.com/rust-windowing/android-ndk-rs/10f2ba388fca20f7349996ebae26ccda7a6fda5c/LICENSE-MIT",
+          "kind": "upstream-license"
+        }
+      ],
+      "has_upstream_license": true
+    },
+    {
+      "name": "netwatch",
+      "version": "0.19.3",
+      "license": "MIT OR Apache-2.0",
+      "repository": "n0-computer/net-tools",
+      "commit": "0030e57fc70981895bb86212ff0f059cc41c8a4e",
+      "basis": "Published archive .cargo_vcs_info.json identifies the immutable upstream commit; missing workspace license files recovered without modification.",
+      "files": [
+        {
+          "path": "n0-computer-net-tools/0030e57fc70981895bb86212ff0f059cc41c8a4e/LICENSE-APACHE",
+          "sha256": "7986218ec4ea89de3511a843ae27fea2584a525036c220ff7b26589179f07888",
+          "bytes": 10831,
+          "source": "https://raw.githubusercontent.com/n0-computer/net-tools/0030e57fc70981895bb86212ff0f059cc41c8a4e/LICENSE-APACHE",
+          "kind": "upstream-license"
+        },
+        {
+          "path": "n0-computer-net-tools/0030e57fc70981895bb86212ff0f059cc41c8a4e/LICENSE-MIT",
+          "sha256": "33616ec4c88b6e00de66e6c06f1a55d80bb32a9d7939f3aa83d28e673a1adcae",
+          "bytes": 1048,
+          "source": "https://raw.githubusercontent.com/n0-computer/net-tools/0030e57fc70981895bb86212ff0f059cc41c8a4e/LICENSE-MIT",
+          "kind": "upstream-license"
+        }
+      ],
+      "has_upstream_license": true
+    },
+    {
+      "name": "objc2",
+      "version": "0.6.5",
+      "license": "MIT",
+      "repository": "madsmtm/objc2",
+      "commit": "d7d2fa23ceaa5e6096c923b081040e5d81b3b9df",
+      "basis": "Published archive .cargo_vcs_info.json identifies the immutable upstream commit; missing workspace license files recovered without modification.",
+      "files": [
+        {
+          "path": "madsmtm-objc2/d7d2fa23ceaa5e6096c923b081040e5d81b3b9df/LICENSE.md",
+          "sha256": "7f976f7e9cb2d87df7230606feb932c3f21ac0e664045a775b600046ff850c54",
+          "bytes": 1339,
+          "source": "https://raw.githubusercontent.com/madsmtm/objc2/d7d2fa23ceaa5e6096c923b081040e5d81b3b9df/LICENSE.md",
+          "kind": "upstream-license"
+        }
+      ],
+      "has_upstream_license": true
+    },
+    {
+      "name": "objc2-core-foundation",
+      "version": "0.3.2",
+      "license": "Zlib OR Apache-2.0 OR MIT",
+      "repository": "madsmtm/objc2",
+      "commit": "7b1abfd750a2cacaea71d6a56ecfb83cb7de560b",
+      "basis": "Published archive .cargo_vcs_info.json identifies the immutable upstream commit; missing workspace license files recovered without modification.",
+      "files": [
+        {
+          "path": "madsmtm-objc2/7b1abfd750a2cacaea71d6a56ecfb83cb7de560b/LICENSE.md",
+          "sha256": "7f976f7e9cb2d87df7230606feb932c3f21ac0e664045a775b600046ff850c54",
+          "bytes": 1339,
+          "source": "https://raw.githubusercontent.com/madsmtm/objc2/7b1abfd750a2cacaea71d6a56ecfb83cb7de560b/LICENSE.md",
+          "kind": "upstream-license"
+        }
+      ],
+      "has_upstream_license": true
+    },
+    {
+      "name": "objc2-core-wlan",
+      "version": "0.3.2",
+      "license": "Zlib OR Apache-2.0 OR MIT",
+      "repository": "madsmtm/objc2",
+      "commit": "7b1abfd750a2cacaea71d6a56ecfb83cb7de560b",
+      "basis": "Published archive .cargo_vcs_info.json identifies the immutable upstream commit; missing workspace license files recovered without modification.",
+      "files": [
+        {
+          "path": "madsmtm-objc2/7b1abfd750a2cacaea71d6a56ecfb83cb7de560b/LICENSE.md",
+          "sha256": "7f976f7e9cb2d87df7230606feb932c3f21ac0e664045a775b600046ff850c54",
+          "bytes": 1339,
+          "source": "https://raw.githubusercontent.com/madsmtm/objc2/7b1abfd750a2cacaea71d6a56ecfb83cb7de560b/LICENSE.md",
+          "kind": "upstream-license"
+        }
+      ],
+      "has_upstream_license": true
+    },
+    {
+      "name": "objc2-encode",
+      "version": "4.1.0",
+      "license": "MIT",
+      "repository": "madsmtm/objc2",
+      "commit": "8d214f5477365ffcbcbb7de058c86ed9a518efb7",
+      "basis": "Published archive .cargo_vcs_info.json identifies the immutable upstream commit; missing workspace license files recovered without modification.",
+      "files": [
+        {
+          "path": "madsmtm-objc2/8d214f5477365ffcbcbb7de058c86ed9a518efb7/LICENSE.md",
+          "sha256": "7f976f7e9cb2d87df7230606feb932c3f21ac0e664045a775b600046ff850c54",
+          "bytes": 1339,
+          "source": "https://raw.githubusercontent.com/madsmtm/objc2/8d214f5477365ffcbcbb7de058c86ed9a518efb7/LICENSE.md",
+          "kind": "upstream-license"
+        }
+      ],
+      "has_upstream_license": true
+    },
+    {
+      "name": "objc2-foundation",
+      "version": "0.3.2",
+      "license": "MIT",
+      "repository": "madsmtm/objc2",
+      "commit": "7b1abfd750a2cacaea71d6a56ecfb83cb7de560b",
+      "basis": "Published archive .cargo_vcs_info.json identifies the immutable upstream commit; missing workspace license files recovered without modification.",
+      "files": [
+        {
+          "path": "madsmtm-objc2/7b1abfd750a2cacaea71d6a56ecfb83cb7de560b/LICENSE.md",
+          "sha256": "7f976f7e9cb2d87df7230606feb932c3f21ac0e664045a775b600046ff850c54",
+          "bytes": 1339,
+          "source": "https://raw.githubusercontent.com/madsmtm/objc2/7b1abfd750a2cacaea71d6a56ecfb83cb7de560b/LICENSE.md",
+          "kind": "upstream-license"
+        }
+      ],
+      "has_upstream_license": true
+    },
+    {
+      "name": "objc2-security",
+      "version": "0.3.2",
+      "license": "Zlib OR Apache-2.0 OR MIT",
+      "repository": "madsmtm/objc2",
+      "commit": "7b1abfd750a2cacaea71d6a56ecfb83cb7de560b",
+      "basis": "Published archive .cargo_vcs_info.json identifies the immutable upstream commit; missing workspace license files recovered without modification.",
+      "files": [
+        {
+          "path": "madsmtm-objc2/7b1abfd750a2cacaea71d6a56ecfb83cb7de560b/LICENSE.md",
+          "sha256": "7f976f7e9cb2d87df7230606feb932c3f21ac0e664045a775b600046ff850c54",
+          "bytes": 1339,
+          "source": "https://raw.githubusercontent.com/madsmtm/objc2/7b1abfd750a2cacaea71d6a56ecfb83cb7de560b/LICENSE.md",
+          "kind": "upstream-license"
+        }
+      ],
+      "has_upstream_license": true
+    },
+    {
+      "name": "objc2-security-foundation",
+      "version": "0.3.2",
+      "license": "Zlib OR Apache-2.0 OR MIT",
+      "repository": "madsmtm/objc2",
+      "commit": "7b1abfd750a2cacaea71d6a56ecfb83cb7de560b",
+      "basis": "Published archive .cargo_vcs_info.json identifies the immutable upstream commit; missing workspace license files recovered without modification.",
+      "files": [
+        {
+          "path": "madsmtm-objc2/7b1abfd750a2cacaea71d6a56ecfb83cb7de560b/LICENSE.md",
+          "sha256": "7f976f7e9cb2d87df7230606feb932c3f21ac0e664045a775b600046ff850c54",
+          "bytes": 1339,
+          "source": "https://raw.githubusercontent.com/madsmtm/objc2/7b1abfd750a2cacaea71d6a56ecfb83cb7de560b/LICENSE.md",
+          "kind": "upstream-license"
+        }
+      ],
+      "has_upstream_license": true
+    },
+    {
+      "name": "objc2-system-configuration",
+      "version": "0.3.2",
+      "license": "Zlib OR Apache-2.0 OR MIT",
+      "repository": "madsmtm/objc2",
+      "commit": "7b1abfd750a2cacaea71d6a56ecfb83cb7de560b",
+      "basis": "Published archive .cargo_vcs_info.json identifies the immutable upstream commit; missing workspace license files recovered without modification.",
+      "files": [
+        {
+          "path": "madsmtm-objc2/7b1abfd750a2cacaea71d6a56ecfb83cb7de560b/LICENSE.md",
+          "sha256": "7f976f7e9cb2d87df7230606feb932c3f21ac0e664045a775b600046ff850c54",
+          "bytes": 1339,
+          "source": "https://raw.githubusercontent.com/madsmtm/objc2/7b1abfd750a2cacaea71d6a56ecfb83cb7de560b/LICENSE.md",
+          "kind": "upstream-license"
+        }
+      ],
+      "has_upstream_license": true
+    },
+    {
+      "name": "pharos",
+      "version": "0.5.3",
+      "license": "Unlicense",
+      "repository": "najamelan/pharos",
+      "commit": "f5b985a59cfeced5ae66325d477b6c982c9408bf",
+      "basis": "Published package and exact upstream commit omit a standalone license text. Retain the original declaration/attribution and the complete declared standard license text from its official publisher. No package-specific copyright notice is invented.",
+      "files": [
+        {
+          "path": "declarations/pharos-0.5.3/Cargo.toml",
+          "sha256": "5de74bc5d76a44dcd24c808037065465c6157292d71abda1e955fb7a31362135",
+          "bytes": 1634,
+          "source": "https://crates.io/api/v1/crates/pharos/0.5.3/download#Cargo.toml",
+          "kind": "published-declaration"
+        },
+        {
+          "path": "declarations/pharos-0.5.3/README.md",
+          "sha256": "19578b95fc9fe905a8b1b2cdf27a32fd4df37c10f7002a18e6f2044209f5f331",
+          "bytes": 9618,
+          "source": "https://crates.io/api/v1/crates/pharos/0.5.3/download#README.md",
+          "kind": "published-declaration"
+        },
+        {
+          "path": "standard-texts/Unlicense.txt",
+          "sha256": "b5065838cbac452dfc855ba6e6e031481ad2c68406f70d21ead9321374653e6c",
+          "bytes": 1212,
+          "source": "https://unlicense.org/UNLICENSE",
+          "kind": "standard-license-text-not-upstream-package-file"
+        }
+      ],
+      "has_upstream_license": false
+    },
+    {
+      "name": "pulley-interpreter",
+      "version": "48.0.5",
+      "license": "Apache-2.0 WITH LLVM-exception",
+      "repository": "bytecodealliance/wasmtime",
+      "commit": "563544c6296610b1b3fbbe2e4643f9999899ec66",
+      "basis": "Published archive .cargo_vcs_info.json identifies the immutable upstream commit; missing workspace license files recovered without modification.",
+      "files": [
+        {
+          "path": "bytecodealliance-wasmtime/563544c6296610b1b3fbbe2e4643f9999899ec66/LICENSE",
+          "sha256": "268872b9816f90fd8e85db5a28d33f8150ebb8dd016653fb39ef1f94f2686bc5",
+          "bytes": 12243,
+          "source": "https://raw.githubusercontent.com/bytecodealliance/wasmtime/563544c6296610b1b3fbbe2e4643f9999899ec66/LICENSE",
+          "kind": "upstream-license"
+        }
+      ],
+      "has_upstream_license": true
+    },
+    {
+      "name": "pulley-macros",
+      "version": "48.0.5",
+      "license": "Apache-2.0 WITH LLVM-exception",
+      "repository": "bytecodealliance/wasmtime",
+      "commit": "563544c6296610b1b3fbbe2e4643f9999899ec66",
+      "basis": "Published archive .cargo_vcs_info.json identifies the immutable upstream commit; missing workspace license files recovered without modification.",
+      "files": [
+        {
+          "path": "bytecodealliance-wasmtime/563544c6296610b1b3fbbe2e4643f9999899ec66/LICENSE",
+          "sha256": "268872b9816f90fd8e85db5a28d33f8150ebb8dd016653fb39ef1f94f2686bc5",
+          "bytes": 12243,
+          "source": "https://raw.githubusercontent.com/bytecodealliance/wasmtime/563544c6296610b1b3fbbe2e4643f9999899ec66/LICENSE",
+          "kind": "upstream-license"
+        }
+      ],
+      "has_upstream_license": true
+    },
+    {
+      "name": "rsqlite-vfs",
+      "version": "0.1.1",
+      "license": "MIT",
+      "repository": "Spxg/sqlite-wasm-rs",
+      "commit": "1bb309784f25c401ddf95131dcde4c4cdad7aee7",
+      "basis": "Published archive .cargo_vcs_info.json identifies the immutable upstream commit; missing workspace license files recovered without modification.",
+      "files": [
+        {
+          "path": "Spxg-sqlite-wasm-rs/1bb309784f25c401ddf95131dcde4c4cdad7aee7/LICENSE",
+          "sha256": "e1c1975c3474cce31722836f101a40ffaf1cc784e4d2f38ce3e77b9712934e78",
+          "bytes": 1061,
+          "source": "https://raw.githubusercontent.com/Spxg/sqlite-wasm-rs/1bb309784f25c401ddf95131dcde4c4cdad7aee7/LICENSE",
+          "kind": "upstream-license"
+        }
+      ],
+      "has_upstream_license": true
+    },
+    {
+      "name": "rustls-platform-verifier-android",
+      "version": "0.2.0",
+      "license": "MIT OR Apache-2.0",
+      "repository": "rustls/rustls-platform-verifier",
+      "commit": "252e25161a91af476cbea620e29d277592d27ec7",
+      "basis": "Published archive .cargo_vcs_info.json identifies the immutable upstream commit; missing workspace license files recovered without modification.",
+      "files": [
+        {
+          "path": "rustls-rustls-platform-verifier/252e25161a91af476cbea620e29d277592d27ec7/LICENSE-APACHE",
+          "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+          "bytes": 11357,
+          "source": "https://raw.githubusercontent.com/rustls/rustls-platform-verifier/252e25161a91af476cbea620e29d277592d27ec7/LICENSE-APACHE",
+          "kind": "upstream-license"
+        },
+        {
+          "path": "rustls-rustls-platform-verifier/252e25161a91af476cbea620e29d277592d27ec7/LICENSE-MIT",
+          "sha256": "1c7cf76689c837a68ed8d704994e52a0f2940c087958f860d17f3186afbdcc0c",
+          "bytes": 1066,
+          "source": "https://raw.githubusercontent.com/rustls/rustls-platform-verifier/252e25161a91af476cbea620e29d277592d27ec7/LICENSE-MIT",
+          "kind": "upstream-license"
+        }
+      ],
+      "has_upstream_license": true
+    },
+    {
+      "name": "valuable",
+      "version": "0.1.1",
+      "license": "MIT",
+      "repository": "tokio-rs/valuable",
+      "commit": "9efc29b6e58cef28f6566a47aa7e142a55fead77",
+      "basis": "Published archive .cargo_vcs_info.json identifies the immutable upstream commit; missing workspace license files recovered without modification.",
+      "files": [
+        {
+          "path": "tokio-rs-valuable/9efc29b6e58cef28f6566a47aa7e142a55fead77/LICENSE",
+          "sha256": "ed60d479b8fd1f64e9cbc3de449a16a53ac1b3d1b6aeb9bf9d190a8e93061b44",
+          "bytes": 1065,
+          "source": "https://raw.githubusercontent.com/tokio-rs/valuable/9efc29b6e58cef28f6566a47aa7e142a55fead77/LICENSE",
+          "kind": "upstream-license"
+        }
+      ],
+      "has_upstream_license": true
+    },
+    {
+      "name": "wasmtime-internal-component-macro",
+      "version": "48.0.5",
+      "license": "Apache-2.0 WITH LLVM-exception",
+      "repository": "bytecodealliance/wasmtime",
+      "commit": "563544c6296610b1b3fbbe2e4643f9999899ec66",
+      "basis": "Published archive .cargo_vcs_info.json identifies the immutable upstream commit; missing workspace license files recovered without modification.",
+      "files": [
+        {
+          "path": "bytecodealliance-wasmtime/563544c6296610b1b3fbbe2e4643f9999899ec66/LICENSE",
+          "sha256": "268872b9816f90fd8e85db5a28d33f8150ebb8dd016653fb39ef1f94f2686bc5",
+          "bytes": 12243,
+          "source": "https://raw.githubusercontent.com/bytecodealliance/wasmtime/563544c6296610b1b3fbbe2e4643f9999899ec66/LICENSE",
+          "kind": "upstream-license"
+        }
+      ],
+      "has_upstream_license": true
+    },
+    {
+      "name": "wasmtime-internal-component-util",
+      "version": "48.0.5",
+      "license": "Apache-2.0 WITH LLVM-exception",
+      "repository": "bytecodealliance/wasmtime",
+      "commit": "563544c6296610b1b3fbbe2e4643f9999899ec66",
+      "basis": "Published archive .cargo_vcs_info.json identifies the immutable upstream commit; missing workspace license files recovered without modification.",
+      "files": [
+        {
+          "path": "bytecodealliance-wasmtime/563544c6296610b1b3fbbe2e4643f9999899ec66/LICENSE",
+          "sha256": "268872b9816f90fd8e85db5a28d33f8150ebb8dd016653fb39ef1f94f2686bc5",
+          "bytes": 12243,
+          "source": "https://raw.githubusercontent.com/bytecodealliance/wasmtime/563544c6296610b1b3fbbe2e4643f9999899ec66/LICENSE",
+          "kind": "upstream-license"
+        }
+      ],
+      "has_upstream_license": true
+    },
+    {
+      "name": "wasmtime-internal-core",
+      "version": "48.0.5",
+      "license": "Apache-2.0 WITH LLVM-exception",
+      "repository": "bytecodealliance/wasmtime",
+      "commit": "563544c6296610b1b3fbbe2e4643f9999899ec66",
+      "basis": "Published archive .cargo_vcs_info.json identifies the immutable upstream commit; missing workspace license files recovered without modification.",
+      "files": [
+        {
+          "path": "bytecodealliance-wasmtime/563544c6296610b1b3fbbe2e4643f9999899ec66/LICENSE",
+          "sha256": "268872b9816f90fd8e85db5a28d33f8150ebb8dd016653fb39ef1f94f2686bc5",
+          "bytes": 12243,
+          "source": "https://raw.githubusercontent.com/bytecodealliance/wasmtime/563544c6296610b1b3fbbe2e4643f9999899ec66/LICENSE",
+          "kind": "upstream-license"
+        }
+      ],
+      "has_upstream_license": true
+    },
+    {
+      "name": "wasmtime-internal-jit-debug",
+      "version": "48.0.5",
+      "license": "Apache-2.0 WITH LLVM-exception",
+      "repository": "bytecodealliance/wasmtime",
+      "commit": "563544c6296610b1b3fbbe2e4643f9999899ec66",
+      "basis": "Published archive .cargo_vcs_info.json identifies the immutable upstream commit; missing workspace license files recovered without modification.",
+      "files": [
+        {
+          "path": "bytecodealliance-wasmtime/563544c6296610b1b3fbbe2e4643f9999899ec66/LICENSE",
+          "sha256": "268872b9816f90fd8e85db5a28d33f8150ebb8dd016653fb39ef1f94f2686bc5",
+          "bytes": 12243,
+          "source": "https://raw.githubusercontent.com/bytecodealliance/wasmtime/563544c6296610b1b3fbbe2e4643f9999899ec66/LICENSE",
+          "kind": "upstream-license"
+        }
+      ],
+      "has_upstream_license": true
+    },
+    {
+      "name": "wasmtime-internal-jit-icache-coherence",
+      "version": "48.0.5",
+      "license": "Apache-2.0 WITH LLVM-exception",
+      "repository": "bytecodealliance/wasmtime",
+      "commit": "563544c6296610b1b3fbbe2e4643f9999899ec66",
+      "basis": "Published archive .cargo_vcs_info.json identifies the immutable upstream commit; missing workspace license files recovered without modification.",
+      "files": [
+        {
+          "path": "bytecodealliance-wasmtime/563544c6296610b1b3fbbe2e4643f9999899ec66/LICENSE",
+          "sha256": "268872b9816f90fd8e85db5a28d33f8150ebb8dd016653fb39ef1f94f2686bc5",
+          "bytes": 12243,
+          "source": "https://raw.githubusercontent.com/bytecodealliance/wasmtime/563544c6296610b1b3fbbe2e4643f9999899ec66/LICENSE",
+          "kind": "upstream-license"
+        }
+      ],
+      "has_upstream_license": true
+    },
+    {
+      "name": "wasmtime-internal-versioned-export-macros",
+      "version": "48.0.5",
+      "license": "Apache-2.0 WITH LLVM-exception",
+      "repository": "bytecodealliance/wasmtime",
+      "commit": "563544c6296610b1b3fbbe2e4643f9999899ec66",
+      "basis": "Published archive .cargo_vcs_info.json identifies the immutable upstream commit; missing workspace license files recovered without modification.",
+      "files": [
+        {
+          "path": "bytecodealliance-wasmtime/563544c6296610b1b3fbbe2e4643f9999899ec66/LICENSE",
+          "sha256": "268872b9816f90fd8e85db5a28d33f8150ebb8dd016653fb39ef1f94f2686bc5",
+          "bytes": 12243,
+          "source": "https://raw.githubusercontent.com/bytecodealliance/wasmtime/563544c6296610b1b3fbbe2e4643f9999899ec66/LICENSE",
+          "kind": "upstream-license"
+        }
+      ],
+      "has_upstream_license": true
+    },
+    {
+      "name": "wasmtime-internal-wit-bindgen",
+      "version": "48.0.5",
+      "license": "Apache-2.0 WITH LLVM-exception",
+      "repository": "bytecodealliance/wasmtime",
+      "commit": "563544c6296610b1b3fbbe2e4643f9999899ec66",
+      "basis": "Published archive .cargo_vcs_info.json identifies the immutable upstream commit; missing workspace license files recovered without modification.",
+      "files": [
+        {
+          "path": "bytecodealliance-wasmtime/563544c6296610b1b3fbbe2e4643f9999899ec66/LICENSE",
+          "sha256": "268872b9816f90fd8e85db5a28d33f8150ebb8dd016653fb39ef1f94f2686bc5",
+          "bytes": 12243,
+          "source": "https://raw.githubusercontent.com/bytecodealliance/wasmtime/563544c6296610b1b3fbbe2e4643f9999899ec66/LICENSE",
+          "kind": "upstream-license"
+        }
+      ],
+      "has_upstream_license": true
+    },
+    {
+      "name": "winapi-i686-pc-windows-gnu",
+      "version": "0.4.0",
+      "license": "MIT/Apache-2.0",
+      "repository": "retep998/winapi-rs",
+      "commit": "796a8e6c2971dc2ff1bcff166e6671284f9b5b6b",
+      "basis": "Old import-library archive omits VCS and license files. Retain winapi workspace licenses from the exact source commit identified by the resolved parent winapi 0.3.9 archive; original 0.4.0 Cargo manifest supplies declaration and author attribution. This is not a claim of recovered import-library source provenance.",
+      "files": [
+        {
+          "path": "retep998-winapi-rs/796a8e6c2971dc2ff1bcff166e6671284f9b5b6b/LICENSE-APACHE",
+          "sha256": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1",
+          "bytes": 11357,
+          "source": "https://raw.githubusercontent.com/retep998/winapi-rs/796a8e6c2971dc2ff1bcff166e6671284f9b5b6b/LICENSE-APACHE",
+          "kind": "upstream-license"
+        },
+        {
+          "path": "retep998-winapi-rs/796a8e6c2971dc2ff1bcff166e6671284f9b5b6b/LICENSE-MIT",
+          "sha256": "ce7bc3499fee93d5022ef430d5e4201e79a6d9154f3974e42f41349f0569e09b",
+          "bytes": 1073,
+          "source": "https://raw.githubusercontent.com/retep998/winapi-rs/796a8e6c2971dc2ff1bcff166e6671284f9b5b6b/LICENSE-MIT",
+          "kind": "upstream-license"
+        },
+        {
+          "path": "declarations/winapi-i686-pc-windows-gnu-0.4.0/Cargo.toml",
+          "sha256": "9652222664ffc7e2a26fdcdebdce0917a455b39d8fbcbf451bf0b011a3067bf7",
+          "bytes": 948,
+          "source": "https://crates.io/api/v1/crates/winapi-i686-pc-windows-gnu/0.4.0/download#Cargo.toml",
+          "kind": "published-declaration"
+        }
+      ],
+      "has_upstream_license": true
+    },
+    {
+      "name": "winapi-x86_64-pc-windows-gnu",
+      "version": "0.4.0",
+      "license": "MIT/Apache-2.0",
+      "repository": "retep998/winapi-rs",
+      "commit": "796a8e6c2971dc2ff1bcff166e6671284f9b5b6b",
+      "basis": "Old import-library archive omits VCS and license files. Retain winapi workspace licenses from the exact source commit identified by the resolved parent winapi 0.3.9 archive; original 0.4.0 Cargo manifest supplies declaration and author attribution. This is not a claim of recovered import-library source provenance.",
+      "files": [
+        {
+          "path": "retep998-winapi-rs/796a8e6c2971dc2ff1bcff166e6671284f9b5b6b/LICENSE-APACHE",
+          "sha256": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1",
+          "bytes": 11357,
+          "source": "https://raw.githubusercontent.com/retep998/winapi-rs/796a8e6c2971dc2ff1bcff166e6671284f9b5b6b/LICENSE-APACHE",
+          "kind": "upstream-license"
+        },
+        {
+          "path": "retep998-winapi-rs/796a8e6c2971dc2ff1bcff166e6671284f9b5b6b/LICENSE-MIT",
+          "sha256": "ce7bc3499fee93d5022ef430d5e4201e79a6d9154f3974e42f41349f0569e09b",
+          "bytes": 1073,
+          "source": "https://raw.githubusercontent.com/retep998/winapi-rs/796a8e6c2971dc2ff1bcff166e6671284f9b5b6b/LICENSE-MIT",
+          "kind": "upstream-license"
+        },
+        {
+          "path": "declarations/winapi-x86_64-pc-windows-gnu-0.4.0/Cargo.toml",
+          "sha256": "a88605a11db5def9b6cf73398e83b3edb72228cb43ea935729fac5cd33cec22c",
+          "bytes": 952,
+          "source": "https://crates.io/api/v1/crates/winapi-x86_64-pc-windows-gnu/0.4.0/download#Cargo.toml",
+          "kind": "published-declaration"
+        }
+      ],
+      "has_upstream_license": true
+    }
+  ]
+}

@@ -12,7 +12,7 @@ use chronos_local::{core::persistence::StoredStateView, owned_loopback::OwnedLoo
 use chronos_state::{FrozenBranch, StateRoot};
 use serde_json::json;
 use std::{collections::BTreeMap, path::Path, sync::Arc};
-const HELP: &str = "Attow Network 0.1.0\n\nattow init PATH [--json]\nattow run checkout|data-change [--workers 1..8] [--resume RUN] [--browser] [--pause-after-unknown] [--json]\nattow branch list [--json]\nattow compare BRANCH_A BRANCH_B [--json]\nattow promote BRANCH --decision ID --generation N --request-id ID [--json]\nattow replay RUN --offline [--json]\nattow verify RUN [--json]\nattow doctor [--json]\nattow peer serve --bind 127.0.0.1:0 [--duration-ms N] [--json]\nattow export RUN --output PATH [--json]\nattow import PATH --data-only [--json]\n\nUse --root PATH to select an initialized workspace. Exit codes: 0 success, 2 conflict, 3 unknown, 4 input, 5 infrastructure.\nReplay has no workers or dispatch. Browser is an optional owned fixture. Peer serve denies proposals and peers without an allowlist.\n";
+const HELP: &str = "Attow Network 0.1.0\n\nattow init PATH [--json]\nattow run checkout|data-change [--workers 1..8] [--resume RUN] [--browser] [--pause-after-prepared | --pause-after-unknown] [--json]\nattow branch list [--json]\nattow compare BRANCH_A BRANCH_B [--json]\nattow promote BRANCH --decision ID --generation N --request-id ID [--json]\nattow replay RUN --offline [--json]\nattow verify RUN [--json]\nattow doctor [--json]\nattow peer serve --bind 127.0.0.1:0 [--duration-ms N] [--json]\nattow export RUN --output PATH [--json]\nattow import PATH --data-only [--json]\n\nUse --root PATH to select an initialized workspace. Exit codes: 0 success, 2 conflict, 3 unknown, 4 input, 5 infrastructure.\nReplay has no workers or dispatch. Browser is an optional owned fixture. Peer serve denies proposals and peers without an allowlist.\n";
 pub async fn execute(args: Args, cwd: &Path) -> Result<Output, CliError> {
     match &args.command {
         Command::Help => return Ok(Output::success("help", json!({"help":HELP}))),
@@ -50,9 +50,10 @@ pub async fn execute(args: Args, cwd: &Path) -> Result<Output, CliError> {
                     .map_or_else(|| cwd.to_path_buf(), |root| cwd.join(root)),
             )
             .is_ok();
+            let profile = demo::execution_profile()?;
             return Ok(Output::success(
                 "doctor",
-                json!({"workspace_initialized":workspace,"browser":{"compiled":cfg!(feature="browser"),"configured":configured && chromium_revision_present,"bridge_paths_present":configured,"chromium_revision_present":chromium_revision_present,"versions_verified":false,"readiness":"not_probed","required_node":"24.21.0","required_playwright":"1.64.0","required_chromium_revision":"1248"},"offline_core":true,"distributed_fence_service":false}),
+                json!({"workspace_initialized":workspace,"runtime_profile_hash":profile.profile_hash.to_string(),"runtime_profile":{"fuel":profile.fuel,"memory_bytes":profile.memory_bytes,"output_bytes":profile.output_bytes},"browser":{"compiled":cfg!(feature="browser"),"configured":configured && chromium_revision_present,"bridge_paths_present":configured,"chromium_revision_present":chromium_revision_present,"versions_verified":false,"readiness":"not_probed","required_node":"24.21.0","required_playwright":"1.64.0","required_chromium_revision":"1248"},"offline_core":true,"distributed_fence_service":false}),
             ));
         }
         _ => {}
@@ -68,6 +69,7 @@ pub async fn execute(args: Args, cwd: &Path) -> Result<Output, CliError> {
             workers,
             resume,
             browser,
+            pause_after_prepared,
             pause_after_unknown,
         } => {
             let record = demo::run(
@@ -77,6 +79,7 @@ pub async fn execute(args: Args, cwd: &Path) -> Result<Output, CliError> {
                     workers,
                     resume,
                     browser,
+                    pause_after_prepared,
                     pause_after_unknown,
                     boundary_hook: None,
                 },
@@ -295,7 +298,7 @@ fn inspect_dependencies(
     branch: &crate::BranchRecord,
 ) -> serde_json::Value {
     let inspect = || -> Result<serde_json::Value, CliError> {
-        let store = chronos_store::Store::open_read_only(&workspace.authority_path())?;
+        let store = crate::bundle::inspection_store(workspace, run)?;
         let initial = StateRoot::decode(
             &store.get(validate_id(
                 run.initial_root
@@ -336,6 +339,21 @@ fn verify_native(authority: &Authority, bundle: &Bundle) -> Result<serde_json::V
     let required = |value: &Option<String>| -> Result<ObjectId, CliError> {
         validate_id(value.as_deref().ok_or_else(mismatch)?)
     };
+    if record.phase == "prepared" {
+        // promotion_record verifies the authoritative event chain and tables.
+        // A portable preview alone cannot establish absence of an effect.
+        if authority
+            .promotion_record(required(&record.request_id)?)?
+            .is_some()
+            || record.intent.is_some()
+            || record.receipt.is_some()
+            || record.response_descriptor.is_some()
+            || record.managed_root != record.initial_root
+        {
+            return Err(mismatch());
+        }
+        return Ok(json!([]));
+    }
     let selected = record
         .branches
         .iter()

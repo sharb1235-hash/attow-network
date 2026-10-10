@@ -8,21 +8,21 @@ use std::{
     time::{Duration, Instant},
 };
 
-pub(super) const MAX_CAPTURE: usize = 16 * 1024 * 1024;
-pub(super) struct Output {
+pub(crate) const MAX_CAPTURE: usize = 16 * 1024 * 1024;
+pub(crate) struct Output {
     pub code: i32,
     pub stdout: Vec<u8>,
     pub elapsed_ms: u128,
 }
-pub(super) fn args(values: &[&str]) -> Vec<OsString> {
+pub(crate) fn args(values: &[&str]) -> Vec<OsString> {
     values.iter().map(OsString::from).collect()
 }
-pub(super) fn cargo(root: &Path, arguments: &[OsString]) -> Result<Output> {
+pub(crate) fn cargo(root: &Path, arguments: &[OsString]) -> Result<Output> {
     let mut all = vec![OsString::from("+1.95.0")];
     all.extend_from_slice(arguments);
     capture(OsStr::new("cargo"), &all, root, Duration::from_secs(3600))
 }
-pub(super) fn capture(
+pub(crate) fn capture(
     program: &OsStr,
     arguments: &[OsString],
     cwd: &Path,
@@ -74,7 +74,7 @@ pub(super) fn capture(
         elapsed_ms: started.elapsed().as_millis(),
     })
 }
-pub(super) fn success(output: &Output) -> Result<()> {
+pub(crate) fn success(output: &Output) -> Result<()> {
     if output.code != 0 {
         return Err(format!("subprocess failed with exit {}", output.code).into());
     }

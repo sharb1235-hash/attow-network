@@ -1,9 +1,14 @@
 # Changelog
 
-## Unreleased
+## 0.1.0 candidate — unpublished
 
-- Establish the Attow Network public name while retaining ChronosOS as the internal project name.
-- Introduce the Rust workspace foundation, initial object identifier, development CLI and repository checks.
-- Document the target worldline architecture, authority/effect invariants, staged implementation plan and community policies.
+- Establish Attow Network's public package names and original MIT OR Apache-2.0 implementation, with the supplied ChronosOS design inputs preserved.
+- Add canonical content-addressed storage, immutable branches, durable promotion, rights and effect lifecycle, verified ledger replay and explicit writer fencing.
+- Add bounded Wasmtime component execution, durable continuations, conservative scheduler reuse and recorded-input replay without worker or dispatch ports.
+- Add owned SQLite/browser adapters, a durable simulated provider with Unknown reconciliation, authenticated private peer transfer and data-only imports.
+- Add the installed `attow` CLI, durable five-branch checkout and data-change scenarios, inspection, bounded portable bundles and recovery across interruption.
+- Add native Windows candidate archives, resolved dependency inventory and notices, recorded demo tooling, installation evidence and detached-signature verification.
 
-The foundation is not a completed execution runtime or public release. Exact verification results and remaining work are recorded in [progress](docs/progress.md).
+Candidate readiness is determined by its actual manifest, checks and independently configured signature trust. No maintainer signing credentials or registry publication are configured. Linux qualification remains blocked by the unignored paste maintenance advisory; macOS has no executed qualification evidence.
+
+This is an experimental 0.1.0 candidate, with no stable protocol, migration or production support promise. Provider guarantees apply to the owned simulator; browser containment is an in-process fixture boundary. Exact implementation and test evidence are recorded in [progress](docs/progress.md), and pending launch conditions in the [launch checklist](docs/launch-checklist.md).

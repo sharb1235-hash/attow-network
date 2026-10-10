@@ -48,10 +48,20 @@ pub struct DemoOptions {
     pub workers: usize,
     pub resume: Option<String>,
     pub browser: bool,
+    pub pause_after_prepared: bool,
     pub pause_after_unknown: bool,
     pub boundary_hook: Option<fn(DemoBoundary)>,
 }
+/// The canonical profile used by both the preview graph and receipt rerun.
+pub fn execution_profile() -> Result<chronos_sandbox::ExecutionProfile, CliError> {
+    Ok(chronos_sandbox::ExecutionProfile::new(
+        50_000, 65_536, 1024,
+    )?)
+}
 pub async fn run(ws: &Workspace, options: DemoOptions) -> Result<RunRecord, CliError> {
+    if options.pause_after_prepared && options.pause_after_unknown {
+        return Err(CliError::input("choose one pause boundary"));
+    }
     if !(1..=8).contains(&options.workers) {
         return Err(CliError::input("workers must be between 1 and 8"));
     }
@@ -167,6 +177,9 @@ pub async fn run(ws: &Workspace, options: DemoOptions) -> Result<RunRecord, CliE
         record.phase = "prepared".into();
         ws.save_run(&record)?;
         boundary(&options, DemoBoundary::AfterPrepared);
+    }
+    if options.pause_after_prepared && record.phase == "prepared" {
+        return Ok(record);
     }
     // Reusing the persisted IDs also covers a lost promotion reply.
     if record.phase == "prepared" {

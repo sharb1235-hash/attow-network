@@ -34,6 +34,23 @@ pub struct Bundle {
     pub objects: BTreeMap<ObjectId, ObjectData>,
 }
 pub struct BundleReader<'a>(pub &'a BTreeMap<ObjectId, ObjectData>);
+/// A native prepared run has not transferred its graph to the authority yet.
+/// Only the fixed, validated native worker path can supply that graph; imported
+/// bundles always use their admitted data in the authority CAS.
+pub(crate) fn inspection_store(
+    workspace: &Workspace,
+    record: &RunRecord,
+) -> Result<chronos_store::Store, CliError> {
+    record.validate()?;
+    let path = if record.phase == "prepared" && workspace.is_native(&record.run_id)? {
+        workspace
+            .data_dir()
+            .join(format!("worker-{}.sqlite", record.run_id))
+    } else {
+        workspace.authority_path()
+    };
+    Ok(chronos_store::Store::open_read_only(&path)?)
+}
 impl StateReader for BundleReader<'_> {
     fn get_object(&self, id: ObjectId) -> Result<ObjectData, StateError> {
         self.0.get(&id).cloned().ok_or(StateError::CorruptObject)
@@ -82,7 +99,7 @@ impl Bundle {
             record,
             objects: BTreeMap::new(),
         };
-        let store = chronos_store::Store::open_read_only(&workspace.authority_path())?;
+        let store = inspection_store(workspace, &bundle.record)?;
         let roots = bundle.roots()?;
         bundle.objects = store.read_transaction_with::<_, CliError>(|tx| {
             let mut pending = roots;

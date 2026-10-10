@@ -235,6 +235,8 @@ pub(super) fn install_smoke(root: &Path, install_root: &Path) -> Result<()> {
     Ok(())
 }
 pub(super) fn release_check(root: &Path) -> Result<()> {
+    let source_before = crate::release::manifest::source_revision(root)?;
+    let lock_sha256_before = crate::release::manifest::hash_file(&root.join("Cargo.lock"))?.1;
     let directory = root.join("target/release-check");
     fs::create_dir_all(&directory)?;
     let report = directory.join("report.json");
@@ -297,7 +299,9 @@ pub(super) fn release_check(root: &Path) -> Result<()> {
     })();
     save(
         &report,
-        &json!({"schema":1,"status":if result.is_ok(){"success"}else{"failed"},"checks":checks}),
+        &json!({"schema":1,"status":if result.is_ok(){"success"}else{"failed"},"checks":checks,
+            "source_before":source_before,"source_after":crate::release::manifest::source_revision(root)?,
+            "lock_sha256_before":lock_sha256_before,"lock_sha256_after":crate::release::manifest::hash_file(&root.join("Cargo.lock"))?.1}),
     )?;
     result?;
     println!(

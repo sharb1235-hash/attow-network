@@ -1,5 +1,6 @@
 //! Repository policy checks for Attow Network.
 pub mod commands;
+pub mod release;
 
 use std::{
     collections::{BTreeMap, BTreeSet},

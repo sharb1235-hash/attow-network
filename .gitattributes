@@ -1,5 +1,6 @@
 * text=auto
 /docs/notices/stage8/** -text -whitespace
+/docs/notices/stage10/** -text -whitespace
 *.rs text eol=lf
 *.toml text eol=lf
 Cargo.lock text eol=lf

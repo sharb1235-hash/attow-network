@@ -11,6 +11,7 @@ fn options(scenario: Scenario) -> DemoOptions {
         workers: 2,
         resume: None,
         browser: false,
+        pause_after_prepared: false,
         pause_after_unknown: false,
         boundary_hook: None,
     }

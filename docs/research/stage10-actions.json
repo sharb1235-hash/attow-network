@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "project": "Attow Network",
+  "actions": [
+    {"repository": "actions/checkout", "version": "v7.0.1", "commit": "3d3c42e5aac5ba805825da76410c181273ba90b1", "evidence": "docs/research/ci-pins.json"},
+    {"repository": "actions/upload-artifact", "version": "v7.0.2", "commit": "cf430e030ddbb5b0abf93d22962f4752f3646cd9", "release_url": "https://github.com/actions/upload-artifact/releases/tag/v7.0.2", "release_published_utc": "2026-10-07T10:08:14Z", "release_metadata": "https://api.github.com/repos/actions/upload-artifact/releases/latest", "tag_metadata": "https://api.github.com/repos/actions/upload-artifact/git/ref/tags/v7.0.2", "verification": "Official upstream release metadata named v7.0.2; tag API resolved directly to this full commit. Workflow pins the commit, not the mutable tag."}
+  ],
+  "execution_status": "Workflow configuration only; no remote run or environment protection is implied.",
+  "permissions": "contents: read only; no id-token grant; no publication or signing job"
+}

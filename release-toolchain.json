@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "project": "Attow Network",
+  "candidate_version": "0.1.0",
+  "candidate_target": "x86_64-pc-windows-msvc",
+  "rust": {"version": "1.95.0", "components": ["rustfmt", "clippy"], "selection": "Explicit +1.95.0; no global default change", "artifact_provenance": "Candidate records executed rustc --version --verbose; existing rustup-managed toolchain"},
+  "packaging": {"tool": "Attow Network xtask", "version": "0.1.0", "archive": "bounded regular-file ustar", "sbom": "CycloneDX 1.6 JSON from locked Cargo metadata", "registry_notice_reader": "native tar; executed version recorded in dependency-inventory.json", "independent_binary_reproducibility": false},
+  "cargo_deny": {"version": "0.20.2", "target": "x86_64-pc-windows-msvc", "archive_url": "https://github.com/EmbarkStudios/cargo-deny/releases/download/0.20.2/cargo-deny-0.20.2-x86_64-pc-windows-msvc.tar.gz", "archive_sha256": "975a22143262fd27476d19ee00c7af67978426e40e1dee94eed6bbade1cf87dc", "executable_sha256": "f7292fab58c706638c999e64c4ba82e5128ae628130ba55e3266a768ee431fbf", "evidence": "docs/research/stage9-tools.json"},
+  "optional_browser": {"node": "24.21.0", "node_archive_url": "https://nodejs.org/dist/v24.21.0/node-v24.21.0-win-x64.zip", "node_archive_sha256": "158f7685b44de51f6c0df1d153526cbcd3e1bc739a8dfc607721cef75de9e541", "playwright": "1.64.0", "chromium_revision": "1248", "chromium_version": "156.0.8078.4", "npm_lock": "demos/workflow-studio/browser/package-lock.json", "evidence": "docs/research/stage7-browser-provenance.json", "bundled_runtime_binaries": false},
+  "cosign": {"version": "3.1.3", "target": "windows/amd64", "asset_url": "https://github.com/sigstore/cosign/releases/download/v3.1.3/cosign-windows-amd64.exe", "asset_sha256": "9fe59be0eca1271873ce019061335eb1ac419b7059202e797828467ddabe33be", "evidence": "docs/research/stage10-cosign.json", "upstream_release_signature_independently_verified": false, "maintainer_signing_configured": false, "use": "Only externally configured signing/verification or explicitly isolated cryptographic tests; no automatic transparency publication"},
+  "unused_candidates": [{"tool": "cargo-dist", "version": "0.32.0", "reason": "Custom bounded archive producer; not installed for this flow"}, {"tool": "cargo-cyclonedx", "version": "0.5.9", "reason": "Custom resolved-graph CycloneDX generator; not installed for this flow"}, {"tool": "cargo-semver-checks", "version": "0.51.0", "reason": "No published stable baseline exists; no compatibility pass is claimed and tool is not installed"}],
+  "signing_status": "pending external maintainer identity and credentials",
+  "publication": {"registry": false, "automatic_github_release": false}
+}

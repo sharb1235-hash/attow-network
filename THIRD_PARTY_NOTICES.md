@@ -10,7 +10,7 @@ Public documentation here summarizes the supplied design and records the user's 
 
 ## Dependency and fixture policy
 
-The initial foundation used the Rust standard library only. Stages 2–7 introduce
+The initial foundation used the Rust standard library only. Stages 2–10 introduce
 the following reviewed direct dependencies. Declared future workspace candidates
 remain inactive until a consuming crate needs them. Review the actual lockfile
 and enabled feature graph before distribution.
@@ -27,16 +27,20 @@ and enabled feature graph before distribution.
 | getrandom | 0.4.3 | MIT OR Apache-2.0 |
 | Wasmtime | 48.0.5 | Apache-2.0 WITH LLVM-exception |
 | wasmparser | 0.254.2 | Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT |
-| wat (tests) | 1.261.0 | Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT |
+| wat (embedded demo parser and tests) | 1.261.0 | Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT |
 | anyhow | 1.0.104 | MIT OR Apache-2.0 |
 | Tokio | 1.53.2 | MIT |
 | serde / serde_json (runtime and benchmark tooling) | 1.0.229 / 1.0.151 | MIT OR Apache-2.0 |
+| Iroh | 1.3.0 | MIT OR Apache-2.0; retained BSD contribution notice |
+| ed25519-dalek | 3.0.0 | BSD-3-Clause |
+| SHA-2 (release integrity tooling) | 0.10.9 | MIT OR Apache-2.0 |
 
 The registry records and archive checksums are in
 [Stage 2 dependency evidence](docs/research/stage2-dependencies.json). This
 inventory is not a substitute for retaining the upstream license files in a
-distributed artifact. Bundled SQLite and transitive dependencies will be included
-in the resolved release SBOM and notices; there is no released artifact yet.
+distributed artifact. Candidate production generates a resolved CycloneDX SBOM,
+an all-source inventory and exact nested dependency notices. There is no registry
+publication implied by producing a local candidate.
 The persistent-map dependency is recorded separately in
 [Stage 3 dependency evidence](docs/research/stage3-dependencies.json).
 Authority identity randomness is recorded in
@@ -51,6 +55,17 @@ Adapter feature changes and newly resolved Rust transitives are recorded in
 [Stage 7 Rust dependency evidence](docs/research/stage7-dependencies.json),
 including the complete registry license alternatives for mio, signal-hook-registry
 and wasi. Existing direct dependency versions remain pinned.
+
+Transport and cryptographic additions are recorded in
+[Stage 8 dependency evidence](docs/research/stage8-dependencies.json) and
+[retained transport notices](docs/notices/stage8/README.md). The
+[release recovery inventory](docs/notices/stage10/README.md) documents missing
+upstream workspace license files, immutable source recovery and explicit
+declaration-only exceptions. The generator verifies cached registry archives
+against the lockfile and retained notice bytes against the exact archive members.
+The [dependency policy](docs/dependency-policy.md) records permitted expressions
+and the unresolved Linux-only advisory; a Windows candidate is not evidence that
+another target satisfies its safety gates.
 
 ## Optional Stage 7 browser runtime
 
@@ -78,4 +93,4 @@ they contain no copied third-party website or real provider response. Browser
 automation, online database backup and reconciliation are prior techniques, not
 novelty or patent-clearance claims.
 
-For copied fixtures or code, retain the original notice and document the exact upstream revision/path, original URL, SHA-256 and any extraction or modification steps. Do not infer permission from public visibility, a paper citation, a nearby project's license or a successful license scanner. No upstream real-schema corpus is claimed as bundled by this foundation document.
+For copied fixtures or code, retain the original notice and document the exact upstream revision/path, original URL, SHA-256 and any extraction or modification steps. Do not infer permission from public visibility, a paper citation, a nearby project's license or a successful license scanner. No upstream real-schema corpus is bundled.

@@ -1,5 +1,5 @@
 //! Real subprocess orchestration for local development and release evidence.
-mod process;
+pub(crate) mod process;
 mod workflows;
 use serde_json::Value;
 use std::{
@@ -17,6 +17,11 @@ pub enum Task {
     InstallSmoke(PathBuf),
     ReleaseCheck,
     BenchReport(PathBuf),
+    ReleasePlan,
+    ReleaseBuild { target: String, output: PathBuf },
+    ReleaseVerify { dir: PathBuf, signatures: bool },
+    ReleaseSign(PathBuf),
+    DemoRecord(PathBuf),
 }
 pub fn parse(args: impl IntoIterator<Item = OsString>) -> Result<Task> {
     let args: Vec<_> = args.into_iter().collect();
@@ -24,6 +29,44 @@ pub fn parse(args: impl IntoIterator<Item = OsString>) -> Result<Task> {
         [] => Task::Help,
         [arg] if arg == "--help" || arg == "-h" => Task::Help,
         [arg] if arg == "verify-repository" => Task::Verify,
+        [arg] if arg == "release-plan" => Task::ReleasePlan,
+        [task, target_flag, target, output_flag, output]
+            if task == "release-build"
+                && target_flag == "--target"
+                && output_flag == "--output"
+                && !target.is_empty()
+                && !output.is_empty() =>
+        {
+            Task::ReleaseBuild {
+                target: target.to_str().ok_or("non-UTF8 target")?.to_owned(),
+                output: output.into(),
+            }
+        }
+        [task, flag, dir, mode]
+            if task == "release-verify"
+                && flag == "--dir"
+                && !dir.is_empty()
+                && (mode == "--integrity-only" || mode == "--require-signatures") =>
+        {
+            Task::ReleaseVerify {
+                dir: dir.into(),
+                signatures: mode == "--require-signatures",
+            }
+        }
+        [task, flag, dir, mode, configured]
+            if task == "release-sign"
+                && flag == "--dir"
+                && !dir.is_empty()
+                && mode == "--mode"
+                && configured == "configured" =>
+        {
+            Task::ReleaseSign(dir.into())
+        }
+        [task, flag, output]
+            if task == "demo-record" && flag == "--output" && !output.is_empty() =>
+        {
+            Task::DemoRecord(output.into())
+        }
         [task, flag] if task == "release-check" && flag == "--local" => Task::ReleaseCheck,
         [task, flag, path] if !path.is_empty() && task == "demo" && flag == "--record-json" => {
             Task::Demo(path.into())
@@ -41,7 +84,7 @@ pub fn parse(args: impl IntoIterator<Item = OsString>) -> Result<Task> {
 pub fn run(root: &Path, args: impl IntoIterator<Item = OsString>) -> Result<()> {
     match parse(args)? {
         Task::Help => println!(
-            "Attow Network development tools\n\nUsage: cargo run -p xtask -- COMMAND\n\n  verify-repository\n  demo --record-json PATH\n  install-smoke --root PATH\n  release-check --local\n  bench-report --output PATH\n\nDemo and all-features release gates require the pinned browser prerequisites.\nInstall smoke uses a fresh debug source install and an offline data-change run."
+            "Attow Network development tools\n\nUsage: cargo run -p xtask -- COMMAND\n\n  verify-repository\n  demo --record-json PATH\n  install-smoke --root PATH\n  release-check --local\n  bench-report --output PATH\n  release-plan\n  release-build --target TARGET --output DIR\n  release-verify --dir DIR --integrity-only|--require-signatures\n  release-sign --dir DIR --mode configured\n  demo-record --output DIR\n\nDemo and all-features release gates require the pinned browser prerequisites.\nInstall smoke uses a fresh debug source install and an offline data-change run."
         ),
         Task::Verify => {
             crate::verify_repository(root)?;
@@ -51,6 +94,32 @@ pub fn run(root: &Path, args: impl IntoIterator<Item = OsString>) -> Result<()> 
         Task::InstallSmoke(path) => workflows::install_smoke(root, &path)?,
         Task::ReleaseCheck => workflows::release_check(root)?,
         Task::BenchReport(path) => workflows::bench_report(root, &path)?,
+        Task::ReleasePlan => println!(
+            "{}",
+            serde_json::to_string_pretty(&crate::release::build::plan(root)?)?
+        ),
+        Task::ReleaseBuild { target, output } => {
+            crate::release::build::build(root, &target, &output)?
+        }
+        Task::ReleaseVerify { dir, signatures } => println!(
+            "{}",
+            serde_json::to_string_pretty(&crate::release::verify::verify_candidate(
+                &root.join(dir),
+                if signatures {
+                    crate::release::verify::VerificationMode::RequireSignatures
+                } else {
+                    crate::release::verify::VerificationMode::IntegrityOnly
+                }
+            )?)?
+        ),
+        Task::ReleaseSign(dir) => println!(
+            "{}",
+            serde_json::to_string_pretty(&crate::release::sign::sign_configured(&root.join(dir))?)?
+        ),
+        Task::DemoRecord(output) => {
+            let result = crate::release::demo_record::record(root, &root.join(output))?;
+            println!("{}", serde_json::to_string_pretty(&result.metadata)?);
+        }
     }
     Ok(())
 }
@@ -74,7 +143,7 @@ fn envelope(bytes: &[u8], code: i32, expected: i32, command: &str) -> Result<Val
     }
     Ok(value)
 }
-fn gate_plan() -> Vec<Vec<&'static str>> {
+pub(crate) fn gate_plan() -> Vec<Vec<&'static str>> {
     vec![
         vec!["fmt", "--all", "--check"],
         vec![
