@@ -1,0 +1,9 @@
+{
+  "name": "attow-owned-browser",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT OR Apache-2.0",
+  "type": "module",
+  "engines": { "node": "24.21.0" },
+  "dependencies": { "playwright": "1.64.0" }
+}

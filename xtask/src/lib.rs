@@ -411,6 +411,8 @@ fn repository_files(
         let kind = entry.file_type()?;
         if kind.is_symlink()
             || relative.starts_with("docs/chronos")
+            || relative.starts_with(".tools")
+            || relative.starts_with("demos/workflow-studio/browser/.browsers")
             || matches!(
                 entry.file_name().to_str(),
                 Some(".git" | "target" | "node_modules")
@@ -771,6 +773,33 @@ mod tests {
         fixture.write("docs/chronos/Cargo.toml", "[package]\nname=\"original\"\n")?;
         fixture.write("docs/chronos/README.md", "[Original link](missing.md)\n")?;
         verify_repository(&fixture.0)
+    }
+
+    #[test]
+    fn ignores_only_known_generated_runtime_roots() -> Result<(), Box<dyn Error>> {
+        let fixture = Fixture::new()?;
+        for path in [
+            ".tools/node/CHANGELOG.md",
+            "demos/workflow-studio/browser/.browsers/chromium/README.md",
+        ] {
+            fixture.write(path, "[Upstream source link](not-in-runtime.md)\n")?;
+        }
+        verify_repository(&fixture.0)
+    }
+
+    #[test]
+    fn checks_authored_docs_and_similarly_named_directories() -> Result<(), Box<dyn Error>> {
+        for path in [
+            "docs/.tools/README.md",
+            "fixtures/.browsers/README.md",
+            "demos/workflow-studio/browser/README.md",
+            "docs/notices/stage7/README.md",
+        ] {
+            let fixture = Fixture::new()?;
+            fixture.write(path, "[Missing](not-retained.md)\n")?;
+            fixture.failure("not-retained.md")?;
+        }
+        Ok(())
     }
 
     #[test]

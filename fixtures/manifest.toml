@@ -182,3 +182,33 @@ notice_paths = ["LICENSE-MIT", "LICENSE-APACHE"]
 sha256 = "0aca4eb5532b522b545f4245e85a4b0f2985e02287c06ff67809e53bc4b42176"
 construction = "Original bounded component WAT authored for Attow Network; canonical lowering of typed scalar host imports and lifting of step. No third-party guest source copied."
 expected = "Host aggregate output budget rejects the guest before persisting partial output."
+
+[[fixtures]]
+id = "browser-owned-html"
+path = "demos/workflow-studio/app/index.html"
+origin = "original"
+license = "MIT OR Apache-2.0"
+notice_paths = ["LICENSE-MIT", "LICENSE-APACHE"]
+sha256 = "c89b0d104cf86ff57364248f168df4cebb24ffec7aaaafcc523a619aa59066e2"
+construction = "Original owned loopback page authored for Attow Network; no external website or account data copied."
+expected = "Displays a synthetic predicted seat and explicitly has no purchase endpoint or credentials."
+
+[[fixtures]]
+id = "browser-owned-script"
+path = "demos/workflow-studio/app/app.js"
+origin = "original"
+license = "MIT OR Apache-2.0"
+notice_paths = ["LICENSE-MIT", "LICENSE-APACHE"]
+sha256 = "4dc773b1147deef621ce8e77e9ee7d72d52ff333963f2e0e0cffab18c6b0d86e"
+construction = "Original fixed fixture state authored for Attow Network; no third-party JavaScript copied."
+expected = "Exposes only the fixture version and modelled offer; no live stack checkpoint is claimed."
+
+[[fixtures]]
+id = "browser-owned-sidecar"
+path = "demos/workflow-studio/browser/sidecar.mjs"
+origin = "original"
+license = "MIT OR Apache-2.0"
+notice_paths = ["LICENSE-MIT", "LICENSE-APACHE"]
+sha256 = "a011edcb7998295f1c665534fe38c71799414e9a0294e0f770712db7041f2498"
+construction = "Original bounded sidecar and two loopback fixture servers, using separately attributed Playwright/Chromium runtimes."
+expected = "Pins runtime versions, round-trips declared storage, blocks owned negative network probes and labels checkout preview as Model."

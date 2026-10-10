@@ -2,13 +2,16 @@
 
 Attow Network is a Rust project for exploring alternative executions, sharing immutable state and safe computations, and promoting selected effects through an accountable authority.
 
-**Development status: local authority, bounded workers and safe computation reuse.** The workspace
+**Development status: local authority, bounded workers and owned adapters.** The workspace
 provides bounded canonical objects, content identity, transactional SQLite object
 storage, root pins, garbage collection, online backups, isolated branch overlays
 and tracked dependencies, atomic promotion, a durable effect outbox, and offline
 event replay, explicit WASM checkpoints and durable resumption. A bounded graph
 scheduler adds tenant queues, admitted pure reuse, receipt invalidation and offline
-execution-trace verification, alongside a development CLI and repository checks.
+execution-trace verification. Owned SQLite and Chromium adapters share the worker
+contract; a separate gateway dispatches durable authorizations to an independent
+loopback provider simulator and reconciles lost responses. The CLI remains a
+development shell.
 The execution system described below is the target
 architecture. A compiling feature or placeholder target does not mean its runtime
 exists. See the [implementation record](docs/progress.md) for completed stages and
@@ -53,7 +56,7 @@ ChronosOS is the internal project name. Public packages use `attow-*`, the facad
 | Serializable promotion, outbox and recovery | Atomic local authority, reserved rights, durable uncertainty, replay and abrupt crash tests |
 | WASM execution | Admitted components, fuel/memory/output bounds, explicit checkpoints and new-process resume |
 | Bounded scheduling and pure reuse | Tenant queues, resource caps, admitted pure sharing, receipt invalidation and offline traces |
-| Provider/browser/SQL adapters and effect gateway | Planned: stage 7 |
+| Provider/browser/SQL adapters and effect gateway | Owned SQLite snapshots, optional pinned Chromium fixture, durable-ticket gateway and independent provider simulator |
 | Authenticated peer exchange | Planned: stage 8 |
 | Integrated CLI demonstration | Planned: stage 9 |
 | Release artifacts and distribution evidence | Planned: stage 10 |
@@ -73,7 +76,8 @@ cargo doc --workspace --no-deps --locked
 
 The `local` feature is the default. `sandbox` enables the bounded WASM backend;
 `scheduler` adds graph scheduling, validated result retention and offline replay.
-`adapters`, `browser` and `peer` select boundaries for the following stages.
+`adapters` enables SQLite and the effect gateway; `browser` adds the optional
+Node/Playwright bridge. `peer` remains a boundary for Stage 8.
 Features do not grant permission to connect to a network. All packages remain
 `publish = false`.
 
@@ -102,7 +106,19 @@ The owned fixture explores five alternatives for one purchase decision. Branches
 cargo run --example worldline_checkout --locked
 ```
 
-The fixture gateway and reconciliation demonstration are planned for later stages.
+The Stage 7 conformance tests exercise five competing branches, one actual
+simulator dispatch, a lost acknowledgement and reconciliation after restart:
+
+```sh
+cargo test --test adapter_conformance --features adapters --locked
+```
+
+For the optional real browser tests, install the exact local runtime described in
+[browser fidelity](docs/browser-fidelity.md), then use `--features browser`.
+See the [provider contract](docs/provider-contract.md) and
+[adapter security boundary](docs/adapter-security.md). Browser snapshots restore
+only the declared owned storage; live credentials and arbitrary sites are unsupported.
+
 An unknown outcome keeps the conflict slot occupied; choosing a different branch
 cannot undo a transmitted request. Tests use owned fixtures and simulators.
 

@@ -10,7 +10,7 @@ Public documentation here summarizes the supplied design and records the user's 
 
 ## Dependency and fixture policy
 
-The initial foundation used the Rust standard library only. Stages 2–6 introduce
+The initial foundation used the Rust standard library only. Stages 2–7 introduce
 the following reviewed direct dependencies. Declared future workspace candidates
 remain inactive until a consuming crate needs them. Review the actual lockfile
 and enabled feature graph before distribution.
@@ -21,7 +21,7 @@ and enabled feature graph before distribution.
 | minicbor | 2.3.0 | BlueOak-1.0.0 |
 | rusqlite | 0.40.2 | MIT |
 | thiserror | 2.0.21 | MIT OR Apache-2.0 |
-| tempfile (tests) | 3.27.0 | MIT OR Apache-2.0 |
+| tempfile (adapter runtime and tests) | 3.27.0 | MIT OR Apache-2.0 |
 | proptest (tests) | 1.11.0 | MIT OR Apache-2.0 |
 | rpds | 1.2.1 | MIT |
 | getrandom | 0.4.3 | MIT OR Apache-2.0 |
@@ -30,7 +30,7 @@ and enabled feature graph before distribution.
 | wat (tests) | 1.261.0 | Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT |
 | anyhow | 1.0.104 | MIT OR Apache-2.0 |
 | Tokio | 1.53.2 | MIT |
-| serde / serde_json (benchmark tooling) | 1.0.229 / 1.0.151 | MIT OR Apache-2.0 |
+| serde / serde_json (runtime and benchmark tooling) | 1.0.229 / 1.0.151 | MIT OR Apache-2.0 |
 
 The registry records and archive checksums are in
 [Stage 2 dependency evidence](docs/research/stage2-dependencies.json). This
@@ -47,5 +47,35 @@ The parser version follows Wasmtime's resolved dependency, while the newer WAT
 tooling has its own separate parser version in the lockfile.
 Scheduler and benchmark dependencies are recorded in
 [Stage 6 dependency evidence](docs/research/stage6-dependencies.json).
+Adapter feature changes and newly resolved Rust transitives are recorded in
+[Stage 7 Rust dependency evidence](docs/research/stage7-dependencies.json),
+including the complete registry license alternatives for mio, signal-hook-registry
+and wasi. Existing direct dependency versions remain pinned.
+
+## Optional Stage 7 browser runtime
+
+The original owned page and sidecar use Node 24.21.0, Playwright and
+playwright-core 1.64.0, and Chromium 156.0.8078.4 (Playwright revision 1248).
+Playwright is licensed under Apache-2.0, with its upstream Microsoft/Puppeteer
+attribution retained. Node and Chromium include additional component licenses;
+they are not covered solely by the project's licenses or Playwright's license.
+
+Unmodified Node, Playwright/core and Chromium headless-shell notices, including
+the Playwright bundle notices and complete Chromium aggregate, are retained in
+[the Stage 7 notice inventory](docs/notices/stage7/README.md). The
+[Stage 7 provenance record](docs/research/stage7-browser-provenance.json) records
+their original sources and hashes, the Node archive digest, npm integrity values
+and the official Playwright source commit/browser revision. The runtime binaries
+are installed locally rather than committed as fixture data.
+
+SQLite is used through the existing bundled rusqlite dependency for owned database
+backup and provider durability. Its authors dedicate the deliverable library and
+documentation to the public domain; build tooling can have separate terms.
+[SQLite's upstream copyright statement](https://sqlite.org/copyright.html)
+
+The browser page, sidecar and provider scenarios are original project fixtures;
+they contain no copied third-party website or real provider response. Browser
+automation, online database backup and reconciliation are prior techniques, not
+novelty or patent-clearance claims.
 
 For copied fixtures or code, retain the original notice and document the exact upstream revision/path, original URL, SHA-256 and any extraction or modification steps. Do not infer permission from public visibility, a paper citation, a nearby project's license or a successful license scanner. No upstream real-schema corpus is claimed as bundled by this foundation document.

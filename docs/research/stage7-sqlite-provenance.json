@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "verified_at_utc": "2026-10-10T08:23:28.650082+00:00",
+  "project": "Attow Network",
+  "scope": "Exact SQLite copyright-disclaimer header retained from the bundled source used by the existing rusqlite dependency. No source implementation is copied and no independent license clearance is claimed.",
+  "consumer": {
+    "package": "rusqlite",
+    "version": "0.40.2",
+    "feature": "bundled"
+  },
+  "registry_package": {
+    "name": "libsqlite3-sys",
+    "version": "0.38.2",
+    "crate_license": "MIT",
+    "license_scope": "The Rust FFI package metadata; the bundled SQLite source carries its own copyright disclaimer.",
+    "metadata_url": "https://crates.io/api/v1/crates/libsqlite3-sys/0.38.2",
+    "archive_url": "https://static.crates.io/crates/libsqlite3-sys/libsqlite3-sys-0.38.2.crate",
+    "archive_sha256": "f1d20bef17f513b9b3004532233187769cd072d790971f4e4da0e346eb6401e8",
+    "source_commit": "e88f112bef7899234a497baed5cc3c3d553deeb8",
+    "commit_evidence": "Published .cargo_vcs_info.json in the installed package."
+  },
+  "sqlite": {
+    "version": "3.53.2",
+    "source_id": "2026-06-03 19:12:13 d6e03d8c777cfa2d35e3b60d8ec3e0187f3e9f99d8e2ee9cac695fd6fcdf1a24",
+    "source_path": "libsqlite3-sys-0.38.2/sqlite3/sqlite3.c",
+    "source_sha256": "0a409f1633283fa31a9126b11fbfd64a1991c5d30defad07e5745d4667f5e23d",
+    "upstream_source_url": "https://raw.githubusercontent.com/rusqlite/rusqlite/e88f112bef7899234a497baed5cc3c3d553deeb8/libsqlite3-sys/sqlite3/sqlite3.c",
+    "upstream_copyright_statement": "https://sqlite.org/copyright.html"
+  },
+  "notice": {
+    "path": "docs/notices/stage7/sqlite-NOTICE",
+    "sha256": "49cf7bcb103eb3244150a23bb23d840370a4762914faf1b450072a4b03c14670",
+    "bytes": 427,
+    "source_start_line": 32,
+    "source_end_line": 45,
+    "extraction": "Copy the complete first copyright-disclaimer comment in the embedded sqliteInt.h section, beginning with /* followed by ** 2001 September 15 and ending with its closing */ plus original newline. Preserve exact bytes and line endings; no additions, deletions or rewrites within the comment.",
+    "modified": false
+  },
+  "verification": "The local .crate archive SHA256 matches Cargo.lock and official crates.io version metadata. The installed sqlite3.c bytes match the same archive member exactly. The retained notice matches the stated source byte slice exactly. The upstream commit source URL was retrieved and reports the same SQLite version/source ID.",
+  "related_records": [
+    "stage7-dependencies.json",
+    "stage7-browser-provenance.json"
+  ]
+}

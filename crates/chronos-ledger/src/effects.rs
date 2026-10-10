@@ -41,6 +41,9 @@ pub struct DispatchTicket {
     pub(crate) dispatch: bool,
 }
 impl DispatchTicket {
+    pub fn domain(&self) -> DomainId {
+        self.domain
+    }
     pub fn intent(&self) -> ObjectId {
         self.intent
     }
@@ -147,6 +150,63 @@ pub(crate) fn check_receipt(
     Ok(())
 }
 impl Authority {
+    /// Return the most recent durable evidence envelope for this intent.
+    pub fn latest_receipt(&self, id: ObjectId) -> Result<Option<ObjectId>, LedgerError> {
+        self.store.read_transaction_with(|tx| {
+            let model = schema::load(tx.sql())?;
+            let intent = model.intents.get(&id).ok_or(LedgerError::Missing)?;
+            let Some(evidence) = model
+                .evidence
+                .iter()
+                .rev()
+                .find(|evidence| evidence.intent == id)
+            else {
+                return Ok(None);
+            };
+            let object = tx.get_object(evidence.receipt)?;
+            if (object.kind, object.schema) != (OBJECT_KIND, OBJECT_SCHEMA) {
+                return Err(LedgerError::InvalidEvidence);
+            }
+            check_receipt(&object.bytes, id, intent, evidence.status)?;
+            Ok(Some(evidence.receipt))
+        })
+    }
+    /// Host-side immutable proposal lookup. This does not authorize dispatch.
+    pub fn effect_proposal(&self, id: ObjectId) -> Result<EffectProposal, LedgerError> {
+        self.store.read_transaction_with(|tx| {
+            schema::load(tx.sql())?
+                .intents
+                .get(&id)
+                .map(|intent| intent.proposal.clone())
+                .ok_or(LedgerError::Missing)
+        })
+    }
+    /// Return the exact immutable body only while this ticket matches the live
+    /// durable dispatch/reconciliation state of this writable authority.
+    pub fn dispatch_body(&self, ticket: &DispatchTicket) -> Result<Vec<u8>, LedgerError> {
+        self.require_writable()?;
+        self.store.read_transaction_with(|tx| {
+            let model = schema::load(tx.sql())?;
+            let intent = model
+                .intents
+                .get(&ticket.intent)
+                .ok_or(LedgerError::Missing)?;
+            let expected_state = if ticket.dispatch {
+                EffectState::Dispatching
+            } else {
+                EffectState::Unknown
+            };
+            if intent.state != expected_state
+                || ticket
+                    != &self::ticket(model.root.domain(), ticket.intent, intent, ticket.dispatch)
+                || ticket.domain != self.domain
+                || ticket.epoch != model.epoch
+            {
+                return Err(LedgerError::InvalidEvidence);
+            }
+            Ok(intent.proposal.body.clone())
+        })
+    }
     pub fn claim_effect(&mut self, id: ObjectId) -> Result<DispatchTicket, LedgerError> {
         self.require_writable()?;
         let hook = self.hook;

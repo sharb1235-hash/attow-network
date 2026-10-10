@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "verified_utc": "2026-10-10T08:20:01Z",
+  "project": "Attow Network",
+  "scope": "Stage 7 Rust manifest and lockfile changes relative to Stage 6 commit 34d41c7. This records dependency provenance, not a complete distribution SBOM or a claim about every target's compiled dependency graph.",
+  "direct_dependencies": {
+    "existing_exact_pins_preserved": true,
+    "new_registry_versions_of_existing_packages": [],
+    "adapter_inherits_workspace_pins": [
+      "rusqlite =0.40.2",
+      "serde =1.0.229",
+      "serde_json =1.0.151",
+      "blake3 =1.8.7",
+      "getrandom =0.4.3",
+      "thiserror =2.0.21",
+      "tempfile =3.27.0",
+      "tokio =1.53.2 (optional)"
+    ],
+    "notes": "Adapter dependencies also include the existing local codec, store, state and ledger packages. tempfile is now an adapter runtime dependency as well as a test dependency. No direct registry version was advanced in this stage."
+  },
+  "feature_changes": [
+    {
+      "package": "rusqlite",
+      "version": "0.40.2",
+      "previous_workspace_features": ["bundled", "backup"],
+      "added_workspace_features": ["hooks", "limits"],
+      "purpose": "Bounded SQLite execution, deterministic-subset authorization and interruption/limit enforcement."
+    },
+    {
+      "package": "tokio",
+      "version": "1.53.2",
+      "added_adapter_features": ["process"],
+      "activation": "attow-adapters/browser enables its optional Tokio dependency. The adapter default feature set is empty. Other workspace users already use Tokio without this process feature; Cargo can unify features when browser is enabled.",
+      "existing_workspace_features": ["rt-multi-thread", "macros", "sync", "time", "io-util", "fs"],
+      "purpose": "Owned browser sidecar subprocess lifecycle and bounded asynchronous pipe I/O.",
+      "upstream_manifest": "https://docs.rs/crate/tokio/1.53.2/source/Cargo.toml",
+      "primary_source_checked": "Installed registry archive manifest tokio-1.53.2/Cargo.toml: process enables bytes, libc, mio/os-poll, mio/os-ext, mio/net, signal-hook-registry and Windows process APIs."
+    }
+  ],
+  "new_lockfile_packages": [
+    {
+      "name": "mio",
+      "version": "1.2.4",
+      "checksum": "1788edb87fdc09c7e26304471e2f5be8cdefb1b6930d6e3985fc02ff53bf86ee",
+      "license": "MIT",
+      "rust_version": "1.71",
+      "source": "https://crates.io/api/v1/crates/mio/1.2.4",
+      "verification": "Registry version metadata checksum matches Cargo.lock; license also checked in the installed published Cargo.toml."
+    },
+    {
+      "name": "signal-hook-registry",
+      "version": "1.4.8",
+      "checksum": "c4db69cba1110affc0e9f7bcd48bbf87b3f4fc7c61fc9155afd4c469eb3d6c1b",
+      "license": "MIT OR Apache-2.0",
+      "rust_version": "1.26",
+      "source": "https://crates.io/api/v1/crates/signal-hook-registry/1.4.8",
+      "verification": "Registry version metadata checksum matches Cargo.lock. Tokio selects this dependency for Unix targets; its presence in the lockfile does not mean it was compiled on Windows."
+    },
+    {
+      "name": "wasi",
+      "version": "0.11.1+wasi-snapshot-preview1",
+      "checksum": "ccf3ec651a847eb01de73ccad15eb7d99f80485de043efb2f370cd654f4ea44b",
+      "license": "Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT",
+      "rust_version": null,
+      "source": "https://crates.io/api/v1/crates/wasi/0.11.1%2Bwasi-snapshot-preview1",
+      "verification": "Registry version metadata checksum matches Cargo.lock. The installed mio manifest selects wasi only for target_os=wasi. This lock entry does not enable WASI imports in Attow Network's guest sandbox."
+    }
+  ],
+  "verification_method": "Read the Stage 7 git diff of Cargo.toml, crates/chronos-adapters/Cargo.toml and Cargo.lock. Retrieved all three new package version records directly from the crates.io HTTPS API and compared checksums with the lockfile. License values retain the complete upstream SPDX alternatives. Registry metadata is provenance evidence; distributed artifacts must retain applicable upstream notices.",
+  "related_records": [
+    {"path": "stage6-dependencies.json", "description": "Previously pinned Tokio, serde and serde_json metadata."},
+    {"path": "stage7-browser-provenance.json", "description": "Separate Node, npm, Playwright and Chromium sources, versions, archive/integrity evidence and notice inventory."},
+    {"path": "../notices/stage7/README.md", "description": "Retained browser runtime third-party notices."}
+  ]
+}

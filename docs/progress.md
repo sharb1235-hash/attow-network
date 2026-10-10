@@ -15,7 +15,7 @@ All 42 manifest-listed input files passed SHA-256 verification before copying.
 | 4 | Ledger and atomic promotion | Complete |
 | 5 | WASM continuations | Complete |
 | 6 | Scheduler and safe computation reuse | Complete |
-| 7 | Adapters and effect gateway | Pending |
+| 7 | Adapters and effect gateway | Complete |
 | 8 | Peer federation | Pending |
 | 9 | CLI and owned demonstration | Pending |
 | 10 | Release candidate and signing | Pending |
@@ -293,3 +293,152 @@ cargo +1.95.0 bench -j 1 --bench scheduler --features scheduler --locked -- --no
 The saved JSONL has 24 actual samples and eight recomputed percentile summaries across mock CPU and real WASM/SQLite workloads. Common-prefix graphs used five evaluations versus eight with reuse disabled; replay used zero. Peak residency stayed at two. The three-sample real WASM common-prefix median was 43.6497 ms versus 37.4871 ms without sharing, so this run demonstrates evaluation reuse, not a latency speedup. Raw data, hashes, exclusions and all percentiles are in docs/performance-method.md and docs/research/stage6-scheduler-2026-10-10.jsonl. Debug smoke data is not used as release evidence.
 
 Next: Stage 7 owned browser/SQL adapters and the effect gateway simulator.
+
+### Stage 7 — owned adapters and an enforceable effect boundary
+
+Implementation is in `crates/chronos-adapters/src/{contract,storage,sql,browser,
+gateway,evidence,provider_simulator}.rs`, with focused adapter tests and the facade
+conformance tests. Ledger additions expose an immutable proposal, revalidate an
+exact live dispatch ticket/body, and return verified durable receipt roots. The
+optional browser bridge and original assets are under `demos/workflow-studio`.
+Provider, browser-fidelity and adapter-security documents describe the supported
+contract; original fixtures and upstream notices have provenance records. Public
+names remain Attow Network and `attow-*`.
+
+The common worker admission binds tenant, security scope, code, runtime profile,
+policy, fidelity, effect class, resource class, exact budget and unsupported sample
+identity. Unknown capabilities default unsupported. Adapter CAS writes retain
+verified object graphs and pins atomically. Observations include capture time and
+provenance. SQL snapshot workers admit only immutable, explicitly ordered reads;
+browser observations remain fresh, and checkout previews carry `Model` fidelity.
+
+SQLite snapshots use the online backup API, capture committed WAL state, and check
+owner and version before restore. The intentionally small query language rejects
+functions, writes, views, virtual/generated columns, floats, missing identifiers,
+ambiguous ordering and unsupported syntax. Limits include a 512 KiB snapshot,
+1,024 result rows, sixteen columns, a 256 KiB result and SQLite instruction fuel.
+Dependencies conservatively include the entire immutable snapshot.
+
+The browser runs Node 24.21.0, npm 11.19.0, Playwright 1.64.0 and actual Chromium
+156.0.8078.4 (revision 1248) from workspace-local installations. The launcher checks
+fixture source bytes, and the sidecar checks runtime versions before admission.
+Supported cookies, localStorage, sessionStorage and the fixed IndexedDB schema
+restore into fresh contexts and new processes. Snapshots are tenant/scope/profile
+bound. Framing uses a bounded length, explicit version, monotonic request ID,
+allowlisted methods and a deadline for the entire exchange. Four resident bridges
+are permitted per host process; concurrent restore/observe cannot interleave.
+
+The simulator owns its own SQLite database and loopback TCP server. Inventory,
+holds, idempotent operation records, receipts, clock and failure injection survive
+restart independently of the ledger/client. A private gateway authorization
+borrows the active authority and exact ticket; copied tickets do not grant provider
+access. Default-deny provider preflight checks the immutable body and reserved
+cost before claim/send. The fixture charges one reserved unit per purchased item.
+Requests and receipts bind domain, epoch, intent, attempt, provider, contract,
+operation and payload hash. Keyed BLAKE3 authenticates fixture messages under a
+local shared key; this is not a public attestation system.
+
+Provider commit-before-disconnect becomes `Unknown`, preserves reserved rights
+and the conflict slot, and reconciles the same operation after both sides restart.
+A hidden or missing lookup remains `Unknown`. Expired idempotency retention blocks
+unsafe resend, and independent providers expose partial outcomes. Frames cap at
+64 KiB and share absolute two-second read/write deadlines. Server model, holds and
+operation histories are bounded; safety records are never silently evicted.
+
+The facade's `rerun_confirmed_receipt` reads the authority's exact confirmed
+receipt, replaces the selected scheduler observation and reruns every affected
+node. It returns a private, one-use `ConfirmedResponse` only for completed work
+bound to that receipt. Its promotion method rejects a changed run, receipt,
+authority or branch/code/profile/scope/policy binding before invoking ordinary
+ledger validation. Four integration tests exercise an actual simulator receipt,
+SQLite retention and scheduler reruns, using an explicitly labelled original
+fixture interpreter for the dependent computation. This is an explicit composing
+application API; it does not disable the trusted host's raw authority API or make
+the scheduler and ledger one cross-component transaction.
+
+Original failing tests were run against adapter/browser/provider stubs. Subsequent
+regressions were reproduced before repair: quoted missing SQLite identifiers being
+treated as string literals, slow partial frame reads/writes extending a nominal
+timeout, purchase quantity exceeding reserved cost, and browser observation
+envelopes exceeding their output budget. The real browser run also caught a
+JavaScript restore variable-shadowing error and a service-worker probe that
+mistook a resolved blocked registration for an active worker. The repaired probe
+checks actual registrations/controller state and received requests. Tests were
+kept intact; no canned browser or provider success substitutes for execution.
+SQL review additionally reproduced pre-cache admission of malformed snapshot
+envelopes and an output budget that omitted canonical object overhead. Shared
+snapshot validation and full-object bounds repair those cases. The response guard
+tests first failed against explicit stubs before the guarded implementation landed.
+
+Setup commands completed successfully on native Windows x86_64 MSVC:
+
+- `.tools/node-v24.21.0-win-x64/node.exe --version` — `v24.21.0`
+- `.tools/node-v24.21.0-win-x64/node.exe .tools/node-v24.21.0-win-x64/node_modules/npm/bin/npm-cli.js --version` — `11.19.0`
+- `npm.cmd ci --prefix demos/workflow-studio/browser` — two packages installed,
+  lock integrity checked; npm reported zero vulnerabilities at that time
+- `npm.cmd --prefix demos/workflow-studio/browser exec -- playwright install chromium`
+  — completed using the absolute workspace-local `PLAYWRIGHT_BROWSERS_PATH`
+
+The npm commands used the exact local Node directory prepended only to that command's
+environment. The global Node/Rust defaults were not changed. Node archive SHA-256,
+npm package integrity, browser revision and actual upstream license notices are in
+`docs/research/stage7-browser-provenance.json` and `docs/notices/stage7`.
+
+Limitations: these are owned fixtures and trusted native host components. Browser
+live credentials, arbitrary navigation, hidden JavaScript stacks and hostile-site
+operation are rejected. Page routes/CSP and the tested loopback network probes are
+not OS egress enforcement; Chromium native RSS/CPU are not constrained by the
+logical bridge budget. Snapshots are owner-scoped plaintext CAS objects, not
+encrypted storage or remote-account clones. SQL query fuel does not cover backup,
+materialization or integrity checking, and native SQLite memory is not an OS quota.
+The host must protect local databases, serialize application workflow mutations,
+and explicitly release retained pins. There is no universal provider transaction,
+live payment integration, automatic compensation or distributed failover. Only
+native Windows execution is evidenced here; configured CI is not a remote pass.
+
+Final Stage 7 gates executed separately, all with exit code 0:
+
+- `cargo +1.95.0 fmt --all --check`
+- `cargo +1.95.0 test --workspace --all-targets --locked -j 2`
+  — 194 tests passed across 37 suites; `target/stage7-default-tests.log`
+- `cargo +1.95.0 test --workspace --all-targets --features adapters --locked -j 2`
+  — 197 tests passed across 38 suites; `target/stage7-adapter-tests.log`
+- `cargo +1.95.0 test --test adapter_conformance --features browser --locked -j 2`
+  — four passed, including the real browser worker, exact admission and Model
+  observation, plus real provider failure-window scenarios
+- `cargo +1.95.0 test -p attow-adapters --all-targets --features browser --locked -j 2`
+  — 32 passed across five suites, including nine real Chromium conformance cases,
+  eight SQL cases, four gateway cases, two simulator persistence cases and nine
+  unit checks; `target/stage7-browser-tests.log`
+- `cargo +1.95.0 test --test adapter_receipt --features browser,scheduler --locked -j 2`
+  — four passed: real receipt replacement/rerun/promotion, incomplete work and
+  model-bound promotion rejection, stale guard rejection and exact branch binding
+- `cargo +1.95.0 clippy --workspace --all-targets --locked -j 2 -- -D warnings`
+- `cargo +1.95.0 clippy --workspace --all-targets --features browser,scheduler --locked -j 2 -- -D warnings`
+- `cargo +1.95.0 doc --workspace --no-deps --locked -j 2`
+- `cargo +1.95.0 doc --workspace --no-deps --features browser,scheduler --locked -j 2`
+- `cargo +1.95.0 run -p xtask --locked -- verify-repository`
+
+Suite totals describe each gate and overlap; they are not distinct-test totals
+summed across all commands. Existing heavy ledger capacity and abrupt-crash
+coverage remains enabled. The repository checker initially followed the downloaded
+Node runtime's documentation and failed on its unbundled changelog links. A failing
+regression led to exact exclusions for the two generated runtime roots only;
+authored browser files, similarly named directories and retained notices remain
+checked. All fifteen checker tests pass. Hash-preserving Git attributes cover the
+owned browser fixtures and retained notices, avoiding checkout newline changes.
+The final staged whitespace check identified original CRLF/trailing whitespace in
+upstream license notices. Those exact copies retain their original bytes and have
+narrow Git whitespace exemptions; authored source and documentation stay checked.
+All 36 recorded fixture/notice hashes (21 fixtures and 15 upstream notices) were
+also checked against the exact staged Git blob bytes before the local commit.
+
+Rust direct versions are unchanged. The lockfile adds three process-support
+transitives; SQLite enables hooks/limits and only the browser adapter enables
+Tokio process support. Registry checksums and license metadata are recorded in
+`docs/research/stage7-dependencies.json`; the exact bundled SQLite notice has its
+own source/archive/extraction record. No third-party implementation was copied
+into the fixtures. All runtime downloads remain ignored workspace-local inputs.
+
+Next: Stage 8 authenticated peer exchange and explicit external fencing. No Stage
+8 implementation or public repository publication is part of this checkpoint.

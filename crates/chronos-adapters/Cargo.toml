@@ -9,7 +9,21 @@ description = "Attow Network adapters module"
 
 [features]
 default = []
-browser = []
+browser = ["dep:tokio"]
+
+[dependencies]
+chronos-codec.workspace = true
+chronos-store.workspace = true
+chronos-state.workspace = true
+chronos-ledger.workspace = true
+rusqlite.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+blake3.workspace = true
+getrandom.workspace = true
+thiserror.workspace = true
+tempfile.workspace = true
+tokio = { workspace = true, features = ["process"], optional = true }
 
 [lints]
 workspace = true

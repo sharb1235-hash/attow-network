@@ -8,3 +8,13 @@ docs/chronos/** -text
 # Fixture hashes describe exact bytes on every checkout platform.
 fixtures/** -text
 fuzz/corpus/** -text
+# Preserve owned browser fixture and retained upstream-notice hash evidence.
+demos/workflow-studio/app/** -text
+demos/workflow-studio/browser/sidecar.mjs -text
+docs/notices/stage7/** -text
+# Upstream notice whitespace is retained verbatim and checked by source hashes.
+docs/notices/stage7/chromium-*-LICENSE.headless_shell -whitespace
+docs/notices/stage7/node-*-LICENSE -whitespace
+docs/notices/stage7/playwright/** -whitespace
+docs/notices/stage7/playwright-core/** -whitespace
+docs/notices/stage7/sqlite-NOTICE -whitespace
