@@ -16,7 +16,7 @@ All 42 manifest-listed input files passed SHA-256 verification before copying.
 | 5 | WASM continuations | Complete |
 | 6 | Scheduler and safe computation reuse | Complete |
 | 7 | Adapters and effect gateway | Complete |
-| 8 | Peer federation | Pending |
+| 8 | Peer federation | Complete; native Windows gates passed |
 | 9 | CLI and owned demonstration | Pending |
 | 10 | Release candidate and signing | Pending |
 
@@ -442,3 +442,91 @@ into the fixtures. All runtime downloads remain ignored workspace-local inputs.
 
 Next: Stage 8 authenticated peer exchange and explicit external fencing. No Stage
 8 implementation or public repository publication is part of this checkpoint.
+
+### Stage 8
+
+Implemented bounded canonical peer messages and strict domain-separated Ed25519
+checkpoints, explicit private Iroh/noq endpoints, scoped transactional graph
+transfer with durable acknowledgments, authenticated proposal callbacks, and
+static writer enrollment/closure/activation through an external fencing port.
+The public ALPN is `attow/1`, following the user's Attow Network naming instruction.
+Protocol and transport remain independent of the concrete ledger. The facade's
+`PeerAuthority` composes them with the ledger and checks the configured writer,
+exact epoch and scoped grants for both the descriptor and promotion payload.
+
+The application session binds a fixed 32-byte TLS exporter proof to the current
+handshake and tenant/domain before any object import or proposal callback. This
+rejects replayed early request bytes while acknowledging that the pinned Iroh TLS
+implementation itself supports early data. Peers write Hello first so QUIC stream
+acceptance progresses. Limits cover frames, chunks, complete graphs, identities,
+stream slots, logical payload reservations and deadlines. They do not constitute
+an operating-system memory or network-security sandbox.
+
+Writer credentials and exclusive sessions remain outside exported SQLite state.
+Every federated mutation checks the exact current external head; durable results
+and dispatch tickets return only after the external head advances. A failed
+advance stops the handle and requires explicit external administrative recovery.
+Closing an epoch preserves in-flight operation IDs, attempts, original provider
+epochs and reserved rights as Unknown. Only the named successor can explicitly
+activate the next epoch. The repository provides a trusted fencing interface,
+not a production distributed fencing service or automatic timeout takeover.
+Owned in-memory test fencers prove the integration contract only in one process.
+
+Tests were written before implementation. Six initial protocol behavior tests,
+two initial transport tests and five federation tests failed against explicit
+stubs. The facade's positive callback test failed against its Application stub.
+Additional observed red-to-green regressions cover cross-tenant descriptor/payload
+IDs, configured-writer mismatch, preserved close/activation log capacity, and an
+unproved application request invoking the handler. Initial test-only compilation
+errors were corrected and are not counted as behavioral failures. Independent
+review also repaired quota arithmetic overflow, root-vector allocation before
+bounds checking, and object loading before cumulative transfer-budget checking.
+
+Protocol fixtures and frame/worldline-import fuzz corpora are original dual-licensed
+bytes with SHA256 records in `fixtures/manifest.toml`. The three fuzz binaries
+compile on Windows; the manually invoked Linux sanitizer matrix is configured but
+has not run. Signed checkpoints have strict verification APIs; the peer service
+does not install checkpoints or advance trust automatically.
+
+All existing locked versions remain present. The new dependency inventory verifies
+278 downloaded registry archive SHA256 values against Cargo.lock and records the
+full published license expressions. Seventeen exact Iroh/crypto notice files are
+retained, including Iroh's two workspace license files fetched from the published
+archive's immutable VCS revision. This stage's inventory is not the final release
+SBOM or distribution-wide notice inventory.
+
+Native Windows validation uses the repository-pinned Rust 1.95.0 and two Cargo
+jobs. Each gate is run separately. Completed test gates:
+
+- `cargo test -p attow-protocol -p attow-transport --locked -j 2` — 13 protocol
+  and eight transport tests passed; `target/stage8-transport-tests.log`.
+- `cargo test --test peer_protocol --features peer --locked -j 2` — five passed;
+  `target/stage8-peer-tests.log`.
+- `cargo test --workspace --all-targets --features peer --locked -j 2` — 226
+  passed; `target/stage8-workspace-peer.log`.
+- `cargo test --workspace --all-targets --locked -j 2` — 221 passed;
+  `target/stage8-workspace-default.log`.
+- `cargo +1.95.0 check --manifest-path fuzz/Cargo.toml --locked` — all three
+  fuzz binaries compiled. No sanitizer fuzz campaign was run locally.
+
+Suite totals overlap across commands. These remaining native gates passed:
+
+- `cargo clippy --workspace --all-targets --locked -j 2 -- -D warnings`
+- `cargo clippy --workspace --all-targets --features peer --locked -j 2 -- -D warnings`
+- `cargo doc --workspace --no-deps --locked -j 2`
+- `cargo doc --workspace --no-deps --features peer --locked -j 2`
+- `cargo fmt --all --check`
+- `cargo run -p xtask --locked -- verify-repository`
+
+Independent final bridge/protocol review found no further runtime blocker. It
+corrected the authored fixture manifest's line endings and narrowed the golden
+fixture description to its actual Hello/error bytes. Default and peer lint/doc
+logs are retained under `target/stage8-*.log`. Configured Linux/macOS jobs have
+not been executed locally. The older installed cargo-deny 0.19.8 was used for a
+read-only license review and rejected the foundation's MIT/Apache-only allowlist;
+reviewing exact permissive exceptions against the final lockfile is a Stage 9
+release-policy prerequisite, not a passed Stage 8 license check.
+
+Next: Stage 9 integrated CLI, real owned demonstrations, installation and portable
+verification. GitHub publication is separately authorized by the user's request
+to commit and push to a new public `sharb1235-hash/attow-network` repository.

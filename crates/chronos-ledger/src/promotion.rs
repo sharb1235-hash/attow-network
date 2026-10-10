@@ -158,15 +158,19 @@ impl Authority {
     pub fn configure_policy(&mut self, policy: Policy) -> Result<ObjectId, LedgerError> {
         self.require_writable()?;
         let bytes = encode_policy(&policy)?;
-        self.store.transaction_with(|tx| {
+        let binding = self.write_binding();
+        let result = self.store.transaction_with(|tx| {
             let id = tx.put(OBJECT_KIND, OBJECT_SCHEMA, &bytes)?;
             let mut state = schema::load(tx.sql())?;
+            federation::check_binding(&state, binding)?;
             let command = Value::Array(vec![Value::Unsigned(1), v_id(id)]);
             apply(&mut state, &command, &TxReader(tx))?;
             append(tx, &mut state, command)?;
             tx.pin("ledger:policies", id)?;
-            Ok(id)
-        })
+            Ok::<_, LedgerError>(id)
+        })?;
+        self.finish_write()?;
+        Ok(result)
     }
     pub fn grant_right(&mut self, name: &str, units: u64) -> Result<(), LedgerError> {
         self.require_writable()?;
@@ -196,17 +200,24 @@ impl Authority {
         ]))
     }
     fn admin(&mut self, command: Value) -> Result<(), LedgerError> {
+        let binding = self.write_binding();
         self.store.transaction_with(|tx| {
             let mut state = schema::load(tx.sql())?;
+            federation::check_binding(&state, binding)?;
             apply(&mut state, &command, &TxReader(tx))?;
             append(tx, &mut state, command)?;
-            Ok(())
-        })
+            Ok::<_, LedgerError>(())
+        })?;
+        self.finish_write()
     }
     pub fn store_payload(&mut self, payload: &PromotionPayload) -> Result<ObjectId, LedgerError> {
         self.require_writable()?;
         let bytes = encode_payload(payload)?;
-        Ok(self.store.put(OBJECT_KIND, OBJECT_SCHEMA, &bytes)?)
+        let binding = self.write_binding();
+        self.store.transaction_with(|tx| {
+            federation::check_binding(&schema::load(tx.sql())?, binding)?;
+            Ok(tx.put(OBJECT_KIND, OBJECT_SCHEMA, &bytes)?)
+        })
     }
     pub fn promote(&mut self, request: PromotionRequest) -> Result<PromotionOutcome, LedgerError> {
         self.require_writable()?;
@@ -222,8 +233,10 @@ impl Authority {
         ]);
         let fingerprint = object_id(0x5052, 1, &command.encode()?);
         let hook = self.hook;
+        let binding = self.write_binding();
         let result = self.store.transaction_with(|tx| {
             let mut state = schema::load(tx.sql())?;
+            federation::check_binding(&state, binding)?;
             if let Some(previous) = state.promotions.get(&request.id) {
                 if previous.payload != request.payload || previous.fingerprint != fingerprint {
                     return Err(LedgerError::IdempotencyConflict);
@@ -248,6 +261,7 @@ impl Authority {
             }
             Ok(outcome)
         })?;
+        self.finish_write()?;
         if let Some(hook) = hook {
             hook(TransitionBoundary::AfterPromoteCommit);
         }

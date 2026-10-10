@@ -73,6 +73,9 @@ pub(crate) fn apply(
     let mut f = list(command.clone())?.into_iter();
     let code = num(take(&mut f)?)?;
     let next_seq = model.seq.checked_add(1).ok_or(LedgerError::Limit)?;
+    if model.next_writer.is_some() && code != 11 {
+        return Err(LedgerError::Fenced);
+    }
     match code {
         0 => {
             let domain = DomainId(id(take(&mut f)?)?.0);
@@ -279,6 +282,9 @@ pub(crate) fn apply(
                 return Err(LedgerError::IllegalTransition);
             }
             intent.attempt = intent.attempt.checked_add(1).ok_or(LedgerError::Limit)?;
+            // An unsent authorization first claimed after handoff uses the new
+            // epoch. Unknown/terminal intents retain their original binding.
+            intent.epoch = model.epoch;
             intent.state = EffectState::Dispatching;
         }
         6 => {
@@ -374,6 +380,47 @@ pub(crate) fn apply(
                     .ok_or(LedgerError::Corrupt)?
                     .state = EffectState::Unknown;
             }
+        }
+        9 => {
+            if model.writer.is_some() {
+                return Err(LedgerError::Fenced);
+            }
+            model.writer = Some(id(take(&mut f)?)?);
+            for intent in model.intents.values_mut() {
+                if intent.state == EffectState::Dispatching {
+                    intent.state = EffectState::Unknown;
+                }
+            }
+        }
+        10 => {
+            let next = id(take(&mut f)?)?;
+            if model.writer.is_none() || model.writer == Some(next) {
+                return Err(LedgerError::InvalidRequest);
+            }
+            model.next_writer = Some(next);
+            for intent in model.intents.values_mut() {
+                if intent.state == EffectState::Dispatching {
+                    intent.state = EffectState::Unknown;
+                }
+            }
+        }
+        11 => {
+            let writer = id(take(&mut f)?)?;
+            let epoch = num(take(&mut f)?)?;
+            let location = text_value(take(&mut f)?)?;
+            if model.writer.is_none()
+                || model.next_writer != Some(writer)
+                || Some(epoch) != model.epoch.checked_add(1)
+                || location.is_empty()
+                || location.len() > 4096
+                || location.contains('\0')
+            {
+                return Err(LedgerError::Fenced);
+            }
+            model.writer = Some(writer);
+            model.next_writer = None;
+            model.epoch = epoch;
+            model.location = location;
         }
         _ => return Err(LedgerError::Corrupt),
     }

@@ -16,11 +16,27 @@ resolver = "3"
 
 [dependencies]
 attow-codec = { path = "../crates/chronos-codec", version = "=0.1.0", default-features = false }
+attow-protocol = { path = "../crates/chronos-protocol", version = "=0.1.0", default-features = false }
+attow-state = { path = "../crates/chronos-state", version = "=0.1.0", default-features = false }
 libfuzzer-sys = "=0.4.13"
 
 [[bin]]
 name = "codec"
 path = "fuzz_targets/codec.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "frame"
+path = "fuzz_targets/frame.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "worldline_import"
+path = "fuzz_targets/worldline_import.rs"
 test = false
 doc = false
 bench = false

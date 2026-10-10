@@ -1,5 +1,6 @@
 //! Local serializable authority and durable effect intents. No provider dispatch.
 mod effects;
+mod federation;
 mod promotion;
 mod recovery;
 mod reducer;
@@ -14,6 +15,7 @@ use std::{collections::BTreeSet, path::Path};
 pub use effects::{
     DispatchTicket, EvidenceStatus, EvidenceVerifier, VerifiedEvidence, verify_evidence,
 };
+pub use federation::{AuthorityCheckpoint, FenceRequest, WriterFence, WriterLease};
 pub use verify::VerificationReport;
 
 pub const MAX_LEDGER_ROWS: usize = 4096;
@@ -39,6 +41,8 @@ pub enum LedgerError {
         "copied or moved authority requires explicit activation; automatic activation is unavailable"
     )]
     ActivationRequired,
+    #[error("external writer fence denied or is unavailable")]
+    Fenced,
     #[error("operating system randomness unavailable")]
     Random,
     #[error("operation aborted")]
@@ -162,6 +166,7 @@ pub struct Authority {
     epoch: u64,
     pub(crate) hook: Option<fn(TransitionBoundary)>,
     pub(crate) read_only: bool,
+    pub(crate) fence: Option<federation::FenceSession>,
 }
 impl Authority {
     pub fn open(path: &Path) -> Result<Self, LedgerError> {
@@ -182,6 +187,7 @@ impl Authority {
             epoch: state.epoch,
             hook: None,
             read_only: true,
+            fence: None,
         })
     }
     pub fn domain(&self) -> DomainId {
@@ -223,7 +229,7 @@ impl Authority {
         if self.read_only {
             Err(LedgerError::ActivationRequired)
         } else {
-            Ok(())
+            self.check_fence()
         }
     }
 }

@@ -10,7 +10,9 @@ event replay, explicit WASM checkpoints and durable resumption. A bounded graph
 scheduler adds tenant queues, admitted pure reuse, receipt invalidation and offline
 execution-trace verification. Owned SQLite and Chromium adapters share the worker
 contract; a separate gateway dispatches durable authorizations to an independent
-loopback provider simulator and reconciles lost responses. The CLI remains a
+loopback provider simulator and reconciles lost responses. Private authenticated
+peers exchange scoped immutable graphs and submit proposals to an explicitly
+fenced designated authority. The CLI remains a
 development shell.
 The execution system described below is the target
 architecture. A compiling feature or placeholder target does not mean its runtime
@@ -57,7 +59,7 @@ ChronosOS is the internal project name. Public packages use `attow-*`, the facad
 | WASM execution | Admitted components, fuel/memory/output bounds, explicit checkpoints and new-process resume |
 | Bounded scheduling and pure reuse | Tenant queues, resource caps, admitted pure sharing, receipt invalidation and offline traces |
 | Provider/browser/SQL adapters and effect gateway | Owned SQLite snapshots, optional pinned Chromium fixture, durable-ticket gateway and independent provider simulator |
-| Authenticated peer exchange | Planned: stage 8 |
+| Authenticated peer exchange | Private Iroh/noq, scoped durable graphs, bounded protocol and explicit external writer fencing |
 | Integrated CLI demonstration | Planned: stage 9 |
 | Release artifacts and distribution evidence | Planned: stage 10 |
 
@@ -77,7 +79,7 @@ cargo doc --workspace --no-deps --locked
 The `local` feature is the default. `sandbox` enables the bounded WASM backend;
 `scheduler` adds graph scheduling, validated result retention and offline replay.
 `adapters` enables SQLite and the effect gateway; `browser` adds the optional
-Node/Playwright bridge. `peer` remains a boundary for Stage 8.
+Node/Playwright bridge. `peer` enables private authenticated object/proposal exchange.
 Features do not grant permission to connect to a network. All packages remain
 `publish = false`.
 

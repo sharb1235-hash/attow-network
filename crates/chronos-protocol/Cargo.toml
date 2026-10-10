@@ -10,5 +10,13 @@ description = "Attow Network protocol module"
 [features]
 default = []
 
+[dependencies]
+chronos-codec.workspace = true
+ed25519-dalek.workspace = true
+thiserror.workspace = true
+
+[dev-dependencies]
+proptest.workspace = true
+
 [lints]
 workspace = true

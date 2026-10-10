@@ -16,7 +16,7 @@ jobs:
   foundation:
     name: Rust 1.95.0 / ${{ matrix.target }}
     runs-on: ${{ matrix.runner }}
-    timeout-minutes: 30
+    timeout-minutes: 60
     strategy:
       fail-fast: false
       matrix:
@@ -71,6 +71,12 @@ jobs:
       - name: Lint the scheduler feature
         shell: bash
         run: cargo +1.95.0 clippy --workspace --all-targets --features scheduler --locked -- -D warnings
+      - name: Test private authenticated peers and fenced application proposals
+        shell: bash
+        run: cargo +1.95.0 test --workspace --all-targets --features peer --locked
+      - name: Lint the peer composition
+        shell: bash
+        run: cargo +1.95.0 clippy --workspace --all-targets --features peer --locked -- -D warnings
 
   owned-browser:
     name: Owned Chromium fixture / Windows x64

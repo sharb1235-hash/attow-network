@@ -1,0 +1,7 @@
+Attow Network protocol v1 original golden frame
+ALPN: attow/1
+Length prefix: big-endian u32 counting tag and canonical CBOR body
+ProtocolError(code=1): 0000000409820101
+Hello(version=1, tenant=32 bytes 01, domain=32 bytes 02):
+000000470183015820010101010101010101010101010101010101010101010101010101010101010158200202020202020202020202020202020202020202020202020202020202020202
+These bytes are original project fixtures, not captured third-party traffic.

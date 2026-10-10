@@ -64,6 +64,8 @@ pub(crate) struct Evidence {
 #[derive(Clone, Debug)]
 pub(crate) struct Model {
     pub location: String,
+    pub writer: Option<ObjectId>,
+    pub next_writer: Option<ObjectId>,
     pub epoch: u64,
     pub root: StateRoot,
     pub seq: u64,
@@ -80,6 +82,8 @@ impl Model {
     pub fn new(domain: DomainId, location: String) -> Self {
         Self {
             location,
+            writer: None,
+            next_writer: None,
             epoch: 1,
             root: StateRoot::new(domain),
             seq: 0,
@@ -94,6 +98,13 @@ impl Model {
         }
     }
     pub fn check(&self) -> Result<(), LedgerError> {
+        integer(self.epoch)?;
+        if self.epoch == 0
+            || (self.writer.is_none() && self.next_writer.is_some())
+            || (self.next_writer.is_some() && self.next_writer == self.writer)
+        {
+            return Err(LedgerError::Corrupt);
+        }
         if [
             self.policies.len(),
             self.rights.len(),
@@ -131,7 +142,17 @@ impl Model {
         Ok(())
     }
     fn reserved_lifecycle_events(&self) -> Result<u64, LedgerError> {
-        self.intents.values().try_fold(0_u64, |total, intent| {
+        // Closing must leave activation plus the next active epoch's reserve.
+        // A close that cannot fit is rejected while the old writer can still
+        // complete its pending effects. This is a finite log, not log rotation.
+        let federation: u64 = if self.writer.is_none() {
+            0
+        } else if self.next_writer.is_some() {
+            3
+        } else {
+            2
+        };
+        self.intents.values().try_fold(federation, |total, intent| {
             let remaining = match intent.state {
                 EffectState::Authorized => 3,
                 EffectState::Dispatching => 2,
@@ -204,6 +225,14 @@ pub(crate) fn encode(model: &Model) -> Result<Vec<u8>, LedgerError> {
         .object_bytes
         .checked_sub(reserved.checked_mul(256).ok_or(LedgerError::Limit)?)
         .ok_or(LedgerError::Limit)?;
+    if model.next_writer.is_some() {
+        // The successor's canonical database path may grow up to the admitted
+        // 4096-byte bound; closing cannot strand activation at the byte cap.
+        limits.object_bytes = limits
+            .object_bytes
+            .checked_sub(4096)
+            .ok_or(LedgerError::Limit)?;
+    }
     limits.items = limits
         .items
         .checked_sub(reserved.checked_mul(16).ok_or(LedgerError::Limit)?)
@@ -278,8 +307,8 @@ pub(crate) fn encode(model: &Model) -> Result<Vec<u8>, LedgerError> {
             ])
         })
         .collect();
-    Ok(Value::Array(vec![
-        Value::Unsigned(1),
+    let mut values = vec![
+        Value::Unsigned(if model.writer.is_some() { 2 } else { 1 }),
         Value::Bytes(model.root.domain().0.to_vec()),
         Value::Text(model.location.clone()),
         Value::Unsigned(model.epoch),
@@ -293,12 +322,19 @@ pub(crate) fn encode(model: &Model) -> Result<Vec<u8>, LedgerError> {
         Value::Array(promotions),
         Value::Array(intents),
         Value::Array(evidence),
-    ])
-    .encode_with_limits(&limits)?)
+    ];
+    if let Some(writer) = model.writer {
+        values.push(v_id(writer));
+        values.push(v_option(model.next_writer));
+    }
+    Ok(Value::Array(values).encode_with_limits(&limits)?)
 }
 pub(crate) fn decode(bytes: &[u8]) -> Result<Model, LedgerError> {
-    let mut f = fixed(Value::decode(bytes, &snapshot_limits())?, 14)?;
-    if num(take(&mut f)?)? != 1 {
+    let fields = list(Value::decode(bytes, &snapshot_limits())?)?;
+    let count = fields.len();
+    let mut f = fields.into_iter();
+    let version = num(take(&mut f)?)?;
+    if !matches!((version, count), (1, 14) | (2, 16)) {
         return Err(LedgerError::Corrupt);
     }
     let domain = DomainId(id(take(&mut f)?)?.0);
@@ -376,6 +412,10 @@ pub(crate) fn decode(bytes: &[u8]) -> Result<Model, LedgerError> {
             status: num(take(&mut r)?)?,
             receipt: id(take(&mut r)?)?,
         });
+    }
+    if version == 2 {
+        m.writer = Some(id(take(&mut f)?)?);
+        m.next_writer = option_id(take(&mut f)?)?;
     }
     m.check()?;
     if encode(&m)? != bytes {
@@ -614,6 +654,36 @@ mod capacity_tests {
             Value::Array(values) => values.iter().map(count_items).sum(),
             _ => 0,
         }
+    }
+
+    #[test]
+    fn close_admission_preserves_activation_and_unknown_completion_capacity()
+    -> Result<(), LedgerError> {
+        let empty_reader = Receipt(ObjectId([255; 32]), vec![]);
+        let close = Value::Array(vec![Value::Unsigned(10), v_id(ObjectId([8; 32]))]);
+        let activate = Value::Array(vec![
+            Value::Unsigned(11),
+            v_id(ObjectId([8; 32])),
+            Value::Unsigned(2),
+            Value::Text("owned-new".into()),
+        ]);
+        let mut too_full = model_with(&[EffectState::Unknown], MAX_LEDGER_ROWS as u64 - 4);
+        too_full.writer = Some(ObjectId([7; 32]));
+        assert!(
+            matches!(
+                crate::reducer::apply(&mut too_full, &close, &empty_reader),
+                Err(LedgerError::Limit)
+            ),
+            "closing would strand activation and the existing Unknown outcome"
+        );
+        let mut fits = model_with(&[EffectState::Unknown], MAX_LEDGER_ROWS as u64 - 5);
+        fits.writer = Some(ObjectId([7; 32]));
+        crate::reducer::apply(&mut fits, &close, &empty_reader)?;
+        encode(&fits)?;
+        crate::reducer::apply(&mut fits, &activate, &empty_reader)?;
+        encode(&fits)?;
+        assert_eq!(fits.epoch, 2);
+        Ok(())
     }
 
     #[test]

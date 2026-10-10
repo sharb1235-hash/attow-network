@@ -18,3 +18,5 @@ pub use chronos_protocol as protocol;
 pub mod scheduler;
 #[cfg(feature = "peer")]
 pub use chronos_transport as transport;
+#[cfg(all(feature = "peer", feature = "local"))]
+pub mod peer;

@@ -97,6 +97,11 @@ serde_json.workspace = true
 blake3.workspace = true
 
 [[test]]
+name = "peer_protocol"
+path = "tests/peer_protocol.rs"
+required-features = ["peer", "local"]
+
+[[test]]
 name = "adapter_conformance"
 path = "tests/adapter_conformance.rs"
 required-features = ["adapters"]

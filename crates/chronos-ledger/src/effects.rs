@@ -185,8 +185,10 @@ impl Authority {
     /// durable dispatch/reconciliation state of this writable authority.
     pub fn dispatch_body(&self, ticket: &DispatchTicket) -> Result<Vec<u8>, LedgerError> {
         self.require_writable()?;
+        let binding = self.write_binding();
         self.store.read_transaction_with(|tx| {
             let model = schema::load(tx.sql())?;
+            federation::check_binding(&model, binding)?;
             let intent = model
                 .intents
                 .get(&ticket.intent)
@@ -200,7 +202,7 @@ impl Authority {
                 || ticket
                     != &self::ticket(model.root.domain(), ticket.intent, intent, ticket.dispatch)
                 || ticket.domain != self.domain
-                || ticket.epoch != model.epoch
+                || (ticket.dispatch && ticket.epoch != model.epoch)
             {
                 return Err(LedgerError::InvalidEvidence);
             }
@@ -210,8 +212,10 @@ impl Authority {
     pub fn claim_effect(&mut self, id: ObjectId) -> Result<DispatchTicket, LedgerError> {
         self.require_writable()?;
         let hook = self.hook;
+        let binding = self.write_binding();
         let result = self.store.transaction_with(|tx| {
             let mut model = schema::load(tx.sql())?;
+            federation::check_binding(&model, binding)?;
             let command = Value::Array(vec![Value::Unsigned(5), v_id(id)]);
             apply(&mut model, &command, &TxReader(tx))?;
             append(tx, &mut model, command)?;
@@ -226,6 +230,7 @@ impl Authority {
             }
             Ok::<_, LedgerError>(ticket)
         })?;
+        self.finish_write()?;
         if let Some(hook) = hook {
             hook(TransitionBoundary::AfterClaimCommit);
         }
@@ -251,8 +256,10 @@ impl Authority {
             return Err(LedgerError::InvalidEvidence);
         }
         let hook = self.hook;
+        let binding = self.write_binding();
         self.store.transaction_with(|tx| {
             let mut model = schema::load(tx.sql())?;
+            federation::check_binding(&model, binding)?;
             let intent = model
                 .intents
                 .get(&ticket.intent)
@@ -285,6 +292,7 @@ impl Authority {
             }
             Ok::<_, LedgerError>(())
         })?;
+        self.finish_write()?;
         if let Some(hook) = hook {
             hook(TransitionBoundary::AfterOutcomeCommit);
         }
@@ -293,8 +301,10 @@ impl Authority {
     pub fn cancel_before_send(&mut self, id: ObjectId) -> Result<(), LedgerError> {
         self.require_writable()?;
         let hook = self.hook;
+        let binding = self.write_binding();
         self.store.transaction_with(|tx| {
             let mut model = schema::load(tx.sql())?;
+            federation::check_binding(&model, binding)?;
             let command = Value::Array(vec![Value::Unsigned(7), v_id(id)]);
             apply(&mut model, &command, &TxReader(tx))?;
             append(tx, &mut model, command)?;
@@ -303,6 +313,7 @@ impl Authority {
             }
             Ok::<_, LedgerError>(())
         })?;
+        self.finish_write()?;
         if let Some(hook) = hook {
             hook(TransitionBoundary::AfterOutcomeCommit);
         }

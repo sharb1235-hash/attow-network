@@ -1,0 +1,2357 @@
+{
+  "schema_version": 1,
+  "project": "Attow Network",
+  "stage": 8,
+  "verified_utc": "2026-10-10T08:45:51.0162387Z",
+  "direct_pins_unchanged": true,
+  "previous_locked_versions_preserved": true,
+  "scope": "All newly resolved packages across Cargo metadata targets; this is not a claim all packages compile on Windows.",
+  "new_lockfile_packages": [
+    {
+      "name": "aead",
+      "version": "0.5.2",
+      "checksum": "d122413f284cf2d62fb1b7db97e02edb8cda96d769b16e443a4f6195e35662b0",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/aead/0.5.2/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "aes",
+      "version": "0.8.4",
+      "checksum": "b169f7a6d4742236a0a00c541b845991d0ac43e546831af1249753ab4c3aa3a0",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/aes/0.8.4/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "aes-gcm",
+      "version": "0.10.3",
+      "checksum": "831010a0f742e1209b3bcea8fab6a8e149051ba6099432c8cb2cc117dec3ead1",
+      "license": "Apache-2.0 OR MIT",
+      "source": "https://crates.io/api/v1/crates/aes-gcm/0.10.3/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "aho-corasick",
+      "version": "1.1.5",
+      "checksum": "c982642fa9e8606056828ee9a8505737230110bb1099153c79efe865c59d12ba",
+      "license": "Unlicense OR MIT",
+      "source": "https://crates.io/api/v1/crates/aho-corasick/1.1.5/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "android_system_properties",
+      "version": "0.1.6",
+      "checksum": "ae221649c9976a6f6c56ae1facf410f3ddb33cc661c4b7b61020a912d4237fbc",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/android_system_properties/0.1.6/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "arc-swap",
+      "version": "1.9.2",
+      "checksum": "c049c0be4daef0b145cb3555416b3b8ef5b7888a38aea1a3a155801fe7b0810b",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/arc-swap/1.9.2/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "async_io_stream",
+      "version": "0.3.3",
+      "checksum": "b6d7b9decdf35d8908a7e3ef02f64c5e9b1695e230154c0e8de3969142d9b94c",
+      "license": "Unlicense",
+      "source": "https://crates.io/api/v1/crates/async_io_stream/0.3.3/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "atomic-waker",
+      "version": "1.1.2",
+      "checksum": "1505bd5d3d116872e7271a6d4e16d81d0c8570876c8de68093a09ac269d8aac0",
+      "license": "Apache-2.0 OR MIT",
+      "source": "https://crates.io/api/v1/crates/atomic-waker/1.1.2/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "backon",
+      "version": "1.6.0",
+      "checksum": "cffb0e931875b666fc4fcb20fee52e9bbd1ef836fd9e9e04ec21555f9f85f7ef",
+      "license": "Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/backon/1.6.0/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "base16ct",
+      "version": "1.0.0",
+      "checksum": "fd307490d624467aa6f74b0eabb77633d1f758a7b25f12bceb0b22e08d9726f6",
+      "license": "Apache-2.0 OR MIT",
+      "source": "https://crates.io/api/v1/crates/base16ct/1.0.0/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "base64",
+      "version": "0.22.1",
+      "checksum": "72b3254f16251a8381aa12e40e3c4d2f0199f8c6508fbecb9d91f575e0fbb8c6",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/base64/0.22.1/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "base64",
+      "version": "0.23.1",
+      "checksum": "ac07cdecf99051d9a5238b80f35af32cdeba5b336e55d957b318b50137e18da5",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/base64/0.23.1/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "base64ct",
+      "version": "1.8.3",
+      "checksum": "2af50177e190e07a26ab74f8b1efbfe2ef87da2116221318cb1c2e82baf7de06",
+      "license": "Apache-2.0 OR MIT",
+      "source": "https://crates.io/api/v1/crates/base64ct/1.8.3/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "block-buffer",
+      "version": "0.12.1",
+      "checksum": "d2f6c7dbe95a6ed67ad9f18e57daf93a2f034c524b99fd2b76d18fdfeb6660aa",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/block-buffer/0.12.1/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "block2",
+      "version": "0.6.2",
+      "checksum": "cdeb9d870516001442e364c5220d3574d2da8dc765554b4a617230d33fa58ef5",
+      "license": "MIT",
+      "source": "https://crates.io/api/v1/crates/block2/0.6.2/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "cesu8",
+      "version": "1.1.0",
+      "checksum": "6d43a04d8753f35258c91f8ec639f792891f748a1edbd759cf1dcea3382ad83c",
+      "license": "Apache-2.0/MIT",
+      "source": "https://crates.io/api/v1/crates/cesu8/1.1.0/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "cfg_aliases",
+      "version": "0.2.2",
+      "checksum": "f079e83a288787bcd14a6aea84cee5c87a67c5a3e660c30f557a3d24761b3527",
+      "license": "MIT",
+      "source": "https://crates.io/api/v1/crates/cfg_aliases/0.2.2/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "chacha20",
+      "version": "0.10.2",
+      "checksum": "65c35e4b699c7e15ccbe7ee35c005e4fc0a278d22238a2857e6ce2dadeda1b06",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/chacha20/0.10.2/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "chrono",
+      "version": "0.4.45",
+      "checksum": "1aa79e62e7697b8e29b513a68abacf485adcd1fe8284a4316c5ae868e6633327",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/chrono/0.4.45/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "cipher",
+      "version": "0.4.4",
+      "checksum": "773f3b9af64447d2ce9850330c473515014aa235e6a783b02db81ff39e4a3dad",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/cipher/0.4.4/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "cmov",
+      "version": "0.5.4",
+      "checksum": "0c9ea0ac24bc397ab3c98583a3c9ba74fa56b09a4449bbe172b9b1ddb016027a",
+      "license": "Apache-2.0 OR MIT",
+      "source": "https://crates.io/api/v1/crates/cmov/0.5.4/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "combine",
+      "version": "4.6.8",
+      "checksum": "cfc320937d09e6de266b31b9afb480f197d7a861be86be7cb2ea7e5d1bfffc5e",
+      "license": "MIT",
+      "source": "https://crates.io/api/v1/crates/combine/4.6.8/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "const-oid",
+      "version": "0.10.2",
+      "checksum": "a6ef517f0926dd24a1582492c791b6a4818a4d94e789a334894aa15b0d12f55c",
+      "license": "Apache-2.0 OR MIT",
+      "source": "https://crates.io/api/v1/crates/const-oid/0.10.2/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "convert_case",
+      "version": "0.10.0",
+      "checksum": "633458d4ef8c78b72454de2d54fd6ab2e60f9e02be22f3c6104cdc8a4e0fceb9",
+      "license": "MIT",
+      "source": "https://crates.io/api/v1/crates/convert_case/0.10.0/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "cordyceps",
+      "version": "0.3.5",
+      "checksum": "5b9ab7e0ca1d179628fa0172b2b97203c7fa0cd81be2448bd446fb9559ca9261",
+      "license": "MIT",
+      "source": "https://crates.io/api/v1/crates/cordyceps/0.3.5/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "core-foundation",
+      "version": "0.10.1",
+      "checksum": "b2a6cd9ae233e7f62ba4e9353e81a88df7fc8a5987b8d445b4d90c879bd156f6",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/core-foundation/0.10.1/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "core-foundation-sys",
+      "version": "0.8.7",
+      "checksum": "773648b94d0e5d620f64f280777445740e61fe701025087ec8b57f45c791888b",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/core-foundation-sys/0.8.7/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "crypto-common",
+      "version": "0.2.2",
+      "checksum": "ce6e4c961d6cd6c9a86db418387425e8bdeaf05b3c8bc1411e6dca4c252f1453",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/crypto-common/0.2.2/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "ctr",
+      "version": "0.9.2",
+      "checksum": "0369ee1ad671834580515889b80f2ea915f23b8be8d0daa4bbaf2ac5c7590835",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/ctr/0.9.2/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "ctutils",
+      "version": "0.4.3",
+      "checksum": "03bb0e1cc970d482d121d9a1744999169b69a07470b3d644a7894e53fcaf4574",
+      "license": "Apache-2.0 OR MIT",
+      "source": "https://crates.io/api/v1/crates/ctutils/0.4.3/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "curve25519-dalek",
+      "version": "5.0.0",
+      "checksum": "b5eed333089e2e1c1ac8c6c0398e5e2497b4c9926ca6d0365ed1e099afa5bc23",
+      "license": "BSD-3-Clause",
+      "source": "https://crates.io/api/v1/crates/curve25519-dalek/5.0.0/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "curve25519-dalek-derive",
+      "version": "0.1.1",
+      "checksum": "f46882e17999c6cc590af592290432be3bce0428cb0d5f8b6715e4dc7b383eb3",
+      "license": "MIT/Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/curve25519-dalek-derive/0.1.1/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "data-encoding",
+      "version": "2.11.1",
+      "checksum": "4583a4551df46e2792f82ceeac45e850d2e2d5debba0b91f102385cda5b11f06",
+      "license": "MIT",
+      "source": "https://crates.io/api/v1/crates/data-encoding/2.11.1/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "data-encoding-macro",
+      "version": "0.1.21",
+      "checksum": "c6a127ecbb3c4632e1525380e04c0c3fcf8dcb44d32a79ea290d8a36906edcd8",
+      "license": "MIT",
+      "source": "https://crates.io/api/v1/crates/data-encoding-macro/0.1.21/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "data-encoding-macro-internal",
+      "version": "0.1.19",
+      "checksum": "c54e03a951783e8b327515db3f2a2fd0e3bed362a96b066f341ce66ed49b4ead",
+      "license": "MIT",
+      "source": "https://crates.io/api/v1/crates/data-encoding-macro-internal/0.1.19/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "der",
+      "version": "0.8.2",
+      "checksum": "a878c850e9e421b20262e9b41f9c860e4785fa07541c266b62ff9d1ef998a80a",
+      "license": "Apache-2.0 OR MIT",
+      "source": "https://crates.io/api/v1/crates/der/0.8.2/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "deranged",
+      "version": "0.5.8",
+      "checksum": "7cd812cc2bc1d69d4764bd80df88b4317eaef9e773c75226407d9bc0876b211c",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/deranged/0.5.8/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "derive_more",
+      "version": "2.1.1",
+      "checksum": "d751e9e49156b02b44f9c1815bcb94b984cdcc4396ecc32521c739452808b134",
+      "license": "MIT",
+      "source": "https://crates.io/api/v1/crates/derive_more/2.1.1/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "derive_more-impl",
+      "version": "2.1.1",
+      "checksum": "799a97264921d8623a957f6c3b9011f3b5492f557bbb7a5a19b7fa6d06ba8dcb",
+      "license": "MIT",
+      "source": "https://crates.io/api/v1/crates/derive_more-impl/2.1.1/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "diatomic-waker",
+      "version": "0.2.3",
+      "checksum": "ab03c107fafeb3ee9f5925686dbb7a73bc76e3932abb0d2b365cb64b169cf04c",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/diatomic-waker/0.2.3/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "digest",
+      "version": "0.11.3",
+      "checksum": "f1dd6dbb5841937940781866fa1281a1ff7bd3bf827091440879f9994983d5c2",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/digest/0.11.3/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "dispatch2",
+      "version": "0.3.1",
+      "checksum": "1e0e367e4e7da84520dedcac1901e4da967309406d1e51017ae1abfb97adbd38",
+      "license": "Zlib OR Apache-2.0 OR MIT",
+      "source": "https://crates.io/api/v1/crates/dispatch2/0.3.1/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "displaydoc",
+      "version": "0.2.7",
+      "checksum": "c6232dd377dcc64799954cbd3a9bb882e9cdc1308ccd87b1c098f1fb2eaf82a8",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/displaydoc/0.2.7/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "dlopen2",
+      "version": "0.8.2",
+      "checksum": "5e2c5bd4158e66d1e215c49b837e11d62f3267b30c92f1d171c4d3105e3dc4d4",
+      "license": "MIT",
+      "source": "https://crates.io/api/v1/crates/dlopen2/0.8.2/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "ed25519",
+      "version": "3.0.0",
+      "checksum": "29fcf32e6c73d1079f83ab4d782de2d81620346a5f38c6237a86a22f8368980a",
+      "license": "Apache-2.0 OR MIT",
+      "source": "https://crates.io/api/v1/crates/ed25519/3.0.0/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "ed25519-dalek",
+      "version": "3.0.0",
+      "checksum": "6ebaa1a2bf1290ab3bfe5a7b771d050ebffab2711c19a81691c683a5144a25de",
+      "license": "BSD-3-Clause",
+      "source": "https://crates.io/api/v1/crates/ed25519-dalek/3.0.0/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "enum-assoc",
+      "version": "1.4.1",
+      "checksum": "0590c4a94da3372e83493b956755a6e2266830b6e4e3b101afe66e3f39477b91",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/enum-assoc/1.4.1/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "fiat-crypto",
+      "version": "0.3.0",
+      "checksum": "64cd1e32ddd350061ae6edb1b082d7c54915b5c672c389143b9a63403a109f24",
+      "license": "MIT OR Apache-2.0 OR BSD-1-Clause",
+      "source": "https://crates.io/api/v1/crates/fiat-crypto/0.3.0/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "form_urlencoded",
+      "version": "1.2.2",
+      "checksum": "cb4cb245038516f5f85277875cdaa4f7d2c9a0fa0468de06ed190163b1581fcf",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/form_urlencoded/1.2.2/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "futures-buffered",
+      "version": "0.2.13",
+      "checksum": "4421cb78ee172b6b06080093479d3c50f058e7c81b7d577bbb8d118d551d4cd5",
+      "license": "MIT",
+      "source": "https://crates.io/api/v1/crates/futures-buffered/0.2.13/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "futures-executor",
+      "version": "0.3.34",
+      "checksum": "031b47cf1a3c6cc8bc2fc76cd437f521619387907d469316e7c0bc278f1f5432",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/futures-executor/0.3.34/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "futures-lite",
+      "version": "2.6.1",
+      "checksum": "f78e10609fe0e0b3f4157ffab1876319b5b0db102a2c60dc4626306dc46b44ad",
+      "license": "Apache-2.0 OR MIT",
+      "source": "https://crates.io/api/v1/crates/futures-lite/2.6.1/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "futures-macro",
+      "version": "0.3.34",
+      "checksum": "9fb9654ba8355388abeb8dcb4fc62f511300867002afc858860463bdd9fe0c44",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/futures-macro/0.3.34/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "generator",
+      "version": "0.8.10",
+      "checksum": "54ade96dc9003043bce7c035c85a9df5a858bfb2039c5a2e6fdf00f324f6c551",
+      "license": "MIT/Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/generator/0.8.10/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "getrandom",
+      "version": "0.2.17",
+      "checksum": "ff2abc00be7fca6ebc474524697ae276ad847ad0a6b3faa4bcb027e9a4614ad0",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/getrandom/0.2.17/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "ghash",
+      "version": "0.5.1",
+      "checksum": "f0d8a4362ccb29cb0b265253fb0a2728f592895ee6854fd9bc13f2ffda266ff1",
+      "license": "Apache-2.0 OR MIT",
+      "source": "https://crates.io/api/v1/crates/ghash/0.5.1/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "gloo-timers",
+      "version": "0.3.0",
+      "checksum": "bbb143cf96099802033e0d4f4963b19fd2e0b728bcf076cd9cf7f6634f092994",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/gloo-timers/0.3.0/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "http",
+      "version": "1.5.0",
+      "checksum": "918d3568bebf352712bc2ef3d46a8bcf1a75b373be6539de198e9105cbbf9ce0",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/http/1.5.0/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "http-body",
+      "version": "1.1.0",
+      "checksum": "ca2a8f2913ee65f60facd6a5905613afaa448497a0230cc41ce022d93290bc2c",
+      "license": "MIT",
+      "source": "https://crates.io/api/v1/crates/http-body/1.1.0/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "http-body-util",
+      "version": "0.1.5",
+      "checksum": "23169fe34a5fbcdd3f3862e78fb9b6fccd5f02a6dc6f732547005d45631ce71c",
+      "license": "MIT",
+      "source": "https://crates.io/api/v1/crates/http-body-util/0.1.5/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "httparse",
+      "version": "1.10.1",
+      "checksum": "6dbf3de79e51f3d586ab4cb9d5c3e2c14aa28ed23d180cf89b4df0454a69cc87",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/httparse/1.10.1/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "httpdate",
+      "version": "1.0.3",
+      "checksum": "df3b46402a9d5adb4c86a0cf463f42e19994e3ee891101b1841f30a545cb49a9",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/httpdate/1.0.3/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "hybrid-array",
+      "version": "0.4.15",
+      "checksum": "27f864f10dfb56725ce5ce5472bc52252c8f93a4ab86327122cebf62c5f59a17",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/hybrid-array/0.4.15/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "hyper",
+      "version": "1.12.0",
+      "checksum": "2c3e324da4c95177d6291d4c8730197c0d1822f8a9766814a4a44fa5ab797c9c",
+      "license": "MIT",
+      "source": "https://crates.io/api/v1/crates/hyper/1.12.0/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "hyper-rustls",
+      "version": "0.27.10",
+      "checksum": "dfa8e654703247911e29c23fbeaa261834bd9bb74efba2f9acddc37bfb127f53",
+      "license": "Apache-2.0 OR ISC OR MIT",
+      "source": "https://crates.io/api/v1/crates/hyper-rustls/0.27.10/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "hyper-util",
+      "version": "0.1.21",
+      "checksum": "ddc03d96684f9226b8a787cdb71488417b53ab5ea8fdb1dac946cb9431cc8bff",
+      "license": "MIT",
+      "source": "https://crates.io/api/v1/crates/hyper-util/0.1.21/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "iana-time-zone",
+      "version": "0.1.65",
+      "checksum": "e31bc9ad994ba00e440a8aa5c9ef0ec67d5cb5e5cb0cc7f8b744a35b389cc470",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/iana-time-zone/0.1.65/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "iana-time-zone-haiku",
+      "version": "0.1.2",
+      "checksum": "f31827a206f56af32e590ba56d5d2d085f558508192593743f16b2306495269f",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/iana-time-zone-haiku/0.1.2/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "icu_collections",
+      "version": "2.3.0",
+      "checksum": "fa68d21081c4a05d5a901a1c62add574c77048b6a1c67be3b50ce0b60d4ca513",
+      "license": "Unicode-3.0",
+      "source": "https://crates.io/api/v1/crates/icu_collections/2.3.0/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "icu_locale_core",
+      "version": "2.3.0",
+      "checksum": "d56e28588da92eee5c3201a6eff33fabdd49b62269c8938d4ff050ce4d900deb",
+      "license": "Unicode-3.0",
+      "source": "https://crates.io/api/v1/crates/icu_locale_core/2.3.0/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "icu_normalizer",
+      "version": "2.3.0",
+      "checksum": "12f9cf5f235641ed274641dd81c3f28d870e276763d0797aeeab72317b1c646f",
+      "license": "Unicode-3.0",
+      "source": "https://crates.io/api/v1/crates/icu_normalizer/2.3.0/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "icu_normalizer_data",
+      "version": "2.3.0",
+      "checksum": "1563da1ed3e0b3bf3d74c9b85917ac9c56464d2f57242270c09c9e752f8021a0",
+      "license": "Unicode-3.0",
+      "source": "https://crates.io/api/v1/crates/icu_normalizer_data/2.3.0/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "icu_properties",
+      "version": "2.3.0",
+      "checksum": "7e7ca276ad3145661a65914e6daf131ca5120cd3dcee8f8f3214b8875184a148",
+      "license": "Unicode-3.0",
+      "source": "https://crates.io/api/v1/crates/icu_properties/2.3.0/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "icu_properties_data",
+      "version": "2.3.0",
+      "checksum": "e590f038c1464a96894fd6d10127e90a8be4509f56ff7ecef851b15cee0b7caa",
+      "license": "Unicode-3.0",
+      "source": "https://crates.io/api/v1/crates/icu_properties_data/2.3.0/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "icu_provider",
+      "version": "2.3.1",
+      "checksum": "d27bbb9d3abbefac45d55f647c9de1d44aafcd1186eb91879afef17c396c3e73",
+      "license": "Unicode-3.0",
+      "source": "https://crates.io/api/v1/crates/icu_provider/2.3.1/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "identity-hash",
+      "version": "0.1.0",
+      "checksum": "dfdd7caa900436d8f13b2346fe10257e0c05c1f1f9e351f4f5d57c03bd5f45da",
+      "license": "Apache-2.0 OR MIT",
+      "source": "https://crates.io/api/v1/crates/identity-hash/0.1.0/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "idna",
+      "version": "1.1.0",
+      "checksum": "3b0875f23caa03898994f6ddc501886a45c7d3d62d04d2d90788d47be1b1e4de",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/idna/1.1.0/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "idna_adapter",
+      "version": "1.2.2",
+      "checksum": "cb68373c0d6620ef8105e855e7745e18b0d00d3bdb07fb532e434244cdb9a714",
+      "license": "Apache-2.0 OR MIT",
+      "source": "https://crates.io/api/v1/crates/idna_adapter/1.2.2/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "inout",
+      "version": "0.1.4",
+      "checksum": "879f10e63c20629ecabbb64a8010319738c66a5cd0c29b02d63d272b03751d01",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/inout/0.1.4/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "ipconfig",
+      "version": "0.3.4",
+      "checksum": "4d40460c0ce33d6ce4b0630ad68ff63d6661961c48b6dba35e5a4d81cfb48222",
+      "license": "MIT/Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/ipconfig/0.3.4/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "ipnet",
+      "version": "2.12.2",
+      "checksum": "791930b43c0d5973160d90a8f3894509f2b273430f5c5c73b668636d0287c5c0",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/ipnet/2.12.2/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "iroh",
+      "version": "1.3.0",
+      "checksum": "885787b892b5e2507c701f132ecbd45d2bad4bbb75157a19427087c16dadb833",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/iroh/1.3.0/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "iroh-base",
+      "version": "1.3.0",
+      "checksum": "6ae9092be76c9f5429776ab3394f5a5a78dc19dc2524267e884a5b9781546c3f",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/iroh-base/1.3.0/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "iroh-dns",
+      "version": "1.3.0",
+      "checksum": "80276761b56e904e26ea71d0863beef0bb8d5ab6b639cbd1338e4b615209e3a1",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/iroh-dns/1.3.0/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "iroh-metrics",
+      "version": "1.0.2",
+      "checksum": "8ede55536349842337f7cdc63012ec33dc637945f3259c98a0763aac364cdf09",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/iroh-metrics/1.0.2/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "iroh-metrics-derive",
+      "version": "1.0.1",
+      "checksum": "1ae5f0c4405d1fbc9fb16ff422ca40620e93dc36c30ecaba0c2aee3992b7bd48",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/iroh-metrics-derive/1.0.1/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "iroh-relay",
+      "version": "1.3.0",
+      "checksum": "ee116a8233f84980574bb8d11e4517503080cd2c3605bafca04ee9c35d708bd9",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/iroh-relay/1.3.0/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "jni",
+      "version": "0.21.1",
+      "checksum": "1a87aa2bb7d2af34197c04845522473242e1aa17c12f4935d5856491a7fb8c97",
+      "license": "MIT/Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/jni/0.21.1/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "jni",
+      "version": "0.22.4",
+      "checksum": "5efd9a482cf3a427f00d6b35f14332adc7902ce91efb778580e180ff90fa3498",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/jni/0.22.4/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "jni-macros",
+      "version": "0.22.4",
+      "checksum": "a00109accc170f0bdb141fed3e393c565b6f5e072365c3bd58f5b062591560a3",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/jni-macros/0.22.4/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "jni-sys",
+      "version": "0.3.1",
+      "checksum": "41a652e1f9b6e0275df1f15b32661cf0d4b78d4d87ddec5e0c3c20f097433258",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/jni-sys/0.3.1/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "jni-sys",
+      "version": "0.4.1",
+      "checksum": "c6377a88cb3910bee9b0fa88d4f42e1d2da8e79915598f65fb0c7ee14c878af2",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/jni-sys/0.4.1/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "jni-sys-macros",
+      "version": "0.4.1",
+      "checksum": "38c0b942f458fe50cdac086d2f946512305e5631e720728f2a61aabcd47a6264",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/jni-sys-macros/0.4.1/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "lazy_static",
+      "version": "1.5.1",
+      "checksum": "20870f649af7073d53e38067b2a84312175d56ea15217e1b15bc83506ec50afb",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/lazy_static/1.5.1/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "litemap",
+      "version": "0.8.3",
+      "checksum": "47d9d19d1d6efa0109d2f65ff4c85cddd50bd572e5a00127ab10987290bcefae",
+      "license": "Unicode-3.0",
+      "source": "https://crates.io/api/v1/crates/litemap/0.8.3/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "loom",
+      "version": "0.7.2",
+      "checksum": "419e0dc8046cb947daa77eb95ae174acfbddb7673b4151f56d1eed8e93fbfaca",
+      "license": "MIT",
+      "source": "https://crates.io/api/v1/crates/loom/0.7.2/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "lru",
+      "version": "0.18.5",
+      "checksum": "ef9ac18847474e638e3702b76c65d4eb93428471a74778ef0f1be711717f89b5",
+      "license": "MIT",
+      "source": "https://crates.io/api/v1/crates/lru/0.18.5/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "lru-slab",
+      "version": "0.1.3",
+      "checksum": "4050469837a6ff301cd14c1f8f24f88549e6d548f24f64e2148eb0f72cebc51f",
+      "license": "MIT OR Apache-2.0 OR Zlib",
+      "source": "https://crates.io/api/v1/crates/lru-slab/0.1.3/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "mac-addr",
+      "version": "0.3.0",
+      "checksum": "d3d25b0e0b648a86960ac23b7ad4abb9717601dec6f66c165f5b037f3f03065f",
+      "license": "MIT",
+      "source": "https://crates.io/api/v1/crates/mac-addr/0.3.0/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "matchers",
+      "version": "0.2.0",
+      "checksum": "d1525a2a28c7f4fa0fc98bb91ae755d1e2d1505079e05539e35bc876b5d65ae9",
+      "license": "MIT",
+      "source": "https://crates.io/api/v1/crates/matchers/0.2.0/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "n0-dns-resolver",
+      "version": "0.1.0",
+      "checksum": "535c99c9a786bee714155d2ee4fc2477405c2c43536e1bc6a51de09a0d1448f7",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/n0-dns-resolver/0.1.0/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "n0-error",
+      "version": "1.0.1",
+      "checksum": "26c59ea174675ce6bc196878851e5049e11b8b1f9af3ba87e4d6df8d828bb001",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/n0-error/1.0.1/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "n0-error-macros",
+      "version": "1.0.1",
+      "checksum": "4412346410d6616f3668c40e53c298e5320c7b856f7a960e5914e442601be79f",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/n0-error-macros/1.0.1/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "n0-future",
+      "version": "0.3.2",
+      "checksum": "e2ab99dfb861450e68853d34ae665243a88b8c493d01ba957321a1e9b2312bbe",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/n0-future/0.3.2/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "n0-watcher",
+      "version": "1.0.0",
+      "checksum": "bbc618745ad0b7414b149d0517ad8b5573b2fb4d4e2717add3d2446ce1fdd826",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/n0-watcher/1.0.0/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "ndk-context",
+      "version": "0.1.1",
+      "checksum": "27b02d87554356db9e9a873add8782d4ea6e3e58ea071a9adb9a2e8ddb884a8b",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/ndk-context/0.1.1/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "netdev",
+      "version": "0.45.1",
+      "checksum": "096c44b66a9b09b99b4dd36b1c295ff3a492039ccecaf55466bd6ddcdba59968",
+      "license": "MIT",
+      "source": "https://crates.io/api/v1/crates/netdev/0.45.1/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "netdev",
+      "version": "0.46.3",
+      "checksum": "c3c52c2584961c68f5a6e3356797344061f818c93b8acc9cd6d7e284795e563e",
+      "license": "MIT",
+      "source": "https://crates.io/api/v1/crates/netdev/0.46.3/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "netlink-packet-core",
+      "version": "0.8.2",
+      "checksum": "b897d7bd4f0af82e68d40d0344cf37e97f9c97ddf74a098de3e4da05e96ca395",
+      "license": "MIT",
+      "source": "https://crates.io/api/v1/crates/netlink-packet-core/0.8.2/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "netlink-packet-core",
+      "version": "0.9.0",
+      "checksum": "2d6e2daf9a8c2e21302714706860a0e6be02e03d17294ecc66b354ea7d4059dd",
+      "license": "MIT",
+      "source": "https://crates.io/api/v1/crates/netlink-packet-core/0.9.0/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "netlink-packet-route",
+      "version": "0.31.0",
+      "checksum": "e2288fcb784eb3defd5fb16f4c4160d5f477de192eac730f43e1d11c24d9a007",
+      "license": "MIT",
+      "source": "https://crates.io/api/v1/crates/netlink-packet-route/0.31.0/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "netlink-packet-route",
+      "version": "0.33.0",
+      "checksum": "59d48ffc8b73a506e1ff0878528c72668f2bfbc3d875b6be890a96be5d0d5576",
+      "license": "MIT",
+      "source": "https://crates.io/api/v1/crates/netlink-packet-route/0.33.0/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "netlink-proto",
+      "version": "0.12.2",
+      "checksum": "93af8261786086024cd5e96e0a991dd65ced07bbf7c233a487bbc96b971d5539",
+      "license": "MIT",
+      "source": "https://crates.io/api/v1/crates/netlink-proto/0.12.2/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "netlink-sys",
+      "version": "0.8.8",
+      "checksum": "cd6c30ed10fa69cc491d491b85cc971f6bdeb8e7367b7cde2ee6cc878d583fae",
+      "license": "MIT",
+      "source": "https://crates.io/api/v1/crates/netlink-sys/0.8.8/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "netlink-sys",
+      "version": "0.9.0",
+      "checksum": "c99d38e00b420df49e940fe0826e667c3dad82ac68eb4c2bbf754c1c14a83a10",
+      "license": "MIT",
+      "source": "https://crates.io/api/v1/crates/netlink-sys/0.9.0/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "netwatch",
+      "version": "0.19.3",
+      "checksum": "39da9cad5f23aa43401f09497d3b280e51b5feba115d9ffbf38ca35d6ff95e96",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/netwatch/0.19.3/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "noq",
+      "version": "1.3.0",
+      "checksum": "b78be567e796cfa74bb9bdc4117790af2d505eb887019cf8803244353eb09d89",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/noq/1.3.0/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "noq-proto",
+      "version": "1.3.0",
+      "checksum": "7c1e5b6fe668491eca022f745a0a9402585626c73a7b839b3424ace15d6a9c8f",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/noq-proto/1.3.0/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "noq-udp",
+      "version": "1.3.0",
+      "checksum": "4dc50afea61aff926e150a36c31f06094608848e114a3fe667d76ec233163b1c",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/noq-udp/1.3.0/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "nu-ansi-term",
+      "version": "0.50.3",
+      "checksum": "7957b9740744892f114936ab4a57b3f487491bbeafaf8083688b16841a4240e5",
+      "license": "MIT",
+      "source": "https://crates.io/api/v1/crates/nu-ansi-term/0.50.3/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "num-conv",
+      "version": "0.2.2",
+      "checksum": "521739c6d2bac4aa25192232afe6841231376b2b26d4d9fae5ecf8ca5772e441",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/num-conv/0.2.2/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "num_enum",
+      "version": "0.7.6",
+      "checksum": "5d0bca838442ec211fa11de3a8b0e0e8f3a4522575b5c4c06ed722e005036f26",
+      "license": "BSD-3-Clause OR MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/num_enum/0.7.6/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "num_enum_derive",
+      "version": "0.7.6",
+      "checksum": "680998035259dcfcafe653688bf2aa6d3e2dc05e98be6ab46afb089dc84f1df8",
+      "license": "BSD-3-Clause OR MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/num_enum_derive/0.7.6/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "objc2",
+      "version": "0.6.5",
+      "checksum": "08849bbd4767dfae9457696856ae1c84fe4e0281bbe4a7abff2d0e06fb7981f8",
+      "license": "MIT",
+      "source": "https://crates.io/api/v1/crates/objc2/0.6.5/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "objc2-core-foundation",
+      "version": "0.3.2",
+      "checksum": "2a180dd8642fa45cdb7dd721cd4c11b1cadd4929ce112ebd8b9f5803cc79d536",
+      "license": "Zlib OR Apache-2.0 OR MIT",
+      "source": "https://crates.io/api/v1/crates/objc2-core-foundation/0.3.2/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "objc2-core-wlan",
+      "version": "0.3.2",
+      "checksum": "c71e34919aba0d701380d911702455038a8a3587467fe0141d6a71501e7ffe48",
+      "license": "Zlib OR Apache-2.0 OR MIT",
+      "source": "https://crates.io/api/v1/crates/objc2-core-wlan/0.3.2/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "objc2-encode",
+      "version": "4.1.0",
+      "checksum": "ef25abbcd74fb2609453eb695bd2f860d389e457f67dc17cafc8b8cbc89d0c33",
+      "license": "MIT",
+      "source": "https://crates.io/api/v1/crates/objc2-encode/4.1.0/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "objc2-foundation",
+      "version": "0.3.2",
+      "checksum": "e3e0adef53c21f888deb4fa59fc59f7eb17404926ee8a6f59f5df0fd7f9f3272",
+      "license": "MIT",
+      "source": "https://crates.io/api/v1/crates/objc2-foundation/0.3.2/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "objc2-security",
+      "version": "0.3.2",
+      "checksum": "709fe137109bd1e8b5a99390f77a7d8b2961dafc1a1c5db8f2e60329ad6d895a",
+      "license": "Zlib OR Apache-2.0 OR MIT",
+      "source": "https://crates.io/api/v1/crates/objc2-security/0.3.2/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "objc2-security-foundation",
+      "version": "0.3.2",
+      "checksum": "ef76382e9cedd18123099f17638715cc3d81dba3637d4c0d39ab69df2ef345a5",
+      "license": "Zlib OR Apache-2.0 OR MIT",
+      "source": "https://crates.io/api/v1/crates/objc2-security-foundation/0.3.2/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "objc2-system-configuration",
+      "version": "0.3.2",
+      "checksum": "7216bd11cbda54ccabcab84d523dc93b858ec75ecfb3a7d89513fa22464da396",
+      "license": "Zlib OR Apache-2.0 OR MIT",
+      "source": "https://crates.io/api/v1/crates/objc2-system-configuration/0.3.2/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "opaque-debug",
+      "version": "0.3.1",
+      "checksum": "c08d65885ee38876c4f86fa503fb49d7b507c2b62552df7c70b2fce627e06381",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/opaque-debug/0.3.1/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "openssl-probe",
+      "version": "0.2.1",
+      "checksum": "7c87def4c32ab89d880effc9e097653c8da5d6ef28e6b539d313baaacfbafcbe",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/openssl-probe/0.2.1/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "papaya",
+      "version": "0.2.5",
+      "checksum": "da2442474a9404698c42509b8967f437249dbc7b50493e83020333d3943ec0ae",
+      "license": "MIT",
+      "source": "https://crates.io/api/v1/crates/papaya/0.2.5/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "parking",
+      "version": "2.2.1",
+      "checksum": "f38d5652c16fde515bb1ecef450ab0f6a219d619a7274976324d5e377f7dceba",
+      "license": "Apache-2.0 OR MIT",
+      "source": "https://crates.io/api/v1/crates/parking/2.2.1/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "paste",
+      "version": "1.0.15",
+      "checksum": "57c0d7b74b563b49d38dae00a0c37d4d6de9b432382b2892f0574ddcae73fd0a",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/paste/1.0.15/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "pem-rfc7468",
+      "version": "1.0.0",
+      "checksum": "a6305423e0e7738146434843d1694d621cce767262b2a86910beab705e4493d9",
+      "license": "Apache-2.0 OR MIT",
+      "source": "https://crates.io/api/v1/crates/pem-rfc7468/1.0.0/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "percent-encoding",
+      "version": "2.3.2",
+      "checksum": "9b4f627cb1b25917193a259e49bdad08f671f8d9708acfd5fe0a8c1455d87220",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/percent-encoding/2.3.2/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "pharos",
+      "version": "0.5.3",
+      "checksum": "e9567389417feee6ce15dd6527a8a1ecac205ef62c2932bcf3d9f6fc5b78b414",
+      "license": "Unlicense",
+      "source": "https://crates.io/api/v1/crates/pharos/0.5.3/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "pin-project",
+      "version": "1.1.13",
+      "checksum": "2466b2336ed02bcdca6b294417127b90ec92038d1d5c4fbeac971a922e0e0924",
+      "license": "Apache-2.0 OR MIT",
+      "source": "https://crates.io/api/v1/crates/pin-project/1.1.13/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "pin-project-internal",
+      "version": "1.1.13",
+      "checksum": "c96395f0a926bc13b1c17622aaddda1ecb55d49c8f1bf9777e4d877800a43f8b",
+      "license": "Apache-2.0 OR MIT",
+      "source": "https://crates.io/api/v1/crates/pin-project-internal/1.1.13/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "pkcs8",
+      "version": "0.11.0",
+      "checksum": "451913da69c775a56034ea8d9003d27ee8948e12443eae7c038ba100a4f21cb7",
+      "license": "Apache-2.0 OR MIT",
+      "source": "https://crates.io/api/v1/crates/pkcs8/0.11.0/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "plist",
+      "version": "1.10.1",
+      "checksum": "2896bade328c13f7042a297ea5ac5b0951f6cf989dea5f32c2fd98da398195cb",
+      "license": "MIT",
+      "source": "https://crates.io/api/v1/crates/plist/1.10.1/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "polyval",
+      "version": "0.6.2",
+      "checksum": "9d1fe60d06143b2430aa532c94cfe9e29783047f06c0d7fd359a9a51b729fa25",
+      "license": "Apache-2.0 OR MIT",
+      "source": "https://crates.io/api/v1/crates/polyval/0.6.2/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "portable-atomic",
+      "version": "1.15.0",
+      "checksum": "05c8b63e8d9609db387f0324918f81d68fe27748f084ef092fb35954d0539a85",
+      "license": "Apache-2.0 OR MIT",
+      "source": "https://crates.io/api/v1/crates/portable-atomic/1.15.0/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "postcard-derive",
+      "version": "0.2.2",
+      "checksum": "e0232bd009a197ceec9cc881ba46f727fcd8060a2d8d6a9dde7a69030a6fe2bb",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/postcard-derive/0.2.2/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "potential_utf",
+      "version": "0.1.6",
+      "checksum": "d83eb9bc6d8e5cf568e7a1101d60ee05e81ed50ea106026f3d18deeb046d7661",
+      "license": "Unicode-3.0",
+      "source": "https://crates.io/api/v1/crates/potential_utf/0.1.6/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "powerfmt",
+      "version": "0.2.1",
+      "checksum": "4a6394b9e965e73d0a289ee54f589087e2c676aedf60885baf52c76b771e4958",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/powerfmt/0.2.1/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "proc-macro-crate",
+      "version": "3.5.0",
+      "checksum": "e67ba7e9b2b56446f1d419b1d807906278ffa1a658a8a5d8a39dcb1f5a78614f",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/proc-macro-crate/3.5.0/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "quick-xml",
+      "version": "0.42.0",
+      "checksum": "41b1177fdf999d2321d3fb46ff47159d9c1fb9ad66a4879f8c50a0b504615e9b",
+      "license": "MIT",
+      "source": "https://crates.io/api/v1/crates/quick-xml/0.42.0/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "rand",
+      "version": "0.10.3",
+      "checksum": "65c9fb96cbc91e3478eaae79a69fcd3f1ae4ad052e471fe6732fff548984b4af",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/rand/0.10.3/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "rand_core",
+      "version": "0.10.1",
+      "checksum": "63b8176103e19a2643978565ca18b50549f6101881c443590420e4dc998a3c69",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/rand_core/0.10.1/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "rand_pcg",
+      "version": "0.10.2",
+      "checksum": "caa0f4137e1c0a72f4c651489402276c8e8e1cf081f3b0ba156d2cbeef09e86a",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/rand_pcg/0.10.2/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "regex-automata",
+      "version": "0.4.18",
+      "checksum": "ad8553b9b26413251cbf30e620595c7a41b3887f03da04579c0e6b0d6a06b4b2",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/regex-automata/0.4.18/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "reqwest",
+      "version": "0.13.5",
+      "checksum": "16a1cfa75cc186dd73d5818e510e042e40927bccc9c236b061cea97e1eb08029",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/reqwest/0.13.5/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "ring",
+      "version": "0.17.14",
+      "checksum": "a4689e6c2294d81e88dc6261c768b63bc4fcdb852be6d1352498b114f61383b7",
+      "license": "Apache-2.0 AND ISC",
+      "source": "https://crates.io/api/v1/crates/ring/0.17.14/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "rustc_version",
+      "version": "0.4.1",
+      "checksum": "cfcb3a22ef46e85b45de6ee7e79d063319ebb6594faafcf1c225ea92ab6e9b92",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/rustc_version/0.4.1/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "rustls",
+      "version": "0.23.45",
+      "checksum": "0d41d731c7d2f962d1ccc364cec258de3c0e93b38c2fb3ba97ac74513048d634",
+      "license": "Apache-2.0 OR ISC OR MIT",
+      "source": "https://crates.io/api/v1/crates/rustls/0.23.45/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "rustls-native-certs",
+      "version": "0.8.4",
+      "checksum": "dab5152771c58876a2146916e53e35057e1a4dfa2b9df0f0305b07f611fdea4d",
+      "license": "Apache-2.0 OR ISC OR MIT",
+      "source": "https://crates.io/api/v1/crates/rustls-native-certs/0.8.4/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "rustls-pki-types",
+      "version": "1.15.1",
+      "checksum": "2f4925028c7eb5d1fcdaf196971378ed9d2c1c4efc7dc5d011256f76c99c0a96",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/rustls-pki-types/1.15.1/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "rustls-platform-verifier",
+      "version": "0.7.1",
+      "checksum": "1167586491e2b18b8bfbb293e8180ec17c201c4f076d7cb3070ca964e7598f98",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/rustls-platform-verifier/0.7.1/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "rustls-platform-verifier-android",
+      "version": "0.2.0",
+      "checksum": "eec689c0bc40ff2458a5977b6619cb718087084a18e02a131c599b62d05e1a5f",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/rustls-platform-verifier-android/0.2.0/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "rustls-webpki",
+      "version": "0.103.15",
+      "checksum": "f3c3cf1d8b1e7d4927e2d154c3fcb02979afb9939629c62cd9048d4f07b60ac2",
+      "license": "ISC",
+      "source": "https://crates.io/api/v1/crates/rustls-webpki/0.103.15/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "ryu",
+      "version": "1.0.23",
+      "checksum": "9774ba4a74de5f7b1c1451ed6cd5285a32eddb5cccb8cc655a4e50009e06477f",
+      "license": "Apache-2.0 OR BSL-1.0",
+      "source": "https://crates.io/api/v1/crates/ryu/1.0.23/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "same-file",
+      "version": "1.0.6",
+      "checksum": "93fc1dc3aaa9bfed95e02e6eadabb4baf7e3078b0bd1b4d7b6b0b68378900502",
+      "license": "Unlicense/MIT",
+      "source": "https://crates.io/api/v1/crates/same-file/1.0.6/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "schannel",
+      "version": "0.1.29",
+      "checksum": "91c1b7e4904c873ef0710c1f407dde2e6287de2bebc1bbbf7d430bb7cbffd939",
+      "license": "MIT",
+      "source": "https://crates.io/api/v1/crates/schannel/0.1.29/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "scoped-tls",
+      "version": "1.0.1",
+      "checksum": "e1cf6437eb19a8f4a6cc0f7dca544973b0b78843adbfeb3683d1a94a0024a294",
+      "license": "MIT/Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/scoped-tls/1.0.1/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "security-framework",
+      "version": "3.7.0",
+      "checksum": "b7f4bc775c73d9a02cde8bf7b2ec4c9d12743edf609006c7facc23998404cd1d",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/security-framework/3.7.0/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "security-framework-sys",
+      "version": "2.17.0",
+      "checksum": "6ce2691df843ecc5d231c0b14ece2acc3efb62c0a398c7e1d875f3983ce020e3",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/security-framework-sys/2.17.0/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "seize",
+      "version": "0.5.1",
+      "checksum": "5b55fb86dfd3a2f5f76ea78310a88f96c4ea21a3031f8d212443d56123fd0521",
+      "license": "MIT",
+      "source": "https://crates.io/api/v1/crates/seize/0.5.1/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "send_wrapper",
+      "version": "0.6.0",
+      "checksum": "cd0b0ec5f1c1ca621c432a25813d8d60c88abe6d3e08a3eb9cf37d97a0fe3d73",
+      "license": "MIT/Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/send_wrapper/0.6.0/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "serde_bytes",
+      "version": "0.11.19",
+      "checksum": "a5d440709e79d88e51ac01c4b72fc6cb7314017bb7da9eeff678aa94c10e3ea8",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/serde_bytes/0.11.19/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "serdect",
+      "version": "0.4.3",
+      "checksum": "66cf8fedced2fcf12406bcb34223dffb92eaf34908ede12fed414c82b7f00b3e",
+      "license": "Apache-2.0 OR MIT",
+      "source": "https://crates.io/api/v1/crates/serdect/0.4.3/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "sha1_smol",
+      "version": "1.0.1",
+      "checksum": "bbfa15b3dddfee50a0fff136974b3e1bde555604ba463834a7eb7deb6417705d",
+      "license": "BSD-3-Clause",
+      "source": "https://crates.io/api/v1/crates/sha1_smol/1.0.1/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "sha2",
+      "version": "0.11.0",
+      "checksum": "446ba717509524cb3f22f17ecc096f10f4822d76ab5c0b9822c5f9c284e825f4",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/sha2/0.11.0/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "sharded-slab",
+      "version": "0.1.7",
+      "checksum": "f40ca3c46823713e0d4209592e8d6e826aa57e928f09752619fc696c499637f6",
+      "license": "MIT",
+      "source": "https://crates.io/api/v1/crates/sharded-slab/0.1.7/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "signature",
+      "version": "3.0.0",
+      "checksum": "28d567dcbaf0049cb8ac2608a76cd95ff9e4412e1899d389ee400918ca7537f5",
+      "license": "Apache-2.0 OR MIT",
+      "source": "https://crates.io/api/v1/crates/signature/3.0.0/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "simd_cesu8",
+      "version": "1.2.0",
+      "checksum": "11031e251abf8611c80f460e19dbdeb54a66db918e49c65a7065b46ac7aec520",
+      "license": "Apache-2.0 OR MIT",
+      "source": "https://crates.io/api/v1/crates/simd_cesu8/1.2.0/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "simple-dns",
+      "version": "0.12.0",
+      "checksum": "2b6f884fa9a8d48101774bfbd3aeb81e968dd22cffd19a372da69f183db22c1a",
+      "license": "MIT",
+      "source": "https://crates.io/api/v1/crates/simple-dns/0.12.0/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "socket2",
+      "version": "0.6.5",
+      "checksum": "c3d1e2c7f27f8d4cb10542a02c49005dbd6e93095799d6f3be745fae9f8fedd4",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/socket2/0.6.5/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "sorted-index-buffer",
+      "version": "0.2.1",
+      "checksum": "ea06cc588e43c632923a55450401b8f25e628131571d4e1baea1bdfdb2b5ed06",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/sorted-index-buffer/0.2.1/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "spez",
+      "version": "0.1.2",
+      "checksum": "c87e960f4dca2788eeb86bbdde8dd246be8948790b7618d656e68f9b720a86e8",
+      "license": "BSD-2-Clause",
+      "source": "https://crates.io/api/v1/crates/spez/0.1.2/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "spin",
+      "version": "0.10.1",
+      "checksum": "023a211cb3138dbc438680b32560ad89f699977624c9f8dbb95a47d5b4c07dd3",
+      "license": "MIT",
+      "source": "https://crates.io/api/v1/crates/spin/0.10.1/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "spki",
+      "version": "0.8.1",
+      "checksum": "7ef958a98b9d5da290cfc78946e9f3e61e1e62a18db0d92cac0b83cc161491a9",
+      "license": "Apache-2.0 OR MIT",
+      "source": "https://crates.io/api/v1/crates/spki/0.8.1/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "strum",
+      "version": "0.28.0",
+      "checksum": "9628de9b8791db39ceda2b119bbe13134770b56c138ec1d3af810d045c04f9bd",
+      "license": "MIT",
+      "source": "https://crates.io/api/v1/crates/strum/0.28.0/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "strum_macros",
+      "version": "0.28.0",
+      "checksum": "ab85eea0270ee17587ed4156089e10b9e6880ee688791d45a905f5b1ca36f664",
+      "license": "MIT",
+      "source": "https://crates.io/api/v1/crates/strum_macros/0.28.0/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "subtle",
+      "version": "2.6.1",
+      "checksum": "13c2bddecc57b384dee18652358fb23172facb8a2c51ccc10d74c157bdea3292",
+      "license": "BSD-3-Clause",
+      "source": "https://crates.io/api/v1/crates/subtle/2.6.1/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "sync_wrapper",
+      "version": "1.0.2",
+      "checksum": "0bf256ce5efdfa370213c1dabab5935a12e49f2c58d15e9eac2870d3b4f27263",
+      "license": "Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/sync_wrapper/1.0.2/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "synstructure",
+      "version": "0.14.0",
+      "checksum": "901704edd0dfe137f1987838ee4f259e4e063c31371bdb423f7ae38ec6f77f02",
+      "license": "MIT",
+      "source": "https://crates.io/api/v1/crates/synstructure/0.14.0/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "system-configuration",
+      "version": "0.8.0",
+      "checksum": "501336eb7ba9e417300a6a0fa985721065467aa83a6dcf0422a8e43e4c0328fa",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/system-configuration/0.8.0/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "system-configuration-sys",
+      "version": "0.6.0",
+      "checksum": "8e1d1b10ced5ca923a1fcb8d03e96b8d3268065d724548c0211415ff6ac6bac4",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/system-configuration-sys/0.6.0/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "thiserror",
+      "version": "1.0.69",
+      "checksum": "b6aaf5339b578ea85b50e080feb250a3e8ae8cfcdff9a461c9ec2904bc923f52",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/thiserror/1.0.69/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "thiserror-impl",
+      "version": "1.0.69",
+      "checksum": "4fee6c4efc90059e10f81e6d42c60a18f76588c3d74cb83a0b242a2b6c7504c1",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/thiserror-impl/1.0.69/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "thread_local",
+      "version": "1.1.10",
+      "checksum": "1ad99c4c6d32803332c548b1af0540b357b3f5fc0be8f6c6bfe8b2e6ae784070",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/thread_local/1.1.10/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "time",
+      "version": "0.3.55",
+      "checksum": "cdb87b95ec50ddfa440816d227a17b2ccbdda963a316a727fda0fc4334f7d134",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/time/0.3.55/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "time-core",
+      "version": "0.1.9",
+      "checksum": "9e1c906769ad99c88eaa54e728060edef082f8e358ff32030cb7c7d315e81109",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/time-core/0.1.9/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "time-macros",
+      "version": "0.2.32",
+      "checksum": "7e689342a48d2ea927c87ea50cabf8594854bf940e9310208848d680d668ed85",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/time-macros/0.2.32/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "tinystr",
+      "version": "0.8.4",
+      "checksum": "b1e27c91459209c2986af3dcf603a5a74a4368754ce37414f59acc971167f643",
+      "license": "Unicode-3.0",
+      "source": "https://crates.io/api/v1/crates/tinystr/0.8.4/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "tinyvec",
+      "version": "1.13.3",
+      "checksum": "fd3ca314f692efd6c868f8408f53fe444634a845f96c028b97d35f6a1f79f0ee",
+      "license": "Zlib OR Apache-2.0 OR MIT",
+      "source": "https://crates.io/api/v1/crates/tinyvec/1.13.3/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "tokio-rustls",
+      "version": "0.26.6",
+      "checksum": "c9cc2678c2cdd569ef8215e2afd7954ada2ae20b4fdd2c5fe6139a3b02d105db",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/tokio-rustls/0.26.6/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "tokio-stream",
+      "version": "0.1.19",
+      "checksum": "a3d06f0b082ba57c26b79407372e57cf2a1e28124f78e9479fe80322cf53420b",
+      "license": "MIT",
+      "source": "https://crates.io/api/v1/crates/tokio-stream/0.1.19/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "tokio-util",
+      "version": "0.7.20",
+      "checksum": "e464cf451ba96ebfc6f9b6542f17ee8b8956e33f1e40d9690624e59d7a7f8a4b",
+      "license": "MIT",
+      "source": "https://crates.io/api/v1/crates/tokio-util/0.7.20/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "tokio-websockets",
+      "version": "0.13.3",
+      "checksum": "d52efb639344a7c6adb8e62c6f3d2c19c001ff1b79a5041ba1c6ed42e19c6aa5",
+      "license": "MIT",
+      "source": "https://crates.io/api/v1/crates/tokio-websockets/0.13.3/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "toml_datetime",
+      "version": "1.1.2+spec-1.1.0",
+      "checksum": "2b86d767906c6c42421dcba507eb9d203e779497710a47782a224bb871653053",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/toml_datetime/1.1.2+spec-1.1.0/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "toml_edit",
+      "version": "0.25.17+spec-1.1.0",
+      "checksum": "e3641d5bbb5349a79e1020a242d251efbc546ad8048d133958323ce9c40a9c9c",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/toml_edit/0.25.17+spec-1.1.0/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "toml_parser",
+      "version": "1.1.5+spec-1.1.0",
+      "checksum": "baa693a8032d7e1cada7d0041e96126df243179ff061456783ac7f12bda4744c",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/toml_parser/1.1.5+spec-1.1.0/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "tower",
+      "version": "0.5.3",
+      "checksum": "ebe5ef63511595f1344e2d5cfa636d973292adc0eec1f0ad45fae9f0851ab1d4",
+      "license": "MIT",
+      "source": "https://crates.io/api/v1/crates/tower/0.5.3/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "tower-http",
+      "version": "0.6.11",
+      "checksum": "4cfcf7e2740e6fc6d4d688b4ef00650406bb94adf4731e43c096c3a19fe40840",
+      "license": "MIT",
+      "source": "https://crates.io/api/v1/crates/tower-http/0.6.11/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "tower-layer",
+      "version": "0.3.3",
+      "checksum": "121c2a6cda46980bb0fcd1647ffaf6cd3fc79a013de288782836f6df9c48780e",
+      "license": "MIT",
+      "source": "https://crates.io/api/v1/crates/tower-layer/0.3.3/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "tower-service",
+      "version": "0.3.3",
+      "checksum": "8df9b6e13f2d32c91b9bd719c00d1958837bc7dec474d94952798cc8e69eeec3",
+      "license": "MIT",
+      "source": "https://crates.io/api/v1/crates/tower-service/0.3.3/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "tracing",
+      "version": "0.1.44",
+      "checksum": "63e71662fa4b2a2c3a26f570f037eb95bb1f85397f3cd8076caed2f026a6d100",
+      "license": "MIT",
+      "source": "https://crates.io/api/v1/crates/tracing/0.1.44/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "tracing-attributes",
+      "version": "0.1.31",
+      "checksum": "7490cfa5ec963746568740651ac6781f701c9c5ea257c58e057f3ba8cf69e8da",
+      "license": "MIT",
+      "source": "https://crates.io/api/v1/crates/tracing-attributes/0.1.31/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "tracing-core",
+      "version": "0.1.36",
+      "checksum": "db97caf9d906fbde555dd62fa95ddba9eecfd14cb388e4f491a66d74cd5fb79a",
+      "license": "MIT",
+      "source": "https://crates.io/api/v1/crates/tracing-core/0.1.36/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "tracing-log",
+      "version": "0.2.0",
+      "checksum": "ee855f1f400bd0e5c02d150ae5de3840039a3f54b025156404e34c23c03f47c3",
+      "license": "MIT",
+      "source": "https://crates.io/api/v1/crates/tracing-log/0.2.0/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "tracing-subscriber",
+      "version": "0.3.23",
+      "checksum": "cb7f578e5945fb242538965c2d0b04418d38ec25c79d160cd279bf0731c8d319",
+      "license": "MIT",
+      "source": "https://crates.io/api/v1/crates/tracing-subscriber/0.3.23/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "try-lock",
+      "version": "0.2.5",
+      "checksum": "e421abadd41a4225275504ea4d6566923418b7f05506fbc9c0fe86ba7396114b",
+      "license": "MIT",
+      "source": "https://crates.io/api/v1/crates/try-lock/0.2.5/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "unicode-segmentation",
+      "version": "1.13.3",
+      "checksum": "c6f5d3c3b1bf09027a88a6bc961fc00497d651009560b5463668dc81b0fa87a8",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/unicode-segmentation/1.13.3/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "unicode-xid",
+      "version": "0.2.6",
+      "checksum": "ebc1c04c71510c7f702b52b7c350734c9ff1295c464a03335b00bb84fc54f853",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/unicode-xid/0.2.6/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "universal-hash",
+      "version": "0.5.1",
+      "checksum": "fc1de2c688dc15305988b563c3854064043356019f97a4b46276fe734c4f07ea",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/universal-hash/0.5.1/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "untrusted",
+      "version": "0.9.0",
+      "checksum": "8ecb6da28b8a351d773b68d5825ac39017e680750f980f3a1a85cd8dd28a47c1",
+      "license": "ISC",
+      "source": "https://crates.io/api/v1/crates/untrusted/0.9.0/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "url",
+      "version": "2.5.8",
+      "checksum": "ff67a8a4397373c3ef660812acab3268222035010ab8680ec4215f38ba3d0eed",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/url/2.5.8/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "utf8_iter",
+      "version": "1.0.4",
+      "checksum": "b6c140620e7ffbb22c2dee59cafe6084a59b5ffc27a8859a5f0d494b5d52b6be",
+      "license": "Apache-2.0 OR MIT",
+      "source": "https://crates.io/api/v1/crates/utf8_iter/1.0.4/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "valuable",
+      "version": "0.1.1",
+      "checksum": "ba73ea9cf16a25df0c8caa16c51acb937d5712a8429db78a3ee29d5dcacd3a65",
+      "license": "MIT",
+      "source": "https://crates.io/api/v1/crates/valuable/0.1.1/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "walkdir",
+      "version": "2.5.0",
+      "checksum": "29790946404f91d9c5d06f9874efddea1dc06c5efe94541a7d6863108e3a5e4b",
+      "license": "Unlicense/MIT",
+      "source": "https://crates.io/api/v1/crates/walkdir/2.5.0/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "want",
+      "version": "0.3.2",
+      "checksum": "ec4cdd0dd910afe868b7ef477227d8d538b46b3075031afee8a9f2acb0a2ed0b",
+      "license": "MIT",
+      "source": "https://crates.io/api/v1/crates/want/0.3.2/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "wasm-bindgen-futures",
+      "version": "0.4.79",
+      "checksum": "3cbab34de2d982e9b48e18d216d04c4a6f641066ff19ffb699980f591ee3610e",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/wasm-bindgen-futures/0.4.79/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "wasm-streams",
+      "version": "0.5.0",
+      "checksum": "9d1ec4f6517c9e11ae630e200b2b65d193279042e28edd4a2cda233e46670bbb",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/wasm-streams/0.5.0/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "web-sys",
+      "version": "0.3.106",
+      "checksum": "88261b9deccee56594c11a3460c462c41f58d148598fe70ad77070126a68aba4",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/web-sys/0.3.106/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "web-time",
+      "version": "1.1.0",
+      "checksum": "5a6580f308b1fad9207618087a65c04e7a10bc77e02c8e84e9b00dd4b12fa0bb",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/web-time/1.1.0/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "webpki-root-certs",
+      "version": "1.0.9",
+      "checksum": "b96554aa2acc8ccdb7e1c9a58a7a68dd5d13bccc69cd124cb09406db612a1c9b",
+      "license": "CDLA-Permissive-2.0",
+      "source": "https://crates.io/api/v1/crates/webpki-root-certs/1.0.9/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "webpki-roots",
+      "version": "1.0.9",
+      "checksum": "7dcd9d09a39985f5344844e66b0c530a33843579125f23e21e9f0f220850f22a",
+      "license": "CDLA-Permissive-2.0",
+      "source": "https://crates.io/api/v1/crates/webpki-roots/1.0.9/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "widestring",
+      "version": "1.2.1",
+      "checksum": "72069c3113ab32ab29e5584db3c6ec55d416895e60715417b5b883a357c3e471",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/widestring/1.2.1/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "winapi",
+      "version": "0.3.9",
+      "checksum": "5c839a674fcd7a98952e593242ea400abe93992746761e38641405d28b00f419",
+      "license": "MIT/Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/winapi/0.3.9/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "winapi-i686-pc-windows-gnu",
+      "version": "0.4.0",
+      "checksum": "ac3b87c63620426dd9b991e5ce0329eff545bccbbb34f3be09ff6fb6ab51b7b6",
+      "license": "MIT/Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/winapi-i686-pc-windows-gnu/0.4.0/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "winapi-x86_64-pc-windows-gnu",
+      "version": "0.4.0",
+      "checksum": "712e227841d057c1ee1cd2fb22fa7e5a5461ae8e48fa2ca79ec42cfc1931183f",
+      "license": "MIT/Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/winapi-x86_64-pc-windows-gnu/0.4.0/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "windows",
+      "version": "0.62.2",
+      "checksum": "527fadee13e0c05939a6a05d5bd6eec6cd2e3dbd648b9f8e447c6518133d8580",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/windows/0.62.2/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "windows-collections",
+      "version": "0.3.2",
+      "checksum": "23b2d95af1a8a14a3c7367e1ed4fc9c20e0a26e79551b1454d72583c97cc6610",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/windows-collections/0.3.2/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "windows-core",
+      "version": "0.62.2",
+      "checksum": "b8e83a14d34d0623b51dce9581199302a221863196a1dde71a7663a4c2be9deb",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/windows-core/0.62.2/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "windows-future",
+      "version": "0.3.2",
+      "checksum": "e1d6f90251fe18a279739e78025bd6ddc52a7e22f921070ccdc67dde84c605cb",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/windows-future/0.3.2/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "windows-implement",
+      "version": "0.60.2",
+      "checksum": "053e2e040ab57b9dc951b72c264860db7eb3b0200ba345b4e4c3b14f67855ddf",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/windows-implement/0.60.2/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "windows-interface",
+      "version": "0.59.3",
+      "checksum": "3f316c4a2570ba26bbec722032c4099d8c8bc095efccdc15688708623367e358",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/windows-interface/0.59.3/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "windows-numerics",
+      "version": "0.3.1",
+      "checksum": "6e2e40844ac143cdb44aead537bbf727de9b044e107a0f1220392177d15b0f26",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/windows-numerics/0.3.1/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "windows-registry",
+      "version": "0.6.1",
+      "checksum": "02752bf7fbdcce7f2a27a742f798510f3e5ad88dbe84871e5168e2120c3d5720",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/windows-registry/0.6.1/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "windows-result",
+      "version": "0.4.1",
+      "checksum": "7781fa89eaf60850ac3d2da7af8e5242a5ea78d1a11c49bf2910bb5a73853eb5",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/windows-result/0.4.1/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "windows-strings",
+      "version": "0.5.1",
+      "checksum": "7837d08f69c77cf6b07689544538e017c1bfcf57e34b4c0ff58e6c2cd3b37091",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/windows-strings/0.5.1/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "windows-sys",
+      "version": "0.45.0",
+      "checksum": "75283be5efb2831d37ea142365f009c02ec203cd29a3ebecbc093d52315b66d0",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/windows-sys/0.45.0/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "windows-sys",
+      "version": "0.52.0",
+      "checksum": "282be5f36a8ce781fad8c8ae18fa3f9beff57ec1b52cb3de0789201425d9a33d",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/windows-sys/0.52.0/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "windows-targets",
+      "version": "0.42.2",
+      "checksum": "8e5180c00cd44c9b1c88adb3693291f1cd93605ded80c250a75d472756b4d071",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/windows-targets/0.42.2/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "windows-targets",
+      "version": "0.52.6",
+      "checksum": "9b724f72796e036ab90c1021d4780d4d3d648aca59e491e6b98e725b84e99973",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/windows-targets/0.52.6/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "windows-threading",
+      "version": "0.2.1",
+      "checksum": "3949bd5b99cafdf1c7ca86b43ca564028dfe27d66958f2470940f73d86d75b37",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/windows-threading/0.2.1/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "windows_aarch64_gnullvm",
+      "version": "0.42.2",
+      "checksum": "597a5118570b68bc08d8d59125332c54f1ba9d9adeedeef5b99b02ba2b0698f8",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/windows_aarch64_gnullvm/0.42.2/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "windows_aarch64_gnullvm",
+      "version": "0.52.6",
+      "checksum": "32a4622180e7a0ec044bb555404c800bc9fd9ec262ec147edd5989ccd0c02cd3",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/windows_aarch64_gnullvm/0.52.6/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "windows_aarch64_msvc",
+      "version": "0.42.2",
+      "checksum": "e08e8864a60f06ef0d0ff4ba04124db8b0fb3be5776a5cd47641e942e58c4d43",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/windows_aarch64_msvc/0.42.2/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "windows_aarch64_msvc",
+      "version": "0.52.6",
+      "checksum": "09ec2a7bb152e2252b53fa7803150007879548bc709c039df7627cabbd05d469",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/windows_aarch64_msvc/0.52.6/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "windows_i686_gnu",
+      "version": "0.42.2",
+      "checksum": "c61d927d8da41da96a81f029489353e68739737d3beca43145c8afec9a31a84f",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/windows_i686_gnu/0.42.2/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "windows_i686_gnu",
+      "version": "0.52.6",
+      "checksum": "8e9b5ad5ab802e97eb8e295ac6720e509ee4c243f69d781394014ebfe8bbfa0b",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/windows_i686_gnu/0.52.6/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "windows_i686_gnullvm",
+      "version": "0.52.6",
+      "checksum": "0eee52d38c090b3caa76c563b86c3a4bd71ef1a819287c19d586d7334ae8ed66",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/windows_i686_gnullvm/0.52.6/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "windows_i686_msvc",
+      "version": "0.42.2",
+      "checksum": "44d840b6ec649f480a41c8d80f9c65108b92d89345dd94027bfe06ac444d1060",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/windows_i686_msvc/0.42.2/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "windows_i686_msvc",
+      "version": "0.52.6",
+      "checksum": "240948bc05c5e7c6dabba28bf89d89ffce3e303022809e73deaefe4f6ec56c66",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/windows_i686_msvc/0.52.6/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "windows_x86_64_gnu",
+      "version": "0.42.2",
+      "checksum": "8de912b8b8feb55c064867cf047dda097f92d51efad5b491dfb98f6bbb70cb36",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/windows_x86_64_gnu/0.42.2/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "windows_x86_64_gnu",
+      "version": "0.52.6",
+      "checksum": "147a5c80aabfbf0c7d901cb5895d1de30ef2907eb21fbbab29ca94c5b08b1a78",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/windows_x86_64_gnu/0.52.6/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "windows_x86_64_gnullvm",
+      "version": "0.42.2",
+      "checksum": "26d41b46a36d453748aedef1486d5c7a85db22e56aff34643984ea85514e94a3",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/windows_x86_64_gnullvm/0.42.2/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "windows_x86_64_gnullvm",
+      "version": "0.52.6",
+      "checksum": "24d5b23dc417412679681396f2b49f3de8c1473deb516bd34410872eff51ed0d",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/windows_x86_64_gnullvm/0.52.6/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "windows_x86_64_msvc",
+      "version": "0.42.2",
+      "checksum": "9aec5da331524158c6d1a4ac0ab1541149c0b9505fde06423b02f5ef0106b9f0",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/windows_x86_64_msvc/0.42.2/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "windows_x86_64_msvc",
+      "version": "0.52.6",
+      "checksum": "589f6da84c646204747d1270a2a5661ea66ed1cced2631d546fdfb155959f9ec",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/windows_x86_64_msvc/0.52.6/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "winnow",
+      "version": "1.0.4",
+      "checksum": "23b97319f7b8343df12cc98938e5c3eb436064524c8d2b4e30a1d3a36eecdf81",
+      "license": "MIT",
+      "source": "https://crates.io/api/v1/crates/winnow/1.0.4/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "wmi",
+      "version": "0.18.4",
+      "checksum": "7c81b85c57a57500e56669586496bf2abd5cf082b9d32995251185d105208b64",
+      "license": "MIT OR Apache-2.0",
+      "source": "https://crates.io/api/v1/crates/wmi/0.18.4/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "writeable",
+      "version": "0.6.4",
+      "checksum": "3ad82d2a33cdc9674dc7465672f271e096168fcdbe0f799d9e6db8c5892679dc",
+      "license": "Unicode-3.0",
+      "source": "https://crates.io/api/v1/crates/writeable/0.6.4/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "ws_stream_wasm",
+      "version": "0.7.5",
+      "checksum": "6c173014acad22e83f16403ee360115b38846fe754e735c5d9d3803fe70c6abc",
+      "license": "Unlicense",
+      "source": "https://crates.io/api/v1/crates/ws_stream_wasm/0.7.5/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "yoke",
+      "version": "0.8.3",
+      "checksum": "709fe23a0424b6a435d82152b1bd3fdfb0833487d5fa90d05d42762a9891fef5",
+      "license": "Unicode-3.0",
+      "source": "https://crates.io/api/v1/crates/yoke/0.8.3/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "yoke-derive",
+      "version": "0.8.4",
+      "checksum": "ec8ebde2db3681e8c9980cc27822030e68752690ddfa9473e739aeb4dbde6d71",
+      "license": "Unicode-3.0",
+      "source": "https://crates.io/api/v1/crates/yoke-derive/0.8.4/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "zerofrom",
+      "version": "0.1.8",
+      "checksum": "0ec05a11813ea801ff6d75110ad09cd0824ddba17dfe17128ea0d5f68e6c5272",
+      "license": "Unicode-3.0",
+      "source": "https://crates.io/api/v1/crates/zerofrom/0.1.8/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "zerofrom-derive",
+      "version": "0.1.8",
+      "checksum": "f75b4683f6c7f45248d4d64056a24298c6281e0993356d7d1b4a1a962ef10d4a",
+      "license": "Unicode-3.0",
+      "source": "https://crates.io/api/v1/crates/zerofrom-derive/0.1.8/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "zeroize",
+      "version": "1.9.1",
+      "checksum": "e13084392c5e4bc371903e2935a5eaeed24905a7511356b883835e18a78f6879",
+      "license": "Apache-2.0 OR MIT",
+      "source": "https://crates.io/api/v1/crates/zeroize/1.9.1/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "zeroize_derive",
+      "version": "1.5.0",
+      "checksum": "3c50655cbb0fe3fc43170059e702f1ce5e19b84cec58dc87b037a09935c2f328",
+      "license": "Apache-2.0 OR MIT",
+      "source": "https://crates.io/api/v1/crates/zeroize_derive/1.5.0/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "zerotrie",
+      "version": "0.2.5",
+      "checksum": "4ea269c3bd32f0a32c321907a2ae912ba6f4649bb0fc764a15627e99a7095a3f",
+      "license": "Unicode-3.0",
+      "source": "https://crates.io/api/v1/crates/zerotrie/0.2.5/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "zerovec",
+      "version": "0.11.8",
+      "checksum": "bb0464e17806c1d976d5cba29399c7f08e516e279e2ba493f63123b5fca67dd8",
+      "license": "Unicode-3.0",
+      "source": "https://crates.io/api/v1/crates/zerovec/0.11.8/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    },
+    {
+      "name": "zerovec-derive",
+      "version": "0.11.6",
+      "checksum": "34df6fc39dbd26ddc9c10e6a2984476e13acce22e64e4487636ef494369225da",
+      "license": "Unicode-3.0",
+      "source": "https://crates.io/api/v1/crates/zerovec-derive/0.11.6/download",
+      "verification": "Downloaded registry archive SHA256 matches Cargo.lock; license read from published Cargo manifest."
+    }
+  ],
+  "retained_notices": [
+    {
+      "package": "curve25519-dalek",
+      "version": "5.0.0",
+      "path": "docs/notices/stage8/curve25519-dalek-5.0.0/LICENSE",
+      "sha256": "403c53069750101aeb9df7e15f127056ceaf7e4e92d0b919a1f4c084afd5f1d4",
+      "source": "https://docs.rs/crate/curve25519-dalek/5.0.0/source/LICENSE"
+    },
+    {
+      "package": "ed25519",
+      "version": "3.0.0",
+      "path": "docs/notices/stage8/ed25519-3.0.0/LICENSE-APACHE",
+      "sha256": "78779d420019e6b4630376af8e86b6b335ee8a2f89ede6e0411e0469a326aaa4",
+      "source": "https://docs.rs/crate/ed25519/3.0.0/source/LICENSE-APACHE"
+    },
+    {
+      "package": "ed25519",
+      "version": "3.0.0",
+      "path": "docs/notices/stage8/ed25519-3.0.0/LICENSE-MIT",
+      "sha256": "9aa4f92bfcde293ebeca9e2379fa18d1d61f000977da144c7b74c2986c9b6466",
+      "source": "https://docs.rs/crate/ed25519/3.0.0/source/LICENSE-MIT"
+    },
+    {
+      "package": "ed25519-dalek",
+      "version": "3.0.0",
+      "path": "docs/notices/stage8/ed25519-dalek-3.0.0/LICENSE",
+      "sha256": "7a313964a6e050794d2ad57f4863c11f6bbe055c0ae6ce2cf3b9fc45150bada3",
+      "source": "https://docs.rs/crate/ed25519-dalek/3.0.0/source/LICENSE"
+    },
+    {
+      "package": "iroh",
+      "version": "1.3.0",
+      "path": "docs/notices/stage8/iroh-1.3.0/LICENSE-BSD3",
+      "sha256": "7c6c032bf8c84fb4cd99784965a39be9e836fb7f244b3cf40c42faf4b211c10a",
+      "source": "https://docs.rs/crate/iroh/1.3.0/source/LICENSE-BSD3"
+    },
+    {
+      "package": "noq",
+      "version": "1.3.0",
+      "path": "docs/notices/stage8/noq-1.3.0/LICENSE-APACHE",
+      "sha256": "a237a9d796dd30eebc8def7ee282c691be4c884454444510d702644f20669c15",
+      "source": "https://docs.rs/crate/noq/1.3.0/source/LICENSE-APACHE"
+    },
+    {
+      "package": "noq",
+      "version": "1.3.0",
+      "path": "docs/notices/stage8/noq-1.3.0/LICENSE-MIT",
+      "sha256": "9e654cd17a17880f43a84c9c024f9ca7a320ed906d521072c15aa2e8daff8df0",
+      "source": "https://docs.rs/crate/noq/1.3.0/source/LICENSE-MIT"
+    },
+    {
+      "package": "noq-proto",
+      "version": "1.3.0",
+      "path": "docs/notices/stage8/noq-proto-1.3.0/LICENSE-APACHE",
+      "sha256": "a237a9d796dd30eebc8def7ee282c691be4c884454444510d702644f20669c15",
+      "source": "https://docs.rs/crate/noq-proto/1.3.0/source/LICENSE-APACHE"
+    },
+    {
+      "package": "noq-proto",
+      "version": "1.3.0",
+      "path": "docs/notices/stage8/noq-proto-1.3.0/LICENSE-MIT",
+      "sha256": "9e654cd17a17880f43a84c9c024f9ca7a320ed906d521072c15aa2e8daff8df0",
+      "source": "https://docs.rs/crate/noq-proto/1.3.0/source/LICENSE-MIT"
+    },
+    {
+      "package": "ring",
+      "version": "0.17.14",
+      "path": "docs/notices/stage8/ring-0.17.14/LICENSE",
+      "sha256": "b3d734001a94efff3579978d953391aa7115f877657d25eb54037a43875d078a",
+      "source": "https://docs.rs/crate/ring/0.17.14/source/LICENSE"
+    },
+    {
+      "package": "ring",
+      "version": "0.17.14",
+      "path": "docs/notices/stage8/ring-0.17.14/LICENSE-BoringSSL",
+      "sha256": "005fc765ddc5115da796cca915baa9557abae13ff35e0a47c47affc56f6c414d",
+      "source": "https://docs.rs/crate/ring/0.17.14/source/LICENSE-BoringSSL"
+    },
+    {
+      "package": "ring",
+      "version": "0.17.14",
+      "path": "docs/notices/stage8/ring-0.17.14/LICENSE-other-bits",
+      "sha256": "f025ccfb7dfb6bdfedc75ca0f67acc69e6fb4998143d834f7c2f38a29989680f",
+      "source": "https://docs.rs/crate/ring/0.17.14/source/LICENSE-other-bits"
+    },
+    {
+      "package": "rustls",
+      "version": "0.23.45",
+      "path": "docs/notices/stage8/rustls-0.23.45/LICENSE-APACHE",
+      "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+      "source": "https://docs.rs/crate/rustls/0.23.45/source/LICENSE-APACHE"
+    },
+    {
+      "package": "rustls",
+      "version": "0.23.45",
+      "path": "docs/notices/stage8/rustls-0.23.45/LICENSE-ISC",
+      "sha256": "7cfafc877eccc46c0e346ccbaa5c51bb6b894d2b818e617d970211e232785ad4",
+      "source": "https://docs.rs/crate/rustls/0.23.45/source/LICENSE-ISC"
+    },
+    {
+      "package": "rustls",
+      "version": "0.23.45",
+      "path": "docs/notices/stage8/rustls-0.23.45/LICENSE-MIT",
+      "sha256": "709e3175b4212f7b13aa93971c9f62ff8c69ec45ad8c6532a7e0c41d7a7d6f8c",
+      "source": "https://docs.rs/crate/rustls/0.23.45/source/LICENSE-MIT"
+    },
+    {
+      "package": "iroh",
+      "version": "1.3.0",
+      "path": "docs/notices/stage8/iroh-1.3.0/LICENSE-MIT",
+      "sha256": "f169adb8124d3b005416d8485d00777c9a7bdd9099982c52a4493f9732e6d050",
+      "source": "https://raw.githubusercontent.com/n0-computer/iroh/0072d7d84b233f9e7185eb676f049beaf557ac03/LICENSE-MIT"
+    },
+    {
+      "package": "iroh",
+      "version": "1.3.0",
+      "path": "docs/notices/stage8/iroh-1.3.0/LICENSE-APACHE",
+      "sha256": "903131e2786f073a942fbf8fae122d9e576e4dad758c6da7f9f2ba58fd8611ab",
+      "source": "https://raw.githubusercontent.com/n0-computer/iroh/0072d7d84b233f9e7185eb676f049beaf557ac03/LICENSE-APACHE"
+    }
+  ],
+  "iroh_root_notice_source": "The published iroh crate includes LICENSE-BSD3 but omits workspace MIT/Apache files; copied those from its .cargo_vcs_info.json immutable upstream commit."
+}

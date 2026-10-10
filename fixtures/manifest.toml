@@ -212,3 +212,43 @@ notice_paths = ["LICENSE-MIT", "LICENSE-APACHE"]
 sha256 = "a011edcb7998295f1c665534fe38c71799414e9a0294e0f770712db7041f2498"
 construction = "Original bounded sidecar and two loopback fixture servers, using separately attributed Playwright/Chromium runtimes."
 expected = "Pins runtime versions, round-trips declared storage, blocks owned negative network probes and labels checkout preview as Model."
+
+[[fixtures]]
+id = "protocol-v1-golden"
+path = "fixtures/original/protocol/peer-v1.txt"
+origin = "original"
+license = "MIT OR Apache-2.0"
+notice_paths = ["LICENSE-MIT", "LICENSE-APACHE"]
+sha256 = "2431f5f2af1e2b9e67f820e76cdf31485694dacf9512de0ede47d0fd143149b3"
+construction = "Original canonical protocol and state bytes authored for Attow Network; no third-party fixture copied."
+expected = "Canonical Hello and error frame bytes remain stable."
+
+[[fixtures]]
+id = "protocol-fuzz-error"
+path = "fuzz/corpus/frame/error-v1"
+origin = "original"
+license = "MIT OR Apache-2.0"
+notice_paths = ["LICENSE-MIT", "LICENSE-APACHE"]
+sha256 = "29899bfa44402ee2a6113c26cc04abd1ce970632d13ddf1b8c07fd5d58aa39c2"
+construction = "Original canonical protocol and state bytes authored for Attow Network; no third-party fixture copied."
+expected = "A well-formed bounded protocol error seeds frame parsing."
+
+[[fixtures]]
+id = "protocol-fuzz-oversized"
+path = "fuzz/corpus/frame/oversized-header"
+origin = "original"
+license = "MIT OR Apache-2.0"
+notice_paths = ["LICENSE-MIT", "LICENSE-APACHE"]
+sha256 = "fb104f00edd6a63e5cfd2ccd3992b67882a831ccca3435f177f8d8252cfe0ba2"
+construction = "Original canonical protocol and state bytes authored for Attow Network; no third-party fixture copied."
+expected = "An oversized declared frame is rejected before allocation."
+
+[[fixtures]]
+id = "worldline-import-fuzz-empty"
+path = "fuzz/corpus/worldline_import/state-empty"
+origin = "original"
+license = "MIT OR Apache-2.0"
+notice_paths = ["LICENSE-MIT", "LICENSE-APACHE"]
+sha256 = "496eb711f5fde93f384cb00b4a6c9d8fe87f5ce0412e9764186661b03d8e837f"
+construction = "Original canonical protocol and state bytes authored for Attow Network; no third-party fixture copied."
+expected = "An original canonical empty state seeds bounded data-only worldline admission."

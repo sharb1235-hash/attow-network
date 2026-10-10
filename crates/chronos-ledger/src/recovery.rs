@@ -23,7 +23,7 @@ pub(crate) fn open(
             append(tx, &mut state, command)?;
         }
         let state = schema::load(tx.sql())?;
-        if state.location != location {
+        if state.location != location || state.writer.is_some() {
             return Err(LedgerError::ActivationRequired);
         }
         Ok::<_, LedgerError>(())
@@ -35,12 +35,21 @@ pub(crate) fn open(
         epoch: state.epoch,
         hook,
         read_only: false,
+        fence: None,
     };
     authority.rebuild_and_verify()?;
-    authority
-        .store
-        .transaction_with(|tx| {
+    authority.recover_dispatching()?;
+    Ok(authority)
+}
+
+impl Authority {
+    pub(crate) fn recover_dispatching(&mut self) -> Result<(), LedgerError> {
+        self.require_writable()?;
+        let binding = self.write_binding();
+        let hook = self.hook;
+        let changed = self.store.transaction_with(|tx| {
             let mut state = schema::load(tx.sql())?;
+            federation::check_binding(&state, binding)?;
             let pending: Vec<_> = state
                 .intents
                 .iter()
@@ -57,11 +66,13 @@ pub(crate) fn open(
                 hook(TransitionBoundary::BeforeRecoveryCommit);
             }
             Ok::<_, LedgerError>(true)
-        })
-        .map(|changed| {
-            if changed && let Some(hook) = hook {
+        })?;
+        if changed {
+            self.finish_write()?;
+            if let Some(hook) = hook {
                 hook(TransitionBoundary::AfterRecoveryCommit);
             }
-        })?;
-    Ok(authority)
+        }
+        Ok(())
+    }
 }

@@ -10,5 +10,16 @@ description = "Attow Network transport module"
 [features]
 default = []
 
+[dependencies]
+chronos-codec.workspace = true
+chronos-protocol.workspace = true
+chronos-store.workspace = true
+iroh.workspace = true
+tokio.workspace = true
+thiserror.workspace = true
+
+[dev-dependencies]
+tempfile.workspace = true
+
 [lints]
 workspace = true
