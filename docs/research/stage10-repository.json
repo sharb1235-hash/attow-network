@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "checked_at_utc": "2026-10-16T20:36:46.4887622Z",
+  "repository": "sharb1235-hash/attow-network",
+  "url": "https://github.com/sharb1235-hash/attow-network",
+  "visibility": "PUBLIC",
+  "authorization": "User explicitly approved creating this public destination and committing/pushing the project",
+  "private_vulnerability_reporting": {
+    "delivery_tested": false,
+    "enabled": true,
+    "confirmation": "GitHub REST API GET private-vulnerability-reporting"
+  },
+  "source_push": "pending final local gates",
+  "signing_configured": false,
+  "registry_publication": false,
+  "github_release_publication": false
+}

@@ -18,7 +18,7 @@ All 42 manifest-listed input files passed SHA-256 verification before copying.
 | 7 | Adapters and effect gateway | Complete |
 | 8 | Peer federation | Complete; native Windows gates passed |
 | 9 | CLI and owned demonstration | Complete; native Windows gates passed |
-| 10 | Release candidate and signing | Pending |
+| 10 | Release candidate and signing | Implemented; final candidate gates in progress |
 
 ## Execution evidence
 
@@ -657,3 +657,109 @@ Next: Stage 10 native Windows release candidate, safe bounded archives, resolved
 SBOM/notices, actual archive installation, recorded terminal demonstration and
 external-trust signature verification. No maintainer signing credentials are
 configured; the permitted unsigned outcome is `candidate-complete; signing-pending`.
+
+### Stage 10 — candidate tooling (final gates in progress)
+
+Implemented versioned strict release manifests, streamed SHA256, bounded regular-file
+tar production/validation, committed-blob source archives, fresh extracted release
+installation, resolved dependency inventory/notices, source-bound gate reports,
+real terminal recording/local playback, and detached signatures with external trust.
+The CLI now permits inspecting Prepared branches before promotion and reports its
+actual canonical execution-profile identity. No candidate is release-ready yet.
+
+New root producer/manifest/archive tests first failed against incomplete behavior,
+then passed, including traversal/case/link/size rejection, committed bytes versus
+working-copy transformations, credential/cache exclusion and source/lock binding.
+Verifier and recorder regressions likewise demonstrated behavioral RED before
+implementation. The first integrated `cargo +1.95.0 test -p xtask --locked -j 2`
+passed 46 tests with two explicit external-tool gates excluded from the default
+suite. Evidence: `target/stage10-xtask-tests.log`.
+
+The independent external-tool gates actually executed:
+
+- `cargo +1.95.0 test -p xtask release::inventory::tests::real_locked_inventory
+  --locked -j 2 -- --ignored --nocapture` passed: 469 resolved source packages,
+  356 target components and 825 generated files. Cached registry archives were
+  checked against Cargo.lock and retained notice bytes against archive members.
+- `cargo +1.95.0 test -p xtask --lib
+  release::sign::tests::pinned_cosign_authenticates_real_signature_and_rejects_mutations
+  --locked -j 2 -- --ignored --exact` passed one test. The verified Cosign 3.1.3
+  binary accepted a genuine isolated test signature and rejected altered payload,
+  altered signature and the wrong public key. Temporary test keys were never
+  maintainer credentials; no transparency upload or candidate signing occurred.
+  Evidence: `target/stage10-cosign-test.log`.
+
+Focused CLI preparation/profile tests and browser Clippy passed. Review prompted
+additional Prepared-identity and coherently modified recording-evidence regressions;
+those fixes and final whole-workspace gates remain in progress at this checkpoint.
+Initial Clippy findings and Windows executable-link contention are being repaired;
+failed or blocked checks are not counted as passes.
+
+At the initial tooling checkpoint, the lockfile change only activated already-locked
+serde, SHA2 0.10.9 and thiserror for xtask. The subsequent October 16 security
+refresh below supersedes that dependency-version checkpoint. CI bounds Cargo to two jobs and disables
+debug symbols/incremental storage on hosted runners; local evidence still uses the
+recorded local profiles. Build storage is preserved using lossless NTFS compression
+with sampled hashes unchanged. No build cache or source was deleted.
+
+The final producer requires a clean committed revision and a matching successful
+12-check report. It includes compiler/lock/runtime-profile identities, source and
+platform archives, complete notices/inventories, actual install/recording evidence,
+checksums and provenance. Its integrity verifier never executes imported artifacts.
+Authentic signing is a separate required readiness gate; missing real maintainer
+configuration must leave `candidate-complete; signing-pending` only after every
+other candidate gate passes. Registry publication remains disabled.
+
+### Stage 10 — October 16 regression and security refresh
+
+Prepared-branch verification now binds request, decision and provider operation
+identities to the recorded run before accepting authoritative absence. Its new
+substitution regression failed before the fix; all five focused CLI tests then
+passed with `cargo +1.95.0 test -p attow-cli --test commands --locked -j 2`
+(`target/stage10-prepared-green.log`).
+
+Candidate verification now counts directories against traversal budgets, binds
+terminal timestamps to their commands, checks recorded runs against completed
+command envelopes, and requires subsequent matching offline replay and verify
+evidence for each completed run. Coherently rehashed mutations failed the old
+implementation first (`target/stage10-verifier-bindings-red.log`). After repair,
+`cargo +1.95.0 test -p xtask --locked -j 2` passed 50 tests, with two separately
+executed external-tool tests excluded from the default suite
+(`target/stage10-xtask-final.log`). The recorder shares the verifier's frame bound.
+Platform archives now include authored documentation and the complete inventory
+and notice output. `cargo +1.95.0 fmt --all --check` passed.
+
+Refreshing RustSec with the pinned cargo-deny tool exposed newly published
+Wasmtime and rustls advisories; the native advisory gate correctly failed.
+The reviewed patch targets are Wasmtime 48.0.6 (including matching compiler
+components) and rustls 0.23.46. Cargo.toml, the canonical sandbox profile,
+dependency policy and attribution record this security exception. Advisory IDs
+and primary sources are retained in `docs/research/stage10-security-refresh.json`.
+No advisory ignore was added. Registry timeouts interrupted the first update
+attempts; dependency resolution and final gates remain pending at this checkpoint.
+
+The update subsequently completed: `cargo +1.95.0 update -p wasmtime --precise
+48.0.6`, `cargo +1.95.0 update -p rustls --precise 0.23.46`, and `cargo +1.95.0
+fetch --locked` passed with a longer HTTP timeout and HTTP multiplexing disabled.
+`cargo +1.95.0 generate-lockfile --locked --offline` passed with 456 external
+packages. The diff changes only the 27 matching Wasmtime/Cranelift packages and
+rustls. Notice recovery uses the published package VCS identity
+`72bc45bd197c46718df0c02b8d4cbc1cb610ab2d`; other notice records and historical
+retained bytes remain intact. The pinned cargo-deny native Windows advisory check
+then passed (`target/stage10-security-advisories-green.log`).
+
+Repository validation identified preserved upstream Cargo manifests being treated
+as project packages. A miniature-repository regression demonstrated the failure
+(`target/stage10-retained-notices-red.log`). The checker now validates indexed
+notice paths, sizes and hashes and treats only those exact copies as upstream data;
+unlisted authored documents still receive ordinary checks. All 51 xtask tests
+passed, with two external-tool tests excluded (`target/stage10-notice-checker-green.log`).
+`cargo +1.95.0 run -p xtask --locked -- verify-repository` and `cargo +1.95.0
+clippy -p xtask --all-targets --locked -j 2 -- -D warnings` passed.
+
+Following the user's explicit authorization, the public repository
+`sharb1235-hash/attow-network` was created and its visibility verified through
+GitHub's API. Private vulnerability reporting was enabled and confirmed; no test
+report was sent and no delivery or response-time claim is made. SECURITY.md,
+SUPPORT.md and the launch checklist now link the actual repository. Source push
+and candidate production still await the final checks at this source checkpoint.

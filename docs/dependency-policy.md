@@ -1,5 +1,21 @@
 # Dependency review
 
+## October 16 security refresh
+
+The refreshed native advisory gate rejected Wasmtime 48.0.5 and rustls 0.23.45.
+The candidate selects the compatible patched releases Wasmtime 48.0.6 and
+rustls 0.23.46. Wasmtime's matching internal/Cranelift packages move with its
+exact release pin. No advisory ignore is used. The runtime profile identifies
+48.0.6 explicitly, so execution and reuse cannot silently inherit the older
+engine identity. Notice provenance follows each resolved package's source commit.
+
+Sources: [Wasmtime 48.0.6 release](https://github.com/bytecodealliance/wasmtime/releases/tag/v48.0.6),
+[rustls advisory and patched range](https://rustsec.org/advisories/RUSTSEC-2026-0346.html).
+Stage 9 results describe the October 10 graph; final Stage 10 gates validate the
+updated graph separately.
+
+## Review policy
+
 Direct versions are exact, inherited from the workspace and locked. The original
 MIT OR Apache-2.0 license applies to Attow Network's own code. It does not replace
 the licenses of dependencies, browser distributions or retained research.

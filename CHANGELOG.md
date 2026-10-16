@@ -11,4 +11,4 @@
 
 Candidate readiness is determined by its actual manifest, checks and independently configured signature trust. No maintainer signing credentials or registry publication are configured. Linux qualification remains blocked by the unignored paste maintenance advisory; macOS has no executed qualification evidence.
 
-This is an experimental 0.1.0 candidate, with no stable protocol, migration or production support promise. Provider guarantees apply to the owned simulator; browser containment is an in-process fixture boundary. Exact implementation and test evidence are recorded in [progress](docs/progress.md), and pending launch conditions in the [launch checklist](docs/launch-checklist.md).
+This is an experimental 0.1.0 candidate, with no stable protocol, migration or production support promise. Provider guarantees apply to the owned simulator; browser network mediation is a fixture boundary, not an independent OS security sandbox. Exact implementation and test evidence are recorded in [progress](docs/progress.md), and pending launch conditions in the [launch checklist](docs/launch-checklist.md).

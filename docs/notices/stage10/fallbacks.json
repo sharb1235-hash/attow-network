@@ -22,17 +22,17 @@
     },
     {
       "name": "cranelift-assembler-x64",
-      "version": "0.135.5",
+      "version": "0.135.6",
       "license": "Apache-2.0 WITH LLVM-exception",
       "repository": "bytecodealliance/wasmtime",
-      "commit": "563544c6296610b1b3fbbe2e4643f9999899ec66",
+      "commit": "72bc45bd197c46718df0c02b8d4cbc1cb610ab2d",
       "basis": "Published archive .cargo_vcs_info.json identifies the immutable upstream commit; missing workspace license files recovered without modification.",
       "files": [
         {
-          "path": "bytecodealliance-wasmtime/563544c6296610b1b3fbbe2e4643f9999899ec66/LICENSE",
+          "path": "bytecodealliance-wasmtime/72bc45bd197c46718df0c02b8d4cbc1cb610ab2d/LICENSE",
           "sha256": "268872b9816f90fd8e85db5a28d33f8150ebb8dd016653fb39ef1f94f2686bc5",
           "bytes": 12243,
-          "source": "https://raw.githubusercontent.com/bytecodealliance/wasmtime/563544c6296610b1b3fbbe2e4643f9999899ec66/LICENSE",
+          "source": "https://raw.githubusercontent.com/bytecodealliance/wasmtime/72bc45bd197c46718df0c02b8d4cbc1cb610ab2d/LICENSE",
           "kind": "upstream-license"
         }
       ],
@@ -40,17 +40,17 @@
     },
     {
       "name": "cranelift-assembler-x64-meta",
-      "version": "0.135.5",
+      "version": "0.135.6",
       "license": "Apache-2.0 WITH LLVM-exception",
       "repository": "bytecodealliance/wasmtime",
-      "commit": "563544c6296610b1b3fbbe2e4643f9999899ec66",
+      "commit": "72bc45bd197c46718df0c02b8d4cbc1cb610ab2d",
       "basis": "Published archive .cargo_vcs_info.json identifies the immutable upstream commit; missing workspace license files recovered without modification.",
       "files": [
         {
-          "path": "bytecodealliance-wasmtime/563544c6296610b1b3fbbe2e4643f9999899ec66/LICENSE",
+          "path": "bytecodealliance-wasmtime/72bc45bd197c46718df0c02b8d4cbc1cb610ab2d/LICENSE",
           "sha256": "268872b9816f90fd8e85db5a28d33f8150ebb8dd016653fb39ef1f94f2686bc5",
           "bytes": 12243,
-          "source": "https://raw.githubusercontent.com/bytecodealliance/wasmtime/563544c6296610b1b3fbbe2e4643f9999899ec66/LICENSE",
+          "source": "https://raw.githubusercontent.com/bytecodealliance/wasmtime/72bc45bd197c46718df0c02b8d4cbc1cb610ab2d/LICENSE",
           "kind": "upstream-license"
         }
       ],
@@ -58,17 +58,17 @@
     },
     {
       "name": "cranelift-bitset",
-      "version": "0.135.5",
+      "version": "0.135.6",
       "license": "Apache-2.0 WITH LLVM-exception",
       "repository": "bytecodealliance/wasmtime",
-      "commit": "563544c6296610b1b3fbbe2e4643f9999899ec66",
+      "commit": "72bc45bd197c46718df0c02b8d4cbc1cb610ab2d",
       "basis": "Published archive .cargo_vcs_info.json identifies the immutable upstream commit; missing workspace license files recovered without modification.",
       "files": [
         {
-          "path": "bytecodealliance-wasmtime/563544c6296610b1b3fbbe2e4643f9999899ec66/LICENSE",
+          "path": "bytecodealliance-wasmtime/72bc45bd197c46718df0c02b8d4cbc1cb610ab2d/LICENSE",
           "sha256": "268872b9816f90fd8e85db5a28d33f8150ebb8dd016653fb39ef1f94f2686bc5",
           "bytes": 12243,
-          "source": "https://raw.githubusercontent.com/bytecodealliance/wasmtime/563544c6296610b1b3fbbe2e4643f9999899ec66/LICENSE",
+          "source": "https://raw.githubusercontent.com/bytecodealliance/wasmtime/72bc45bd197c46718df0c02b8d4cbc1cb610ab2d/LICENSE",
           "kind": "upstream-license"
         }
       ],
@@ -76,17 +76,17 @@
     },
     {
       "name": "cranelift-isle",
-      "version": "0.135.5",
+      "version": "0.135.6",
       "license": "Apache-2.0 WITH LLVM-exception",
       "repository": "bytecodealliance/wasmtime",
-      "commit": "563544c6296610b1b3fbbe2e4643f9999899ec66",
+      "commit": "72bc45bd197c46718df0c02b8d4cbc1cb610ab2d",
       "basis": "Published archive .cargo_vcs_info.json identifies the immutable upstream commit; missing workspace license files recovered without modification.",
       "files": [
         {
-          "path": "bytecodealliance-wasmtime/563544c6296610b1b3fbbe2e4643f9999899ec66/LICENSE",
+          "path": "bytecodealliance-wasmtime/72bc45bd197c46718df0c02b8d4cbc1cb610ab2d/LICENSE",
           "sha256": "268872b9816f90fd8e85db5a28d33f8150ebb8dd016653fb39ef1f94f2686bc5",
           "bytes": 12243,
-          "source": "https://raw.githubusercontent.com/bytecodealliance/wasmtime/563544c6296610b1b3fbbe2e4643f9999899ec66/LICENSE",
+          "source": "https://raw.githubusercontent.com/bytecodealliance/wasmtime/72bc45bd197c46718df0c02b8d4cbc1cb610ab2d/LICENSE",
           "kind": "upstream-license"
         }
       ],
@@ -94,17 +94,17 @@
     },
     {
       "name": "cranelift-srcgen",
-      "version": "0.135.5",
+      "version": "0.135.6",
       "license": "Apache-2.0 WITH LLVM-exception",
       "repository": "bytecodealliance/wasmtime",
-      "commit": "563544c6296610b1b3fbbe2e4643f9999899ec66",
+      "commit": "72bc45bd197c46718df0c02b8d4cbc1cb610ab2d",
       "basis": "Published archive .cargo_vcs_info.json identifies the immutable upstream commit; missing workspace license files recovered without modification.",
       "files": [
         {
-          "path": "bytecodealliance-wasmtime/563544c6296610b1b3fbbe2e4643f9999899ec66/LICENSE",
+          "path": "bytecodealliance-wasmtime/72bc45bd197c46718df0c02b8d4cbc1cb610ab2d/LICENSE",
           "sha256": "268872b9816f90fd8e85db5a28d33f8150ebb8dd016653fb39ef1f94f2686bc5",
           "bytes": 12243,
-          "source": "https://raw.githubusercontent.com/bytecodealliance/wasmtime/563544c6296610b1b3fbbe2e4643f9999899ec66/LICENSE",
+          "source": "https://raw.githubusercontent.com/bytecodealliance/wasmtime/72bc45bd197c46718df0c02b8d4cbc1cb610ab2d/LICENSE",
           "kind": "upstream-license"
         }
       ],
@@ -631,17 +631,17 @@
     },
     {
       "name": "pulley-interpreter",
-      "version": "48.0.5",
+      "version": "48.0.6",
       "license": "Apache-2.0 WITH LLVM-exception",
       "repository": "bytecodealliance/wasmtime",
-      "commit": "563544c6296610b1b3fbbe2e4643f9999899ec66",
+      "commit": "72bc45bd197c46718df0c02b8d4cbc1cb610ab2d",
       "basis": "Published archive .cargo_vcs_info.json identifies the immutable upstream commit; missing workspace license files recovered without modification.",
       "files": [
         {
-          "path": "bytecodealliance-wasmtime/563544c6296610b1b3fbbe2e4643f9999899ec66/LICENSE",
+          "path": "bytecodealliance-wasmtime/72bc45bd197c46718df0c02b8d4cbc1cb610ab2d/LICENSE",
           "sha256": "268872b9816f90fd8e85db5a28d33f8150ebb8dd016653fb39ef1f94f2686bc5",
           "bytes": 12243,
-          "source": "https://raw.githubusercontent.com/bytecodealliance/wasmtime/563544c6296610b1b3fbbe2e4643f9999899ec66/LICENSE",
+          "source": "https://raw.githubusercontent.com/bytecodealliance/wasmtime/72bc45bd197c46718df0c02b8d4cbc1cb610ab2d/LICENSE",
           "kind": "upstream-license"
         }
       ],
@@ -649,17 +649,17 @@
     },
     {
       "name": "pulley-macros",
-      "version": "48.0.5",
+      "version": "48.0.6",
       "license": "Apache-2.0 WITH LLVM-exception",
       "repository": "bytecodealliance/wasmtime",
-      "commit": "563544c6296610b1b3fbbe2e4643f9999899ec66",
+      "commit": "72bc45bd197c46718df0c02b8d4cbc1cb610ab2d",
       "basis": "Published archive .cargo_vcs_info.json identifies the immutable upstream commit; missing workspace license files recovered without modification.",
       "files": [
         {
-          "path": "bytecodealliance-wasmtime/563544c6296610b1b3fbbe2e4643f9999899ec66/LICENSE",
+          "path": "bytecodealliance-wasmtime/72bc45bd197c46718df0c02b8d4cbc1cb610ab2d/LICENSE",
           "sha256": "268872b9816f90fd8e85db5a28d33f8150ebb8dd016653fb39ef1f94f2686bc5",
           "bytes": 12243,
-          "source": "https://raw.githubusercontent.com/bytecodealliance/wasmtime/563544c6296610b1b3fbbe2e4643f9999899ec66/LICENSE",
+          "source": "https://raw.githubusercontent.com/bytecodealliance/wasmtime/72bc45bd197c46718df0c02b8d4cbc1cb610ab2d/LICENSE",
           "kind": "upstream-license"
         }
       ],
@@ -728,17 +728,17 @@
     },
     {
       "name": "wasmtime-internal-component-macro",
-      "version": "48.0.5",
+      "version": "48.0.6",
       "license": "Apache-2.0 WITH LLVM-exception",
       "repository": "bytecodealliance/wasmtime",
-      "commit": "563544c6296610b1b3fbbe2e4643f9999899ec66",
+      "commit": "72bc45bd197c46718df0c02b8d4cbc1cb610ab2d",
       "basis": "Published archive .cargo_vcs_info.json identifies the immutable upstream commit; missing workspace license files recovered without modification.",
       "files": [
         {
-          "path": "bytecodealliance-wasmtime/563544c6296610b1b3fbbe2e4643f9999899ec66/LICENSE",
+          "path": "bytecodealliance-wasmtime/72bc45bd197c46718df0c02b8d4cbc1cb610ab2d/LICENSE",
           "sha256": "268872b9816f90fd8e85db5a28d33f8150ebb8dd016653fb39ef1f94f2686bc5",
           "bytes": 12243,
-          "source": "https://raw.githubusercontent.com/bytecodealliance/wasmtime/563544c6296610b1b3fbbe2e4643f9999899ec66/LICENSE",
+          "source": "https://raw.githubusercontent.com/bytecodealliance/wasmtime/72bc45bd197c46718df0c02b8d4cbc1cb610ab2d/LICENSE",
           "kind": "upstream-license"
         }
       ],
@@ -746,17 +746,17 @@
     },
     {
       "name": "wasmtime-internal-component-util",
-      "version": "48.0.5",
+      "version": "48.0.6",
       "license": "Apache-2.0 WITH LLVM-exception",
       "repository": "bytecodealliance/wasmtime",
-      "commit": "563544c6296610b1b3fbbe2e4643f9999899ec66",
+      "commit": "72bc45bd197c46718df0c02b8d4cbc1cb610ab2d",
       "basis": "Published archive .cargo_vcs_info.json identifies the immutable upstream commit; missing workspace license files recovered without modification.",
       "files": [
         {
-          "path": "bytecodealliance-wasmtime/563544c6296610b1b3fbbe2e4643f9999899ec66/LICENSE",
+          "path": "bytecodealliance-wasmtime/72bc45bd197c46718df0c02b8d4cbc1cb610ab2d/LICENSE",
           "sha256": "268872b9816f90fd8e85db5a28d33f8150ebb8dd016653fb39ef1f94f2686bc5",
           "bytes": 12243,
-          "source": "https://raw.githubusercontent.com/bytecodealliance/wasmtime/563544c6296610b1b3fbbe2e4643f9999899ec66/LICENSE",
+          "source": "https://raw.githubusercontent.com/bytecodealliance/wasmtime/72bc45bd197c46718df0c02b8d4cbc1cb610ab2d/LICENSE",
           "kind": "upstream-license"
         }
       ],
@@ -764,17 +764,17 @@
     },
     {
       "name": "wasmtime-internal-core",
-      "version": "48.0.5",
+      "version": "48.0.6",
       "license": "Apache-2.0 WITH LLVM-exception",
       "repository": "bytecodealliance/wasmtime",
-      "commit": "563544c6296610b1b3fbbe2e4643f9999899ec66",
+      "commit": "72bc45bd197c46718df0c02b8d4cbc1cb610ab2d",
       "basis": "Published archive .cargo_vcs_info.json identifies the immutable upstream commit; missing workspace license files recovered without modification.",
       "files": [
         {
-          "path": "bytecodealliance-wasmtime/563544c6296610b1b3fbbe2e4643f9999899ec66/LICENSE",
+          "path": "bytecodealliance-wasmtime/72bc45bd197c46718df0c02b8d4cbc1cb610ab2d/LICENSE",
           "sha256": "268872b9816f90fd8e85db5a28d33f8150ebb8dd016653fb39ef1f94f2686bc5",
           "bytes": 12243,
-          "source": "https://raw.githubusercontent.com/bytecodealliance/wasmtime/563544c6296610b1b3fbbe2e4643f9999899ec66/LICENSE",
+          "source": "https://raw.githubusercontent.com/bytecodealliance/wasmtime/72bc45bd197c46718df0c02b8d4cbc1cb610ab2d/LICENSE",
           "kind": "upstream-license"
         }
       ],
@@ -782,17 +782,17 @@
     },
     {
       "name": "wasmtime-internal-jit-debug",
-      "version": "48.0.5",
+      "version": "48.0.6",
       "license": "Apache-2.0 WITH LLVM-exception",
       "repository": "bytecodealliance/wasmtime",
-      "commit": "563544c6296610b1b3fbbe2e4643f9999899ec66",
+      "commit": "72bc45bd197c46718df0c02b8d4cbc1cb610ab2d",
       "basis": "Published archive .cargo_vcs_info.json identifies the immutable upstream commit; missing workspace license files recovered without modification.",
       "files": [
         {
-          "path": "bytecodealliance-wasmtime/563544c6296610b1b3fbbe2e4643f9999899ec66/LICENSE",
+          "path": "bytecodealliance-wasmtime/72bc45bd197c46718df0c02b8d4cbc1cb610ab2d/LICENSE",
           "sha256": "268872b9816f90fd8e85db5a28d33f8150ebb8dd016653fb39ef1f94f2686bc5",
           "bytes": 12243,
-          "source": "https://raw.githubusercontent.com/bytecodealliance/wasmtime/563544c6296610b1b3fbbe2e4643f9999899ec66/LICENSE",
+          "source": "https://raw.githubusercontent.com/bytecodealliance/wasmtime/72bc45bd197c46718df0c02b8d4cbc1cb610ab2d/LICENSE",
           "kind": "upstream-license"
         }
       ],
@@ -800,17 +800,17 @@
     },
     {
       "name": "wasmtime-internal-jit-icache-coherence",
-      "version": "48.0.5",
+      "version": "48.0.6",
       "license": "Apache-2.0 WITH LLVM-exception",
       "repository": "bytecodealliance/wasmtime",
-      "commit": "563544c6296610b1b3fbbe2e4643f9999899ec66",
+      "commit": "72bc45bd197c46718df0c02b8d4cbc1cb610ab2d",
       "basis": "Published archive .cargo_vcs_info.json identifies the immutable upstream commit; missing workspace license files recovered without modification.",
       "files": [
         {
-          "path": "bytecodealliance-wasmtime/563544c6296610b1b3fbbe2e4643f9999899ec66/LICENSE",
+          "path": "bytecodealliance-wasmtime/72bc45bd197c46718df0c02b8d4cbc1cb610ab2d/LICENSE",
           "sha256": "268872b9816f90fd8e85db5a28d33f8150ebb8dd016653fb39ef1f94f2686bc5",
           "bytes": 12243,
-          "source": "https://raw.githubusercontent.com/bytecodealliance/wasmtime/563544c6296610b1b3fbbe2e4643f9999899ec66/LICENSE",
+          "source": "https://raw.githubusercontent.com/bytecodealliance/wasmtime/72bc45bd197c46718df0c02b8d4cbc1cb610ab2d/LICENSE",
           "kind": "upstream-license"
         }
       ],
@@ -818,17 +818,17 @@
     },
     {
       "name": "wasmtime-internal-versioned-export-macros",
-      "version": "48.0.5",
+      "version": "48.0.6",
       "license": "Apache-2.0 WITH LLVM-exception",
       "repository": "bytecodealliance/wasmtime",
-      "commit": "563544c6296610b1b3fbbe2e4643f9999899ec66",
+      "commit": "72bc45bd197c46718df0c02b8d4cbc1cb610ab2d",
       "basis": "Published archive .cargo_vcs_info.json identifies the immutable upstream commit; missing workspace license files recovered without modification.",
       "files": [
         {
-          "path": "bytecodealliance-wasmtime/563544c6296610b1b3fbbe2e4643f9999899ec66/LICENSE",
+          "path": "bytecodealliance-wasmtime/72bc45bd197c46718df0c02b8d4cbc1cb610ab2d/LICENSE",
           "sha256": "268872b9816f90fd8e85db5a28d33f8150ebb8dd016653fb39ef1f94f2686bc5",
           "bytes": 12243,
-          "source": "https://raw.githubusercontent.com/bytecodealliance/wasmtime/563544c6296610b1b3fbbe2e4643f9999899ec66/LICENSE",
+          "source": "https://raw.githubusercontent.com/bytecodealliance/wasmtime/72bc45bd197c46718df0c02b8d4cbc1cb610ab2d/LICENSE",
           "kind": "upstream-license"
         }
       ],
@@ -836,17 +836,17 @@
     },
     {
       "name": "wasmtime-internal-wit-bindgen",
-      "version": "48.0.5",
+      "version": "48.0.6",
       "license": "Apache-2.0 WITH LLVM-exception",
       "repository": "bytecodealliance/wasmtime",
-      "commit": "563544c6296610b1b3fbbe2e4643f9999899ec66",
+      "commit": "72bc45bd197c46718df0c02b8d4cbc1cb610ab2d",
       "basis": "Published archive .cargo_vcs_info.json identifies the immutable upstream commit; missing workspace license files recovered without modification.",
       "files": [
         {
-          "path": "bytecodealliance-wasmtime/563544c6296610b1b3fbbe2e4643f9999899ec66/LICENSE",
+          "path": "bytecodealliance-wasmtime/72bc45bd197c46718df0c02b8d4cbc1cb610ab2d/LICENSE",
           "sha256": "268872b9816f90fd8e85db5a28d33f8150ebb8dd016653fb39ef1f94f2686bc5",
           "bytes": 12243,
-          "source": "https://raw.githubusercontent.com/bytecodealliance/wasmtime/563544c6296610b1b3fbbe2e4643f9999899ec66/LICENSE",
+          "source": "https://raw.githubusercontent.com/bytecodealliance/wasmtime/72bc45bd197c46718df0c02b8d4cbc1cb610ab2d/LICENSE",
           "kind": "upstream-license"
         }
       ],

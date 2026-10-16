@@ -17,7 +17,7 @@ Changing a public budget field without recomputing a valid profile is rejected
 before execution. The profile itself is a versioned known codec `Object`, so its
 identity and graph references follow the same persistence rules as other objects.
 
-The initial runtime is Wasmtime 48.0.5 with locally compiled component binaries.
+The current runtime is Wasmtime 48.0.6 with locally compiled component binaries.
 The parser is wasmparser 0.254.2, derived from Wasmtime's resolved dependency in
 `Cargo.lock`, not the newer parser used by test WAT tooling. Features enable
 Cranelift, the synchronous component runtime and the pooling allocator. No WASI

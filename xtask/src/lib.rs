@@ -646,8 +646,12 @@ pub fn verify_repository(root: &Path) -> Result<(), Box<dyn Error>> {
     }
     let mut files = Vec::new();
     repository_files(root, root, &mut files)?;
+    let retained = retained_notice_files(root)?;
     files.sort();
     for path in files {
+        if retained.contains(&path) {
+            continue;
+        }
         if path.file_name().is_some_and(|name| name == "Cargo.toml") {
             verify_manifest(&path, &parse_manifest(&path)?, &workspace, &inherited)?;
         } else if path
@@ -658,6 +662,51 @@ pub fn verify_repository(root: &Path) -> Result<(), Box<dyn Error>> {
         }
     }
     Ok(())
+}
+
+// Indexed upstream copies are immutable attribution data, not project packages
+// or authored documentation. Validate their bytes before excluding only those
+// exact files from project-specific manifest and link policies.
+fn retained_notice_files(root: &Path) -> Result<BTreeSet<PathBuf>, Box<dyn Error>> {
+    let base = root.join("docs/notices/stage10");
+    let index = base.join("fallbacks.json");
+    let mut retained = BTreeSet::new();
+    if !index.exists() {
+        return Ok(retained);
+    }
+    release::manifest::reject_link(&index)?;
+    let value: serde_json::Value = serde_json::from_str(&read_text(&index)?)?;
+    let packages = value["packages"]
+        .as_array()
+        .ok_or_else(|| rejected(&index, "retained notice packages"))?;
+    if value["schema"] != 1 || packages.len() > 2048 {
+        return Err(rejected(&index, "retained notice schema or package bound"));
+    }
+    let mut count = 0_usize;
+    for package in packages {
+        let files = package["files"]
+            .as_array()
+            .ok_or_else(|| rejected(&index, "retained notice files"))?;
+        for file in files {
+            count += 1;
+            if count > 32768 {
+                return Err(rejected(&index, "retained notice count bound"));
+            }
+            let name = file["path"]
+                .as_str()
+                .ok_or_else(|| rejected(&index, "retained notice path"))?;
+            let path = release::manifest::artifact_path(&base, name)?;
+            if !path.is_file() || fs::metadata(&path)?.len() > 32 * 1024 * 1024 {
+                return Err(rejected(&path, "retained notice file bound"));
+            }
+            let (bytes, sha256) = release::manifest::hash_file(&path)?;
+            if file["bytes"] != bytes || file["sha256"] != sha256 {
+                return Err(rejected(&path, "retained notice digest mismatch"));
+            }
+            retained.insert(path);
+        }
+    }
+    Ok(retained)
 }
 
 #[cfg(test)]
@@ -802,6 +851,27 @@ mod tests {
             fixture.failure("not-retained.md")?;
         }
         Ok(())
+    }
+
+    #[test]
+    fn retained_upstream_notices_are_data_and_must_match_their_index() -> Result<(), Box<dyn Error>>
+    {
+        let fixture = Fixture::new()?;
+        let base = "docs/notices/stage10";
+        let name = "declarations/upstream-1.0.0/Cargo.toml";
+        fixture.write(
+            &format!("{base}/{name}"),
+            "[package]\nname = \"upstream\"\n",
+        )?;
+        let (bytes, sha256) =
+            crate::release::manifest::hash_file(&fixture.0.join(base).join(name))?;
+        fixture.write(
+            &format!("{base}/fallbacks.json"),
+            &serde_json::json!({"schema":1,"packages":[{"files":[{"path":name,"bytes":bytes,"sha256":sha256}]}]}).to_string(),
+        )?;
+        verify_repository(&fixture.0)?;
+        fixture.write(&format!("{base}/{name}"), "altered upstream data")?;
+        fixture.failure("retained notice digest")
     }
 
     #[test]

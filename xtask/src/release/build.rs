@@ -288,11 +288,14 @@ pub fn build(root: &Path, target: &str, output: &Path) -> Result<()> {
     let mut platform_files = vec![("bin/attow.exe".into(), target_dir.join("release/attow.exe"))];
     for name in [
         "README.md",
+        "SECURITY.md",
+        "SUPPORT.md",
+        "CODE_OF_CONDUCT.md",
+        "CONTRIBUTING.md",
+        "CHANGELOG.md",
         "LICENSE-MIT",
         "LICENSE-APACHE",
         "THIRD_PARTY_NOTICES.md",
-        "docs/getting-started.md",
-        "docs/release-runbook.md",
         "release-toolchain.json",
     ] {
         platform_files.push((name.into(), root.join(name)));
@@ -305,8 +308,7 @@ pub fn build(root: &Path, target: &str, output: &Path) -> Result<()> {
             "-z",
             "demos/workflow-studio/browser",
             "demos/workflow-studio/app",
-            "docs/notices/stage7",
-            "docs/notices/stage8",
+            "docs",
         ],
         30,
     )?;
@@ -316,15 +318,13 @@ pub fn build(root: &Path, target: &str, output: &Path) -> Result<()> {
         .filter(|p| !p.is_empty())
     {
         let name = std::str::from_utf8(name).map_err(|_| ReleaseError::Invalid("tracked path"))?;
-        if archive::allowed_source(name) {
+        if archive::allowed_source(name) && !name.starts_with("docs/chronos/") {
             platform_files.push((name.into(), root.join(name)));
         }
     }
     let inventory = super::inventory::generate(root, target, &output)?;
     for path in &inventory.artifacts {
-        if path.starts_with("notices/") {
-            platform_files.push((format!("third-party/{path}"), artifact_path(&output, path)?));
-        }
+        platform_files.push((format!("third-party/{path}"), artifact_path(&output, path)?));
     }
     let archive_path = format!("attow-network-0.1.0-{target}.tar");
     archive::write_files(&output.join(&archive_path), &platform_files)?;

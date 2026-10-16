@@ -25,7 +25,7 @@ and enabled feature graph before distribution.
 | proptest (tests) | 1.11.0 | MIT OR Apache-2.0 |
 | rpds | 1.2.1 | MIT |
 | getrandom | 0.4.3 | MIT OR Apache-2.0 |
-| Wasmtime | 48.0.5 | Apache-2.0 WITH LLVM-exception |
+| Wasmtime | 48.0.6 | Apache-2.0 WITH LLVM-exception |
 | wasmparser | 0.254.2 | Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT |
 | wat (embedded demo parser and tests) | 1.261.0 | Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT |
 | anyhow | 1.0.104 | MIT OR Apache-2.0 |

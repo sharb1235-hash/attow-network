@@ -340,6 +340,18 @@ fn verify_native(authority: &Authority, bundle: &Bundle) -> Result<serde_json::V
         validate_id(value.as_deref().ok_or_else(mismatch)?)
     };
     if record.phase == "prepared" {
+        if required(&record.request_id)? != demo::derive(&record.run_id, "request")
+            || required(&record.decision)? != demo::derive(&record.run_id, "decision")
+            || match record.scenario.as_str() {
+                "checkout" => {
+                    required(&record.operation)? != demo::derive(&record.run_id, "operation")
+                }
+                "data-change" => record.operation.is_some(),
+                _ => true,
+            }
+        {
+            return Err(mismatch());
+        }
         // promotion_record verifies the authoritative event chain and tables.
         // A portable preview alone cannot establish absence of an effect.
         if authority

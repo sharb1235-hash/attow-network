@@ -287,16 +287,34 @@ fn json<T: DeserializeOwned>(dir: &Path, path: &str) -> Result<T> {
 fn inventory(root: &Path, dir: &Path, files: &mut BTreeSet<String>, depth: usize) -> Result<()> {
     inventory_with_limit(root, dir, files, depth, 16384)
 }
-fn inventory_with_limit(root: &Path, dir: &Path, files: &mut BTreeSet<String>, depth: usize, _max_entries: usize) -> Result<()> {
+fn inventory_with_limit(
+    root: &Path,
+    dir: &Path,
+    files: &mut BTreeSet<String>,
+    depth: usize,
+    mut max_entries: usize,
+) -> Result<()> {
+    inventory_budget(root, dir, files, depth, &mut max_entries)
+}
+fn inventory_budget(
+    root: &Path,
+    dir: &Path,
+    files: &mut BTreeSet<String>,
+    depth: usize,
+    remaining: &mut usize,
+) -> Result<()> {
     if depth > 32 {
         return Err(invalid("candidate directory depth"));
     }
     manifest::reject_link(dir)?;
     for entry in fs::read_dir(dir)? {
+        *remaining = remaining
+            .checked_sub(1)
+            .ok_or(invalid("candidate directory entry limit"))?;
         let path = entry?.path();
         manifest::reject_link(&path)?;
         if fs::metadata(&path)?.is_dir() {
-            inventory(root, &path, files, depth + 1)?;
+            inventory_budget(root, &path, files, depth + 1, remaining)?;
         } else if fs::metadata(&path)?.is_file() {
             let name = path
                 .strip_prefix(root)
@@ -513,6 +531,10 @@ fn verify_demo(
         }
         let index =
             usize::try_from(number(&frame["command"])?).map_err(|_| invalid("frame command"))?;
+        let command = commands.get(index).ok_or(invalid("frame command index"))?;
+        if elapsed < number(&command["started_ms"])? || elapsed > number(&command["ended_ms"])? {
+            return Err(invalid("frame is outside its command interval"));
+        }
         let output = outputs
             .get_mut(index)
             .ok_or(invalid("frame command index"))?;
@@ -615,6 +637,34 @@ fn verify_demo(
         return Err(invalid("demo scenario evidence"));
     }
     for (run, label) in runs.iter().zip(["checkout", "data_change"]) {
+        let completed = commands
+            .iter()
+            .enumerate()
+            .filter(|(_, command)| {
+                command["envelope"]["command"] == "run" && command["envelope"]["data"] == *run
+            })
+            .map(|(index, _)| index)
+            .collect::<Vec<_>>();
+        if completed.len() != 1 {
+            return Err(invalid("run summary differs from completed command output"));
+        }
+        for name in ["replay", "verify"] {
+            if !commands.iter().enumerate().any(|(index, command)| {
+                index > completed[0]
+                    && command["argv"][0] == name
+                    && command["argv"][1] == run["run_id"]
+                    && command["envelope"]["data"]["run_id"] == run["run_id"]
+                    && command["exit_code"] == 0
+                    && (name != "replay"
+                        || command["argv"]
+                            .as_array()
+                            .is_some_and(|args| args.iter().any(|arg| arg == "--offline")))
+            }) {
+                return Err(invalid(
+                    "completed run lacks bound offline replay and verification",
+                ));
+            }
+        }
         let summary = &record[label];
         if run["phase"] != "completed"
             || run["run_id"] != summary["run_id"]
@@ -854,7 +904,7 @@ mod tests {
         unknown_envelope["status"] = "unknown".into();
         let mut commands = Vec::new();
         let mut frames = Vec::new();
-        for (index, (name, code, value)) in [
+        for (index, (name, code, mut value)) in [
             ("init", 0, envelope("init", serde_json::json!({}))),
             ("run", 0, envelope("run", prepared)),
             ("branch", 0, envelope("branch", serde_json::json!({}))),
@@ -898,16 +948,25 @@ mod tests {
         .into_iter()
         .enumerate()
         {
+            if matches!(name, "replay" | "verify") {
+                value["data"]["run_id"] = if index < 8 {
+                    "d".repeat(64).into()
+                } else {
+                    run_id.clone().into()
+                };
+            }
             let stdout = serde_json::to_string(&value)?;
-            let argv=match index {
-                1=>serde_json::json!(["run","checkout","--pause-after-prepared","--json"]),
-                4|5=>serde_json::json!(["run","checkout","--resume","d".repeat(64),"--json"]),
-                6=>serde_json::json!(["replay","d".repeat(64),"--offline","--json"]),
-                7=>serde_json::json!(["verify","d".repeat(64),"--json"]),
-                8=>serde_json::json!(["run","data-change","--json"]),
-                9=>serde_json::json!(["replay",run_id,"--offline","--json"]),
-                10=>serde_json::json!(["verify",run_id,"--json"]),
-                _=>serde_json::json!([name]),
+            let argv = match index {
+                1 => serde_json::json!(["run", "checkout", "--pause-after-prepared", "--json"]),
+                4 | 5 => {
+                    serde_json::json!(["run", "checkout", "--resume", "d".repeat(64), "--json"])
+                }
+                6 => serde_json::json!(["replay", "d".repeat(64), "--offline", "--json"]),
+                7 => serde_json::json!(["verify", "d".repeat(64), "--json"]),
+                8 => serde_json::json!(["run", "data-change", "--json"]),
+                9 => serde_json::json!(["replay", run_id, "--offline", "--json"]),
+                10 => serde_json::json!(["verify", run_id, "--json"]),
+                _ => serde_json::json!([name]),
             };
             commands.push(serde_json::json!({"index":index,"argv":argv,"started_ms":index*10,"ended_ms":index*10+5,"exit_code":code,"stdout":stdout,"stderr":"","envelope":value}));
             frames.push(serde_json::json!({"elapsed_ms":index*10+5,"stream":"stdout","command":index,"text":stdout}));
@@ -1018,38 +1077,79 @@ mod tests {
         assert!(verify_candidate(&candidate.dir, VerificationMode::RequireSignatures).is_err());
         Ok(())
     }
-    fn mutate_demo(kind:usize)->Result<Candidate> {
-        let mut candidate=candidate()?;
-        verify_candidate(&candidate.dir,VerificationMode::IntegrityOnly)?;
-        let mut events:Value=json(&candidate.dir,"demo/events.json")?;
-        let mut recording:Value=json(&candidate.dir,"demo/recording.json")?;
+    fn mutate_demo(kind: usize) -> Result<Candidate> {
+        let mut candidate = candidate()?;
+        verify_candidate(&candidate.dir, VerificationMode::IntegrityOnly)?;
+        let mut events: Value = json(&candidate.dir, "demo/events.json")?;
+        let mut recording: Value = json(&candidate.dir, "demo/recording.json")?;
         match kind {
-            0=>{events["runs"][0]["summary"]["reused"]=9.into();recording["checkout"]["reused"]=9.into();}
-            1=>{events["commands"][6]["argv"]=serde_json::json!(["doctor","--json"]);events["commands"][6]["envelope"]["command"]="doctor".into();let stdout=serde_json::to_string(&events["commands"][6]["envelope"])?;events["commands"][6]["stdout"]=stdout.clone().into();events["frames"][6]["text"]=stdout.into();}
-            _=>events["commands"][0]["ended_ms"]=4.into(),
+            0 => {
+                events["runs"][0]["summary"]["reused"] = 9.into();
+                recording["checkout"]["reused"] = 9.into();
+            }
+            1 => {
+                events["commands"][6]["argv"] = serde_json::json!(["doctor", "--json"]);
+                events["commands"][6]["envelope"]["command"] = "doctor".into();
+                let stdout = serde_json::to_string(&events["commands"][6]["envelope"])?;
+                events["commands"][6]["stdout"] = stdout.clone().into();
+                events["frames"][6]["text"] = stdout.into();
+            }
+            _ => events["commands"][0]["ended_ms"] = 4.into(),
         }
-        put_json(&candidate.dir,"demo/events.json",&events)?;
-        let mut cast="{\"version\":2}\n".to_owned();for frame in events["frames"].as_array().expect("fixture frames") {cast.push_str(&serde_json::to_string(&serde_json::json!([frame["elapsed_ms"].as_u64().expect("fixture time") as f64/1000.0,"o",frame["text"]]))?);cast.push('\n');}put(&candidate.dir,"demo/terminal.cast",cast)?;
-        for file in recording["files"].as_array_mut().expect("fixture files") {let(bytes,sha256)=manifest::hash_file(&candidate.dir.join("demo").join(file["path"].as_str().expect("fixture path")))?;file["bytes"]=bytes.into();file["sha256"]=sha256.into();}
-        put_json(&candidate.dir,"demo/recording.json",&recording)?;candidate.refresh()?;Ok(candidate)
+        put_json(&candidate.dir, "demo/events.json", &events)?;
+        let mut cast = "{\"version\":2}\n".to_owned();
+        for frame in events["frames"].as_array().expect("fixture frames") {
+            cast.push_str(&serde_json::to_string(&serde_json::json!([
+                frame["elapsed_ms"].as_u64().expect("fixture time") as f64 / 1000.0,
+                "o",
+                frame["text"]
+            ]))?);
+            cast.push('\n');
+        }
+        put(&candidate.dir, "demo/terminal.cast", cast)?;
+        for file in recording["files"].as_array_mut().expect("fixture files") {
+            let (bytes, sha256) = manifest::hash_file(
+                &candidate
+                    .dir
+                    .join("demo")
+                    .join(file["path"].as_str().expect("fixture path")),
+            )?;
+            file["bytes"] = bytes.into();
+            file["sha256"] = sha256.into();
+        }
+        put_json(&candidate.dir, "demo/recording.json", &recording)?;
+        candidate.refresh()?;
+        Ok(candidate)
     }
     #[test]
-    fn rehashed_demo_summary_must_equal_completed_command_output()->Result<()> {
-        let candidate=mutate_demo(0)?;assert!(verify_candidate(&candidate.dir,VerificationMode::IntegrityOnly).is_err());Ok(())
+    fn rehashed_demo_summary_must_equal_completed_command_output() -> Result<()> {
+        let candidate = mutate_demo(0)?;
+        assert!(verify_candidate(&candidate.dir, VerificationMode::IntegrityOnly).is_err());
+        Ok(())
     }
     #[test]
-    fn rehashed_demo_cannot_omit_the_actual_offline_replay()->Result<()> {
-        let candidate=mutate_demo(1)?;assert!(verify_candidate(&candidate.dir,VerificationMode::IntegrityOnly).is_err());Ok(())
+    fn rehashed_demo_cannot_omit_the_actual_offline_replay() -> Result<()> {
+        let candidate = mutate_demo(1)?;
+        assert!(verify_candidate(&candidate.dir, VerificationMode::IntegrityOnly).is_err());
+        Ok(())
     }
     #[test]
-    fn recorded_frame_must_belong_to_its_actual_command_interval()->Result<()> {
-        let candidate=mutate_demo(2)?;assert!(verify_candidate(&candidate.dir,VerificationMode::IntegrityOnly).is_err());Ok(())
+    fn recorded_frame_must_belong_to_its_actual_command_interval() -> Result<()> {
+        let candidate = mutate_demo(2)?;
+        assert!(verify_candidate(&candidate.dir, VerificationMode::IntegrityOnly).is_err());
+        Ok(())
     }
     #[test]
-    fn empty_directories_consume_the_bounded_traversal_budget()->Result<()> {
-        let dir=tempfile::tempdir()?;for i in 0..5 {fs::create_dir(dir.path().join(format!("empty-{i}")))?;}
-        let mut files=BTreeSet::new();assert!(inventory_with_limit(dir.path(),dir.path(),&mut files,0,4).is_err());
-        inventory_with_limit(dir.path(),dir.path(),&mut files,0,5)?;assert!(files.is_empty());Ok(())
+    fn empty_directories_consume_the_bounded_traversal_budget() -> Result<()> {
+        let dir = tempfile::tempdir()?;
+        for i in 0..5 {
+            fs::create_dir(dir.path().join(format!("empty-{i}")))?;
+        }
+        let mut files = BTreeSet::new();
+        assert!(inventory_with_limit(dir.path(), dir.path(), &mut files, 0, 4).is_err());
+        inventory_with_limit(dir.path(), dir.path(), &mut files, 0, 5)?;
+        assert!(files.is_empty());
+        Ok(())
     }
     #[test]
     fn candidate_rejects_mutated_payload_checksum_install_source_and_demo() -> Result<()> {

@@ -16,8 +16,8 @@ gate to pass. `release-ready` additionally requires authentic configured signing
 | Independent integrity | Manifest/artifact/checksum consistency and data-only evidence validation; no execution of untrusted candidate payloads |
 | Signing identity | Pending: existing maintainer-authorized key/KMS or protected CI OIDC identity, pinned external verifier trust |
 | Authentic signature | Pending: frozen candidate signature and successful require-signatures gate; temporary test keys do not qualify |
-| Public repository | Owner authorized `sharb1235-hash/attow-network`; creation/settings must be verified and recorded |
-| Security reporting | Pending: enable/test a private route, assign a recipient, publish disclosure expectations |
+| Public repository | Created and API-verified public: [sharb1235-hash/attow-network](https://github.com/sharb1235-hash/attow-network); source push follows final gates |
+| Security reporting | GitHub API confirms private vulnerability reporting enabled; delivery test, recipient assignment and disclosure expectations remain pending |
 | Conduct reporting | Pending: private moderation route and responsible owner |
 | Release CI protection | Pending: configure required reviewers/default-branch protection; workflow YAML alone does not prove protection |
 | Maintenance ownership | Repository owner is the current steward; no invented team, SLA, backport window or stable release line |
@@ -28,7 +28,8 @@ gate to pass. `release-ready` additionally requires authentic configured signing
 
 The owned-loopback fence is a same-host fixture and assumes the external anchor
 is not copied. Provider guarantees apply to the durable owned simulator, not an
-arbitrary real purchasing service. Browser containment and WASM execution are
-in-process; no hostile-OS isolation, universal exactly-once execution, encrypted
+arbitrary real purchasing service. WASM executes in the Rust host process;
+Node/Chromium use separate child processes with fixture network mediation, not
+an independent OS security sandbox. No hostile-OS isolation, universal exactly-once execution, encrypted
 storage, automatic partition failover, consensus, novelty or throughput claim is
 made. These boundaries remain visible in release notes and the actual demo.

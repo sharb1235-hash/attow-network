@@ -139,17 +139,41 @@ async fn native_prepared_absence_verification_rejects_substituted_logical_identi
     };
     let dir = tempfile::tempdir()?;
     let workspace = attow_cli::Workspace::init(dir.path())?;
-    let prepared = demo::run(&workspace, DemoOptions {
-        scenario: Scenario::Checkout, workers: 2, resume: None, browser: false,
-        pause_after_prepared: true, pause_after_unknown: false, boundary_hook: None,
-    }).await?;
+    let prepared = demo::run(
+        &workspace,
+        DemoOptions {
+            scenario: Scenario::Checkout,
+            workers: 2,
+            resume: None,
+            browser: false,
+            pause_after_prepared: true,
+            pause_after_unknown: false,
+            boundary_hook: None,
+        },
+    )
+    .await?;
     let connection = rusqlite::Connection::open(workspace.data_dir().join("catalog.sqlite"))?;
     for field in ["request_id", "decision", "operation"] {
-        let mut record = serde_json::to_value(&prepared)?;
-        record[field] = serde_json::json!("fe".repeat(32));
-        connection.execute("UPDATE runs SET record=?1 WHERE id=?2",rusqlite::params![serde_json::to_vec(&record)?,prepared.run_id])?;
-        let args = Args {command:Command::Verify(prepared.run_id.clone()),json:true,root:None};
-        assert!(commands::execute(args,workspace.root()).await.is_err(),"Prepared absence accepted substituted {field}");
+        let mut record = prepared.clone();
+        match field {
+            "request_id" => record.request_id = Some("fe".repeat(32)),
+            "decision" => record.decision = Some("fe".repeat(32)),
+            "operation" => record.operation = Some("fe".repeat(32)),
+            _ => unreachable!("fixed test field"),
+        }
+        connection.execute(
+            "UPDATE runs SET record=?1 WHERE id=?2",
+            rusqlite::params![serde_json::to_vec(&record)?, prepared.run_id],
+        )?;
+        let args = Args {
+            command: Command::Verify(prepared.run_id.clone()),
+            json: true,
+            root: None,
+        };
+        assert!(
+            commands::execute(args, workspace.root()).await.is_err(),
+            "Prepared absence accepted substituted {field}"
+        );
     }
     Ok(())
 }

@@ -339,7 +339,7 @@ fn boundary(options: &DemoOptions, point: DemoBoundary) {
         hook(point);
     }
 }
-fn derive(run: &str, label: &str) -> ObjectId {
+pub(crate) fn derive(run: &str, label: &str) -> ObjectId {
     let mut h = blake3::Hasher::new_derive_key("attow-owned-demo-v1");
     h.update(run.as_bytes());
     h.update(&[0]);

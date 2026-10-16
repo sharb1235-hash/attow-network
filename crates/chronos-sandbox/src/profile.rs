@@ -39,7 +39,7 @@ pub(crate) fn supported_features() -> WasmFeatures {
 
 fn contract() -> Value {
     Value::Array(vec![
-        Value::Text("wasmtime=48.0.5;wasmparser=0.254.2;attow:worldline@1.0.0;scalar-step-v1".into()),
+        Value::Text("wasmtime=48.0.6;wasmparser=0.254.2;attow:worldline@1.0.0;scalar-step-v1".into()),
         Value::Text(std::env::consts::OS.into()),
         Value::Text(std::env::consts::ARCH.into()),
         Value::Text("fuel=true;nan=canonical;memory-init-cow=false;fixed-memory-tables;mutable-globals=false;starts=false;imports=input-len,input-byte,output-byte;one-core-module;one-core-instance;one-host-bundle;one-memory;one-table;pooling;in-process;no-native-deserialization".into()),

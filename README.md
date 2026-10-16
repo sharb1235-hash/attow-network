@@ -14,7 +14,7 @@ only authorized intents to the owned provider simulator. A lost response stays
 Install Rust **1.95.0** and the native C/C++ build tools, then run from this checkout:
 
 ```sh
-cargo +1.95.0 install --path crates/chronos-cli --locked --root target/install
+cargo +1.95.0 install --path crates/chronos-cli --locked --debug --root target/install
 ```
 
 Add `target/install/bin` to PATH, or invoke its absolute `attow` path (`attow.exe`

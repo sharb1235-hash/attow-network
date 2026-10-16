@@ -12,6 +12,7 @@ use std::{
 
 const COMMAND_BYTES: usize = 2 * 1024 * 1024;
 const RECORDING_BYTES: usize = 16 * 1024 * 1024;
+const MAX_FRAMES: usize = 4096;
 
 pub struct RuntimeOverrides {
     pub node: PathBuf,
@@ -428,6 +429,7 @@ struct Recorder {
 }
 impl Recorder {
     fn note(&mut self, text: &str) -> Result<()> {
+        require(self.frames.len() < MAX_FRAMES, "recording frame limit")?;
         let text = format!("runner> {text}");
         std::io::stdout().write_all(text.as_bytes())?;
         self.frames.push(
@@ -467,6 +469,10 @@ impl Recorder {
         )?;
         let data = envelope["data"].clone();
         self.commands.push(json!({"index":index,"argv":args,"started_ms":output.started_ms,"ended_ms":output.ended_ms,"exit_code":output.code,"stdout":output.stdout,"stderr":output.stderr,"envelope":envelope}));
+        require(
+            self.frames.len() + output.frames.len() <= MAX_FRAMES,
+            "recording frame limit",
+        )?;
         self.frames.extend(output.frames);
         Ok(data)
     }
@@ -500,7 +506,7 @@ fn viewer(events: &Value) -> Result<String> {
         .replace('\u{2028}', "\\u2028")
         .replace('\u{2029}', "\\u2029");
     Ok(format!(
-        r#"<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Attow Network — actual owned workflow recording</title><style>body{{background:#10151c;color:#e5eef8;font:16px system-ui;margin:2rem auto;max-width:1100px;padding:0 1rem}}button{{padding:.6rem 1rem;margin:.3rem;background:#d8eeff;border:0;border-radius:.3rem}}pre{{white-space:pre-wrap;overflow-wrap:anywhere;background:#090d12;padding:1rem;min-height:25rem;font:13px ui-monospace,monospace}}p{{line-height:1.5}}#clock{{font-variant-numeric:tabular-nums}}</style><h1>Attow Network</h1><p>Actual terminal output from owned WASM, SQL, browser and private peer fixtures. Provider: simulated. The recording preserves observed elapsed times; configured worker limits and observed peaks are distinct. No public providers are contacted.</p><button id="play">Play at recorded speed</button><button id="pause">Pause</button><button id="restart">Restart</button><button id="all">Show complete transcript</button><span id="clock">0.000 s</span><pre id="terminal" aria-live="off"></pre><script id="recorded-data" type="application/json">{data}</script><script>'use strict';const recording=JSON.parse(document.getElementById('recorded-data').textContent),frames=recording.frames,terminal=document.getElementById('terminal'),clock=document.getElementById('clock');let position=0,elapsed=0,origin=0,playing=false;function show(ms){{while(position<frames.length&&frames[position].elapsed_ms<=ms){{terminal.append(document.createTextNode(frames[position].text));position++}}clock.textContent=(ms/1000).toFixed(3)+' s'}}function tick(now){{if(!playing)return;elapsed=now-origin;show(elapsed);if(position<frames.length)requestAnimationFrame(tick);else playing=false}}document.getElementById('play').onclick=()=>{{if(playing)return;playing=true;origin=performance.now()-elapsed;requestAnimationFrame(tick)}};document.getElementById('pause').onclick=()=>{{playing=false}};document.getElementById('restart').onclick=()=>{{playing=false;position=0;elapsed=0;terminal.textContent='';show(0)}};document.getElementById('all').onclick=()=>{{playing=false;elapsed=frames.length?frames[frames.length-1].elapsed_ms:0;show(elapsed)}};show(0);</script></html>"#
+        r#"<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Attow Network — actual owned workflow recording</title><style>body{{background:#10151c;color:#e5eef8;font:16px system-ui;margin:2rem auto;max-width:1100px;padding:0 1rem}}button{{padding:.6rem 1rem;margin:.3rem;background:#d8eeff;border:0;border-radius:.3rem}}pre{{white-space:pre-wrap;overflow-wrap:anywhere;background:#090d12;padding:1rem;height:60vh;overflow:auto;font:13px ui-monospace,monospace}}p{{line-height:1.5}}#clock{{font-variant-numeric:tabular-nums}}</style><h1>Attow Network</h1><p>Actual terminal output from owned WASM, SQL, browser and private peer fixtures. Provider: simulated. The recording preserves observed elapsed times; configured worker limits and observed peaks are distinct. No public providers are contacted.</p><button id="play">Play at recorded speed</button><button id="pause">Pause</button><button id="restart">Restart</button><button id="all">Show complete transcript</button><span id="clock">0.000 s</span><pre id="terminal" aria-live="off"></pre><script id="recorded-data" type="application/json">{data}</script><script>'use strict';const recording=JSON.parse(document.getElementById('recorded-data').textContent),frames=recording.frames,terminal=document.getElementById('terminal'),clock=document.getElementById('clock');let position=0,elapsed=0,origin=0,playing=false;function show(ms){{while(position<frames.length&&frames[position].elapsed_ms<=ms){{terminal.append(document.createTextNode(frames[position].text));position++}}terminal.scrollTop=terminal.scrollHeight;clock.textContent=(ms/1000).toFixed(3)+' s'}}function tick(now){{if(!playing)return;elapsed=now-origin;show(elapsed);if(position<frames.length)requestAnimationFrame(tick);else playing=false}}document.getElementById('play').onclick=()=>{{if(playing)return;playing=true;origin=performance.now()-elapsed;requestAnimationFrame(tick)}};document.getElementById('pause').onclick=()=>{{playing=false}};document.getElementById('restart').onclick=()=>{{playing=false;position=0;elapsed=0;terminal.textContent='';show(0)}};document.getElementById('all').onclick=()=>{{playing=false;elapsed=frames.length?frames[frames.length-1].elapsed_ms:0;show(elapsed)}};show(0);</script></html>"#
     ))
 }
 struct Captured {
@@ -589,6 +595,7 @@ fn capture(
                         Err(_) => return Err(ReleaseError::Invalid("non-UTF8 recorded output")),
                     };
                     if valid > 0 {
+                        require(frames.len() < MAX_FRAMES, "recorded command frame limit")?;
                         let text = std::str::from_utf8(&pending[stream][..valid])
                             .map_err(|_| ReleaseError::Invalid("UTF8 output"))?
                             .to_owned();

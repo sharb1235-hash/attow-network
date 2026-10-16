@@ -76,8 +76,9 @@ tar -xf release-candidate/attow-network-0.1.0-x86_64-pc-windows-msvc.tar -C 'C:\
 Do not run a downloaded artifact merely because its self-contained hashes agree.
 Hashes establish internal consistency; authentic release trust additionally
 requires the independently configured signature check below. Source installation
-is documented as `cargo +1.95.0 install --path crates/chronos-cli --locked`; there
-is no `cargo install attow` registry claim.
+was exercised as `cargo +1.95.0 install --path crates/chronos-cli --locked --debug
+--root <fresh-prefix>`. That debug source-install lane is separate from the tested
+optimized archive binary. There is no `cargo install attow` registry claim.
 
 ## Actual recorded demo
 
@@ -101,9 +102,11 @@ The two pause flags are mutually exclusive.
 
 The manifest lists artifact paths, sizes and SHA-256 hashes and binds source,
 target, compiler, lock, runtime profile, gates and expected signing identity.
-`SHA256SUMS` includes the manifest and its listed artifacts. Neither manifest nor
-checksums list the detached `manifest.sigstore.json` signature, preventing a hash
-cycle. Once frozen, changing any listed byte invalidates the candidate.
+`SHA256SUMS` lists exactly the same payload artifacts as the manifest. Both exclude
+`manifest.json`, `SHA256SUMS` and detached `manifest.sigstore.json`, preventing a
+hash cycle. The signature directly authenticates the frozen manifest bytes; the
+verifier checks those bytes' exact artifact set against checksums and content.
+Once frozen, changing any listed byte invalidates the candidate.
 
 Configure `ATTOW_RELEASE_SIGN_CONFIG` as an absolute file outside the candidate.
 It selects the verified Cosign 3.1.3 executable/hash and independent trust:

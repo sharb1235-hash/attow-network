@@ -71,6 +71,6 @@ This matrix maps Attow Network's implemented guarantees to executable evidence a
 | Linux/macOS builds | Configured CI verification lanes only at this checkpoint. | No locally executed native results or release support claim. Passing Windows does not validate other platforms. |
 | Hostile-input fuzzing | Codec/frame/worldline-import fuzz targets compile; bounded sanitizer workflow configured. | No completed local sanitizer fuzz campaign claimed. Property tests and malformed-input regressions are distinct evidence. |
 | Performance | Prior actual Stage 6 raw measurements remain recorded with their harness/source/environment; the implemented `bench-report` command invokes real release harnesses. | No new Stage 9 measured run is claimed. No throughput/latency SLA or fabricated speedup. |
-| Archive installation, signatures and publication | Stage 10 work has not started. | No signed release/readiness claim. Real maintainer signing, platform artifact/install verification and separate publication actions remain outstanding. |
+| Archive installation, signatures and publication | Stage 10 tooling is implemented; final candidate evidence is being generated. | No signed release/readiness claim. Maintainer signing remains externally configured; source publication is authorized by the owner. |
 
 A failed safety gate must be repaired or block the affected capability. Unsupported scope must remain explicit; it is not a way to relabel a failing supported guarantee.
