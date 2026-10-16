@@ -889,3 +889,20 @@ All ten implementation stages are now handled to the permitted unsigned-candidat
 boundary. Remaining owner actions are authentic maintainer signing, protected
 release configuration, reporting/maintenance ownership, and any separately
 authorized public release. The launch checklist retains these external conditions.
+
+### CI follow-up — provision the complete graph before offline policy
+
+After the candidate completed, the Windows browser CI job on `61656e7` passed its
+runtime/browser/all-feature/demo/install steps but failed its final offline policy
+step. A native-only build cache lacked other-platform crates such as
+`signal-hook-registry` and `aho-corasick`; the gate correctly rejected an HTTP
+request under `--offline`. Evidence: `target/stage10-ci-browser.log`.
+
+The CI workflow now explicitly runs `cargo +1.95.0 fetch --locked` before the
+unchanged offline license/source/ban and native advisory checks. Policy checks run
+before browser compilation for earlier feedback. The browser job also provisions
+rustfmt with the exact toolchain, matching rust-toolchain.toml. This changes CI
+provisioning only; the frozen candidate, runtime source and locked graph are
+unchanged. The release-candidate workflow already provisions the complete graph.
+The follow-up remote policy result is recorded when available; this failure is
+not relabeled as a passing safety check.
