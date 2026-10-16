@@ -763,3 +763,14 @@ GitHub's API. Private vulnerability reporting was enabled and confirmed; no test
 report was sent and no delivery or response-time claim is made. SECURITY.md,
 SUPPORT.md and the launch checklist now link the actual repository. Source push
 and candidate production still await the final checks at this source checkpoint.
+
+The first final `release-check --local` on commit `17702c6` passed repository,
+licenses, native advisories, fmt and all 295 default workspace tests. The
+all-features build completed, but disk headroom fell below 1 GB during linking.
+That attempt was deliberately interrupted at the start of the browser tests and
+is recorded as failed/incomplete, not as an all-features pass. Logs and the failed
+report are preserved as `target/stage10-interrupted-release-check.log` and
+`target/stage10-interrupted-report.json`. Completed generated binaries/symbols
+are being losslessly compressed with Windows compact LZX before retrying; a
+sample's SHA-256 was unchanged (`target/stage10-lzx-sample.log`). No cache or
+source deletion was used. Full validation and packaging remain pending.
