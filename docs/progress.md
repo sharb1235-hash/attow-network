@@ -18,7 +18,7 @@ All 42 manifest-listed input files passed SHA-256 verification before copying.
 | 7 | Adapters and effect gateway | Complete |
 | 8 | Peer federation | Complete; native Windows gates passed |
 | 9 | CLI and owned demonstration | Complete; native Windows gates passed |
-| 10 | Release candidate and signing | Implemented; final candidate gates in progress |
+| 10 | Release candidate and signing | Candidate complete; signing pending |
 
 ## Execution evidence
 
@@ -812,3 +812,80 @@ target/stage10-demo-preflight` also completed using the actual optimized binary,
 including prepared comparison, Unknown reconciliation, and both offline replays.
 This is explicitly dirty-tree diagnostic evidence. A clean source-bound gate
 report and a fresh complete candidate are still required after these corrections.
+
+### Stage 10 — completed unsigned Windows candidate
+
+Status: **candidate-complete; signing-pending**. The final producer used clean
+source `61656e762a650003c2626134af42fd0ffd140f8c`, already pushed to public `main`.
+This subsequent documentation commit records the result; it does not rewrite the
+frozen candidate or claim that its source archive includes its own completion report.
+The final documentation-only commit uses `[skip ci]`; the running CI and all
+candidate qualification results remain explicitly bound to the candidate source.
+The source/lock/runtime/artifact identities are in
+[machine-readable candidate evidence](research/stage10-candidate.json).
+
+The corrected `cargo +1.95.0 run -p xtask --locked -- release-check --local`
+passed all twelve separate checks, with a clean matching revision and lock hash
+before and after. Exact common and feature commands within that report:
+
+| Command | Actual result |
+| --- | --- |
+| `verify-repository` through xtask | Passed |
+| `cargo +1.95.0 fmt --all --check` | Passed |
+| `cargo +1.95.0 test --workspace --all-targets --locked -j 2` | 296 passed, zero failed |
+| `cargo +1.95.0 test --workspace --all-targets --all-features --locked -j 2` | 348 passed, zero failed |
+| `cargo +1.95.0 clippy --workspace --all-targets --locked -j 2 -- -D warnings` | Passed |
+| `cargo +1.95.0 clippy --workspace --all-targets --all-features --locked -j 2 -- -D warnings` | Passed |
+| `cargo +1.95.0 doc --workspace --no-deps --locked -j 2` | Passed |
+| `cargo +1.95.0 doc --workspace --no-deps --all-features --locked -j 2` | Passed |
+
+The totals overlap. The pinned cargo-deny all-target license and native Windows
+advisory checks passed. The integrated owned demo and fresh debug source install
+passed, including offline replay and verification. These gates used the explicit
+pinned Node, Playwright and Chromium prerequisites and a fully cached locked
+Cargo graph. Evidence: `target/stage10-corrected-release-check.log` and
+`target/release-check/report.json`, copied into the frozen candidate.
+
+`cargo +1.95.0 run -p xtask --locked -- release-plan` passed. `release-build
+--target x86_64-pc-windows-msvc --output release-candidate` then passed, producing
+855 payload artifacts totaling 49,398,963 bytes. The inventory contains 469
+source packages and 356 target SBOM components, with registry archive checksums
+and exact notice bytes verified. The actual extracted optimized binary passed
+six installation commands. Its browser test installation copied 606 cache files
+(753,250,260 bytes), within the explicit bound; those runtime files are not bundled.
+Evidence: `target/stage10-candidate-build-final.log` and `release-candidate/evidence/`.
+
+The actual recording contains thirteen commands. Checkout prepared five branches,
+recorded 15 logical nodes, seven executions and eight reuses, then one simulated
+dispatch, Unknown, reconciliation of the same operation into Confirmed, and offline
+replay/verification. Data-change recorded ten nodes, two executions and eight reuses.
+Both observed a peak of one resident worker with a configured limit of two. No
+speedup claim follows from those counts. `demo-record --output
+target/stage10-recorded-demo` also passed on the same clean source. The frozen
+candidate's viewer passed actual Chromium play/pause/restart/full-transcript checks,
+with no page errors (`target/stage10-final-viewer.log`).
+
+These independent commands passed against the frozen candidate:
+
+- `cargo +1.95.0 run -p xtask --locked -- release-verify --dir release-candidate --integrity-only`
+- `scripts/verify-artifacts.ps1 -Directory release-candidate -IntegrityOnly`
+- `bash scripts/verify-artifacts.sh --dir release-candidate --integrity-only`
+
+All reported manifest SHA-256
+`1de330e40b10ac2f3b045d25db53916efcd3cc9319b5a4811847108fe7503eaf`.
+`release-sign --dir release-candidate --mode configured` correctly exited 1 for
+missing external signing trust, without changing the manifest. `release-verify
+--dir release-candidate --require-signatures` correctly exited 1 because the
+candidate is unsigned. The earlier real Cosign test remains isolated test-key
+evidence only. No maintainer identity or signature is invented.
+
+Native Linux and macOS source CI passed for `61656e7`; Windows CI was still
+running when this evidence was recorded. Its [exact run](https://github.com/sharb1235-hash/attow-network/actions/runs/38971302087)
+is separate from the complete local Windows qualification. Linux release artifacts
+remain blocked by the unignored paste advisory, and macOS release-artifact
+qualification has not run. No registry package or GitHub Release was published.
+
+All ten implementation stages are now handled to the permitted unsigned-candidate
+boundary. Remaining owner actions are authentic maintainer signing, protected
+release configuration, reporting/maintenance ownership, and any separately
+authorized public release. The launch checklist retains these external conditions.

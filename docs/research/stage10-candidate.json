@@ -1,0 +1,93 @@
+{
+  "schema": 1,
+  "checked_at_utc": "2026-10-16T22:05:52.5208852Z",
+  "status": "candidate-complete; signing-pending",
+  "source": {
+    "revision": "61656e762a650003c2626134af42fd0ffd140f8c",
+    "dirty": false
+  },
+  "target": "x86_64-pc-windows-msvc",
+  "manifest_sha256": "1de330e40b10ac2f3b045d25db53916efcd3cc9319b5a4811847108fe7503eaf",
+  "lock_sha256": "0305716d6c25f2d3501f601feb4b9ddc5424953a3d44f65dc35b2fb54b8fff93",
+  "runtime_profile_hash": "354014ab716caf151e1f4f7f69fac63a8cb96431168c2262439b3a606236f18b",
+  "artifacts": 855,
+  "build_checks": 13,
+  "archives": [
+    {
+      "path": "attow-network-0.1.0-source.tar",
+      "bytes": 6262272,
+      "sha256": "bcdd2c70fb9bd56ab0e1eb59812b80bdc26f0749c3923596344408f251cbac15",
+      "role": "source-archive"
+    },
+    {
+      "path": "attow-network-0.1.0-x86_64-pc-windows-msvc.tar",
+      "bytes": 37725184,
+      "sha256": "f00807e82a9464e32377d200e43786dec461841e4edd7356d8dd54c51dbd4b1a",
+      "role": "platform-archive"
+    }
+  ],
+  "default_tests_passed": 296,
+  "all_features_tests_passed": 348,
+  "test_totals_overlap": true,
+  "source_packages": 469,
+  "target_sbom_components": 356,
+  "archive_install_checks": 6,
+  "recorded_commands": 13,
+  "checkout": {
+    "configured_worker_limit": 2,
+    "executed": 7,
+    "intent": "540bda906a9dd133c0a6eec576cd41d8ce89e4a29ae69e24be48398c4d97122e",
+    "logical_nodes": 15,
+    "observed_peak": 1,
+    "operation": "a8703bbe78c81645281be0242b401885adf9adf836dc7d7b5e3a4f76436fd3ac",
+    "prepared_branches": 5,
+    "reused": 8,
+    "run_id": "1fed5b672631ba97fccb79726b09bda18532b05d541b759d9a71440bbd232a92"
+  },
+  "data_change": {
+    "configured_worker_limit": 2,
+    "executed": 2,
+    "logical_nodes": 10,
+    "observed_peak": 1,
+    "reused": 8,
+    "run_id": "adc875bcd0671517e49b200eb4e4fc97b0f8fe7e3ffee14bb5442777f942250f"
+  },
+  "integrity_verification": {
+    "shell": "passed",
+    "powershell": "passed",
+    "standalone": "passed"
+  },
+  "viewer_controls": {
+    "page_errors": 0,
+    "status": "passed"
+  },
+  "signing": {
+    "unsigned_readiness_exit": 1,
+    "configured": false,
+    "missing_configuration_exit": 1,
+    "manifest_unchanged": true,
+    "signature_present": false
+  },
+  "github": {
+    "repository": "https://github.com/sharb1235-hash/attow-network",
+    "branch": "main",
+    "candidate_source_pushed": true,
+    "owned_browser_windows": "in_progress",
+    "ci_run": "https://github.com/sharb1235-hash/attow-network/actions/runs/38971302087",
+    "macos": "success",
+    "windows": "in_progress",
+    "linux": "success"
+  },
+  "distribution": {
+    "registry_published": false,
+    "candidate_artifacts": "local release-candidate directory",
+    "github_release_published": false
+  },
+  "limits": [
+    "Native Windows candidate only",
+    "Linux release qualification blocked by unignored RUSTSEC-2024-0436",
+    "macOS source CI passed; release artifacts unqualified",
+    "No independent binary reproducibility claim",
+    "Maintainer signing and release protection pending"
+  ]
+}

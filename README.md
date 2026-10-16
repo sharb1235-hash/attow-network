@@ -78,10 +78,14 @@ the exported evidence and does not attest to an external provider's truth.
 | Adapters | Owned SQLite and optional pinned Chromium fixtures; provider gateway and independent loopback simulator |
 | Peers | Private Iroh/noq endpoints, scoped durable graph transfer, authenticated proposals and external fencing port |
 | Developer tools | Installed CLI, static inspector, data-only bundles, offline replay, actual demo/install/release checks |
+| Candidate tooling | Bounded archives, checksums, SBOM/notices, archive installation, recorded terminal demo and external-trust signature verification |
 
 See the [verification matrix](docs/verification-matrix.md) and
-[stage evidence](docs/progress.md). The initial release candidate is prepared in
-Stage 10; signed distribution readiness requires an authentic configured identity.
+[stage evidence](docs/progress.md). The native Windows 0.1.0 candidate is complete
+with signing pending; [artifact evidence](docs/research/stage10-candidate.json)
+records its exact source and manifest hash. Follow the
+[release runbook](docs/release-runbook.md) to reproduce it. Signed distribution
+readiness requires an authentic configured identity.
 Packages remain `publish = false`; no registry install command is promised.
 
 ## Boundaries

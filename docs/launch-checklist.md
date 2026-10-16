@@ -5,6 +5,13 @@ the candidate's manifest/evidence and [progress](progress.md), not this checklis
 alone. `candidate-complete; signing-pending` requires every non-signing artifact
 gate to pass. `release-ready` additionally requires authentic configured signing.
 
+The October 16 Windows candidate meets `candidate-complete; signing-pending`.
+[Recorded evidence](research/stage10-candidate.json) binds it to source
+`61656e762a650003c2626134af42fd0ffd140f8c`, with 855 artifacts, all twelve local
+gates, six extracted-binary checks, thirteen recorded commands and successful
+standalone/PowerShell/shell integrity verification. The owner actions below remain
+explicit requirements for a supported signed public release.
+
 | Condition | Required evidence or remaining owner action |
 | --- | --- |
 | Source identity | Clean committed revision and matching lock hash before/after every release check |
