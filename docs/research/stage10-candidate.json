@@ -72,11 +72,44 @@
     "repository": "https://github.com/sharb1235-hash/attow-network",
     "branch": "main",
     "candidate_source_pushed": true,
-    "owned_browser_windows": "in_progress",
+    "owned_browser_windows": "failure",
     "ci_run": "https://github.com/sharb1235-hash/attow-network/actions/runs/38971302087",
     "macos": "success",
-    "windows": "in_progress",
-    "linux": "success"
+    "windows": "cancelled",
+    "linux": "success",
+    "original_failure": "Offline all-target policy lacked non-native cached dependencies; runtime, browser, all-feature, demo and source-install steps passed.",
+    "original_cancellation": "The CI correction push superseded the still-running Windows foundation job after its default, facade, sandbox and scheduler checks passed.",
+    "followup": {
+      "checked_at_utc": "2026-10-16T22:13:19.7339667Z",
+      "revision": "db47f459b7f1c23fcfbcd02bfb0f49fa950859c9",
+      "ci_run": "https://github.com/sharb1235-hash/attow-network/actions/runs/38974104171",
+      "status": "in_progress",
+      "conclusion": "",
+      "complete_locked_cache": "success",
+      "offline_license_and_native_advisory_policy": "success",
+      "jobs": [
+        {
+          "name": "Rust 1.95.0 / x86_64-pc-windows-msvc",
+          "status": "in_progress",
+          "conclusion": ""
+        },
+        {
+          "name": "Rust 1.95.0 / x86_64-unknown-linux-gnu",
+          "status": "in_progress",
+          "conclusion": ""
+        },
+        {
+          "name": "Owned Chromium fixture / Windows x64",
+          "status": "in_progress",
+          "conclusion": ""
+        },
+        {
+          "name": "Rust 1.95.0 / aarch64-apple-darwin",
+          "status": "in_progress",
+          "conclusion": ""
+        }
+      ]
+    }
   },
   "distribution": {
     "registry_published": false,

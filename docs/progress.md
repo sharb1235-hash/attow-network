@@ -906,3 +906,21 @@ provisioning only; the frozen candidate, runtime source and locked graph are
 unchanged. The release-candidate workflow already provisions the complete graph.
 The follow-up remote policy result is recorded when available; this failure is
 not relabeled as a passing safety check.
+
+The correction is committed and pushed as `db47f459b7f1c23fcfbcd02bfb0f49fa950859c9`.
+On its [fresh CI run](https://github.com/sharb1235-hash/attow-network/actions/runs/38974104171),
+both `Populate the complete locked dependency cache` and `Enforce all-target
+licenses and native advisory policy` completed successfully. The remaining jobs
+were still running at the final evidence snapshot; no full-run success is claimed.
+The previous Windows foundation job was superseded by this push after its default,
+facade, sandbox and scheduler checks passed. Its unfinished peer lane is recorded
+as cancelled. `docs/research/stage10-candidate.json` preserves these distinct
+outcomes and the timestamped follow-up snapshot.
+
+Final follow-up validation: `cargo +1.95.0 run -p xtask --locked -- verify-repository`,
+`cargo +1.95.0 fmt --all --check`, and `git diff --check` each exited 0. Runtime and
+lockfile contents have not changed since the complete twelve-gate qualification;
+the final changes affect CI provisioning and evidence only. The evidence commit
+uses `[skip ci]` so the follow-up source run can finish without cancellation.
+Next stage: none. Authentic maintainer signing and separately authorized release
+publication remain external follow-up work, not completed implementation claims.
