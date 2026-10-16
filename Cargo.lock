@@ -258,7 +258,7 @@ dependencies = [
  "attow-state",
  "tempfile",
  "thiserror 2.0.21",
- "wasmparser 0.254.2",
+ "wasmparser 0.261.0",
  "wasmtime",
  "wat",
 ]
@@ -838,7 +838,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c54e03a951783e8b327515db3f2a2fd0e3bed362a96b066f341ce66ed49b4ead"
 dependencies = [
  "data-encoding",
- "syn 3.0.7",
+ "syn 2.0.119",
 ]
 
 [[package]]
@@ -4086,8 +4086,10 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "4f20f20e44f7e8aeb6744823ea9d869ede51e51be4fdaedede2852282e54d2d8"
 dependencies = [
  "bitflags",
+ "hashbrown 0.17.1",
  "indexmap",
  "semver",
+ "serde",
 ]
 
 [[package]]
