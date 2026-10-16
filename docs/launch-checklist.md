@@ -16,7 +16,7 @@ gate to pass. `release-ready` additionally requires authentic configured signing
 | Independent integrity | Manifest/artifact/checksum consistency and data-only evidence validation; no execution of untrusted candidate payloads |
 | Signing identity | Pending: existing maintainer-authorized key/KMS or protected CI OIDC identity, pinned external verifier trust |
 | Authentic signature | Pending: frozen candidate signature and successful require-signatures gate; temporary test keys do not qualify |
-| Public repository | Created and API-verified public: [sharb1235-hash/attow-network](https://github.com/sharb1235-hash/attow-network); source push follows final gates |
+| Public repository | Created and API-verified public: [sharb1235-hash/attow-network](https://github.com/sharb1235-hash/attow-network); validated source pushed to `main` |
 | Security reporting | GitHub API confirms private vulnerability reporting enabled; delivery test, recipient assignment and disclosure expectations remain pending |
 | Conduct reporting | Pending: private moderation route and responsible owner |
 | Release CI protection | Pending: configure required reviewers/default-branch protection; workflow YAML alone does not prove protection |

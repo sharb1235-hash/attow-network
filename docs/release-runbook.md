@@ -59,6 +59,10 @@ and build dependencies; the all-source inventory also includes inactive target
 packages. Exact notice provenance and archive checksums are retained. The optional
 browser runtime binaries are not bundled; sidecar/app sources and locked package
 metadata are shipped and runtime prerequisites remain explicit.
+During the archive smoke test, the producer copies the explicitly configured
+Chromium cache beside the extracted sidecar, as required by the adapter's fixed
+runtime layout. This temporary installation is removed with its owned test
+directory and is never added to the archive. Node remains explicitly provisioned.
 
 Candidate production extracts its own verified archive into a fresh directory
 containing spaces and runs the actual release binary's help, doctor, initialization,

@@ -10,7 +10,7 @@
     "enabled": true,
     "confirmation": "GitHub REST API GET private-vulnerability-reporting"
   },
-  "source_push": "pending final local gates",
+  "source_push": "Verified public main at c0ab1eb6b64903faeb924517762d5ec181e31f21 after all twelve local gates passed",
   "signing_configured": false,
   "registry_publication": false,
   "github_release_publication": false

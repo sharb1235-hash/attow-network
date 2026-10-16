@@ -121,6 +121,37 @@ fn copy_file(source: &Path, destination: &Path) -> Result<()> {
     out.flush()?;
     Ok(())
 }
+fn provision_browser_cache(runtime: &mut super::demo_record::RuntimeOverrides) -> Result<Value> {
+    let destination = runtime
+        .sidecar
+        .parent()
+        .ok_or(ReleaseError::Invalid("browser layout"))?
+        .join(".browsers");
+    let mut files = Vec::new();
+    files_under(&runtime.browsers, "", &mut files)?;
+    if files.is_empty() {
+        return Err(ReleaseError::Invalid("empty browser runtime cache"));
+    }
+    let mut bytes = 0_u64;
+    for (_, file) in &files {
+        bytes = bytes
+            .checked_add(fs::metadata(file)?.len())
+            .ok_or(ReleaseError::Invalid("browser cache size overflow"))?;
+        if bytes > 2 * 1024 * 1024 * 1024 {
+            return Err(ReleaseError::Invalid(
+                "browser cache exceeds installation bound",
+            ));
+        }
+    }
+    fs::create_dir(&destination)?;
+    for (name, source) in &files {
+        copy_file(source, &destination.join(name))?;
+    }
+    runtime.browsers = destination;
+    Ok(
+        json!({"schema":1,"method":"explicit existing Chromium cache copied beside the extracted sidecar","temporary_installation_only":true,"bundled_in_archive":false,"files":files.len(),"bytes":bytes}),
+    )
+}
 fn files_under(dir: &Path, prefix: &str, files: &mut Vec<(String, PathBuf)>) -> Result<()> {
     super::manifest::reject_link(dir)?;
     for entry in fs::read_dir(dir)? {
@@ -368,6 +399,11 @@ pub fn build(root: &Path, target: &str, output: &Path) -> Result<()> {
             "archive browser dependency provision failed".into(),
         ));
     }
+    let browser_cache = provision_browser_cache(&mut runtime)?;
+    write_json(
+        &output.join("evidence/archive-browser-cache.json"),
+        &browser_cache,
+    )?;
     super::demo_record::record_with_binary(
         root,
         &output.join("demo"),
@@ -478,6 +514,40 @@ pub fn build(root: &Path, target: &str, output: &Path) -> Result<()> {
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn archive_browser_cache_is_provisioned_beside_its_extracted_sidecar() -> Result<()> {
+        let temp = tempfile::tempdir()?;
+        let source = temp.path().join("external browser cache");
+        fs::create_dir_all(source.join("chromium-1248"))?;
+        fs::write(
+            source.join("chromium-1248/fixture.txt"),
+            b"verified runtime fixture",
+        )?;
+        let sidecar = temp.path().join("extracted browser/sidecar.mjs");
+        fs::create_dir_all(
+            sidecar
+                .parent()
+                .ok_or(ReleaseError::Invalid("test parent"))?,
+        )?;
+        fs::write(&sidecar, b"fixture")?;
+        let mut runtime = super::super::demo_record::RuntimeOverrides {
+            node: temp.path().join("node.exe"),
+            sidecar,
+            browsers: source.clone(),
+        };
+        provision_browser_cache(&mut runtime)?;
+        let expected = temp.path().join("extracted browser/.browsers");
+        assert_eq!(runtime.browsers, expected);
+        assert_eq!(
+            fs::read(expected.join("chromium-1248/fixture.txt"))?,
+            b"verified runtime fixture"
+        );
+        assert_eq!(
+            fs::read(source.join("chromium-1248/fixture.txt"))?,
+            b"verified runtime fixture"
+        );
+        Ok(())
+    }
     #[test]
     fn release_checks_must_bind_clean_unchanged_source_and_lock() {
         let source = SourceRevision {

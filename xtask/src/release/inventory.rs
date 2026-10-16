@@ -505,6 +505,15 @@ fn collect(
 #[cfg(test)]
 mod tests {
     use super::*;
+    fn fixture_directory() -> tempfile::TempDir {
+        // macOS exposes its temporary root through /var -> /private/var.
+        // Resolve the owned fixture root before creating data; keep production
+        // notice and ancestor symlink rejection unchanged.
+        let parent = std::env::temp_dir()
+            .canonicalize()
+            .expect("canonical test temp root");
+        tempfile::tempdir_in(parent).expect("valid inventory test fixture")
+    }
     use serde_json::json;
     use std::fs;
 
@@ -514,7 +523,7 @@ mod tests {
         let root = Path::new(env!("CARGO_MANIFEST_DIR"))
             .parent()
             .expect("valid inventory test fixture");
-        let output = tempfile::tempdir().expect("valid inventory test fixture");
+        let output = fixture_directory();
         let result = generate(root, "x86_64-pc-windows-msvc", output.path())
             .expect("valid inventory test fixture");
         let inventory = read_json(&output.path().join("dependency-inventory.json"))
@@ -576,7 +585,7 @@ mod tests {
 
     #[test]
     fn target_scope_and_nested_attribution_are_preserved() {
-        let temp = tempfile::tempdir().expect("valid inventory test fixture");
+        let temp = fixture_directory();
         let all = fixture(temp.path());
         let target = json!({"resolve":{"nodes":[{"id":"alpha-id","dependencies":[]}]}});
         let out = temp.path().join("out");
@@ -608,39 +617,38 @@ mod tests {
 
     #[test]
     fn absent_upstream_notice_fails_closed() {
-        let temp = tempfile::tempdir().expect("valid inventory test fixture");
+        let temp = fixture_directory();
         let all = fixture(temp.path());
         fs::remove_file(temp.path().join("alpha/LICENSE")).expect("valid inventory test fixture");
         fs::remove_file(temp.path().join("alpha/nested/NOTICE"))
             .expect("valid inventory test fixture");
-        assert!(
+        assert!(matches!(
             collect(
                 temp.path(),
                 "x86_64-pc-windows-msvc",
                 &all,
                 &all,
                 &temp.path().join("out")
-            )
-            .is_err()
-        );
+            ), Err(Error::Message(message)) if message == "missing upstream notice: alpha 1.0.0"
+        ));
     }
 
     #[test]
     fn fallback_digest_is_checked_before_copy() {
-        let temp = tempfile::tempdir().expect("valid inventory test fixture");
+        let temp = fixture_directory();
         let all = fixture(temp.path());
         let fallback = temp.path().join("docs/notices/stage10");
         fs::write(fallback.join("LICENSE"), "tampered").expect("valid inventory test fixture");
         fs::write(fallback.join("fallbacks.json"),json!({"schema":1,"packages":[{"name":"alpha","version":"1.0.0","files":[{"path":"LICENSE","sha256":"0".repeat(64),"source":"https://example.invalid/pinned/LICENSE"}]}]}).to_string()).expect("valid inventory test fixture");
-        assert!(
+        assert!(matches!(
             collect(
                 temp.path(),
                 "x86_64-pc-windows-msvc",
                 &all,
                 &all,
                 &temp.path().join("out")
-            )
-            .is_err()
-        );
+            ),
+            Err(Error::Invalid("notice digest mismatch"))
+        ));
     }
 }

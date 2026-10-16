@@ -774,3 +774,41 @@ report are preserved as `target/stage10-interrupted-release-check.log` and
 are being losslessly compressed with Windows compact LZX before retrying; a
 sample's SHA-256 was unchanged (`target/stage10-lzx-sample.log`). No cache or
 source deletion was used. Full validation and packaging remain pending.
+
+### Stage 10 — qualified source, first archive attempt, and corrections
+
+The uninterrupted retry on `c0ab1eb6b64903faeb924517762d5ec181e31f21`
+passed all twelve local release checks: 295 default tests and 347 all-features
+tests (overlapping totals), both Clippy lanes with warnings denied, both docs
+lanes, fmt, repository policy, licenses, native advisories, the actual owned demo
+and fresh debug source installation. Evidence is preserved under
+`target/stage10-validated-c0ab/`. That exact commit was pushed to public `main`,
+and GitHub's API confirmed the remote revision and public visibility.
+
+The optimized Windows browser CLI then built successfully in 10m 17s. Its first
+archive passed the six offline installation checks, but the recorded browser run
+failed before preparation. The adapter intentionally locates Chromium beside its
+sidecar; the temporary extracted installation had only provisioned npm modules,
+not that adjacent browser cache. The incomplete candidate is preserved under
+`target/stage10-candidate-attempt-1/` and is not a completed candidate.
+
+A new test reproduced the missing adjacent cache before implementation
+(`target/stage10-browser-package-red.log`). The producer now copies the explicit
+existing browser cache into the owned temporary installation, bounded to 8,192
+files and 2 GiB, rejects links, and records counts/bytes. Those external runtime
+binaries remain outside the distributable archive. The repository checker also
+recognizes its root generated candidate output, with a failing-then-passing
+fixture that continues checking similarly named authored directories.
+
+GitHub's first macOS job exposed the system `/var` temporary-directory symlink
+in an inventory test. The fixture now creates its directory under the canonical
+owned temp root. Production notice symlink rejection is unchanged, and negative
+tests assert the intended missing-notice/digest errors rather than any error.
+The original remote failure log is `target/stage10-ci-macos.log`.
+
+`cargo +1.95.0 test -p xtask --locked -j 2` passed 52 tests, with two separately
+run external-tool gates excluded; focused Clippy passed. `demo-record --output
+target/stage10-demo-preflight` also completed using the actual optimized binary,
+including prepared comparison, Unknown reconciliation, and both offline replays.
+This is explicitly dirty-tree diagnostic evidence. A clean source-bound gate
+report and a fresh complete candidate are still required after these corrections.

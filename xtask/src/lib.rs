@@ -414,6 +414,7 @@ fn repository_files(
         if kind.is_symlink()
             || relative.starts_with("docs/chronos")
             || relative.starts_with(".tools")
+            || relative.starts_with("release-candidate")
             || relative.starts_with("demos/workflow-studio/browser/.browsers")
             || matches!(
                 entry.file_name().to_str(),
@@ -832,6 +833,7 @@ mod tests {
         for path in [
             ".tools/node/CHANGELOG.md",
             "demos/workflow-studio/browser/.browsers/chromium/README.md",
+            "release-candidate/notices/README.md",
         ] {
             fixture.write(path, "[Upstream source link](not-in-runtime.md)\n")?;
         }
@@ -845,6 +847,7 @@ mod tests {
             "fixtures/.browsers/README.md",
             "demos/workflow-studio/browser/README.md",
             "docs/notices/stage7/README.md",
+            "docs/release-candidate/README.md",
         ] {
             let fixture = Fixture::new()?;
             fixture.write(path, "[Missing](not-retained.md)\n")?;
